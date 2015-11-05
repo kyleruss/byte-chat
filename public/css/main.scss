@@ -1,0 +1,112 @@
+$colour_green: #4caf50;
+$colour_red: #e51c23;
+$colour_blue: #2196f3;
+$colour_white: #f0f0f0;
+$colour_yellow: #e08600;
+$colour_purp: #862197;
+
+html
+{
+	width: 100%;
+	height:100%;
+	
+}
+
+body
+{
+	@extend html;
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../resources/fonts/glyphicons-halflings-regular.eot');
+  src: url('../resources/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../resources/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../resources/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../resources/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+
+.no_transition
+{
+	transition:none !important;
+}
+
+*:focus
+{
+	outline:none !important;
+}
+
+
+@mixin hollow($border_colour)
+{
+	background-color:transparent;
+	border:1px solid $border_colour;
+}
+
+
+@mixin hollow_fill($fill_colour)
+{
+	background-color:$fill_colour;
+}
+
+.hollow_purp
+{
+	@include hollow($colour_purp);
+}
+
+.hollow_purp:hover
+{
+	@include hollow_fill($colour_purp);
+}
+
+.hollow_yellow
+{
+	@include hollow($colour_yellow);
+}
+
+.hollow_yellow:hover
+{
+	@include hollow_fill($colour_yellow);
+}
+
+.hollow_green
+{
+	@include hollow($colour_green);
+}
+
+.hollow_green:hover
+{
+	@include hollow($colour_green);
+}
+
+.hollow_blue
+{
+	@include hollow($colour_blue);
+}
+
+.hollow_blue:hover
+{
+	@include hollow_fill($colour_blue);
+}
+
+.hollow_red
+{
+	@include hollow($colour_red);
+}
+
+.hollow_red:hover
+{
+	@include hollow_fill($colour_red);
+}
+
+.hollow_white
+{
+	@include hollow($colour_white);
+}
+
+.hollow_white:hover
+{
+	@include hollow_fill($colour_white);
+}

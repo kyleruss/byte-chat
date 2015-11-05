@@ -1,0 +1,222 @@
+body 
+{ 
+	padding-top: 65px; 
+}
+
+@media screen and (max-width: 768px)
+{
+    body
+	{ 
+		padding-top: 0px; 
+	}
+}
+
+#title_content
+{
+	width:100%;
+	height:750px;
+	padding:3em;
+	background: url('../../resources/images/background.png') no-repeat;
+	background-size:cover;
+}
+
+footer
+{
+	height:200px;
+	background-color:white;
+	text-align:center;
+
+	.bottom_triangle
+	{	
+		font-size:72px;
+		margin-top:-0.6em;
+		margin-left:auto;
+		margin-right:auto;
+		color:white;
+	}
+}
+
+#transition_panel
+{
+	.transition_loader
+	{
+		position:absolute;
+		left:50%;
+		top:50%;
+		transform:translateX(-50%) translateY(-50%);
+
+	}	
+}
+
+#chat_features
+{
+	@extend #title_content;
+	background: url('../../resources/images/background3.png') no-repeat;
+	background-size:cover;
+}
+
+#security_features
+{
+	@extend #title_content;
+	background: url('../../resources/images/background4.png') no-repeat;
+	background-size:cover;
+}
+
+#something_features
+{
+	@extend #title_content;
+	background: url('../../resources/images/background2.png') no-repeat;
+	background-size:cover;
+}
+
+.app_brand
+{
+	padding-top:5px;
+}
+
+.section_circle
+{
+	width:150px;
+	height:150px;
+	border-radius:150px;
+	border:10px solid rgba(255, 255, 255, 0.2);
+	background-clip:content-box;
+	background-color:white;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-8em;
+
+	h6
+	{
+		height:150px;
+		line-height:90px;
+		font-size:18px;
+		color:black;
+	}
+}
+
+.navbar-nav li a
+{
+	padding-right:10px;
+}
+
+.navbar-right
+{
+	margin-right: -20em;
+}
+
+#app_details
+{
+	h1 { color: white; }
+	p { color: white; }
+}
+
+.app_brand
+{
+	margin-top:5px;
+}
+
+.register_form
+{
+	padding:2em;
+}
+
+#user_panel
+{
+	margin-top: 23px;
+	padding: 25px;
+	height:400px;
+	width:440px;
+	float:right;
+
+	.input-group-addon
+	{
+		padding-left:0;
+	}
+
+	.input-group
+	{
+		padding-bottom:20px;
+	}
+
+	.login_tabs
+	{
+		padding-bottom:30px;
+		display:inline-block;
+
+		h4
+		{
+			color:#dddddd;
+		}
+
+		a:hover
+		{
+			box-shadow:0px -1px 0px #ddd inset !important;
+			
+		}
+
+		.active_header
+		{
+			h4
+			{
+				color:black !important;
+			}
+			
+			&:hover
+			{
+				box-shadow:0px -2px 0px #2196F3 inset !important;
+			}
+		}
+	}
+
+	.close
+	{
+		margin-top:11.5px;
+	}
+
+	.checkbox
+	{
+		label input
+		{
+			transform: scale(1.5);
+			-webkit-transform: scale(1.5);
+		}
+
+		.check_text
+		{
+			font-size:14px;
+			margin-left:15px;
+		}
+	}
+}
+
+.center_wrapper
+{
+	text-align:center;
+
+	.center_contents
+	{
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+
+#login_controls
+{
+	margin-top:4em;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.get_started_bt
+{
+	color:white;
+}
+
+.browse_bt
+{
+	margin-left:1em;
+}
+
+
