@@ -33,6 +33,56 @@ body
 	transition:none !important;
 }
 
+
+.full_input
+{
+	display: block;
+    padding: 10px 18px !important;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc !important;
+    border-radius: 0 !important;
+	box-shadow:none !important;
+}
+
+.full_input_group
+{
+	.input-group-addon
+	{
+		background-color:#eee;
+		width:0%;
+		border:1px solid #ccc !important;
+		padding: 6px 16px !important;
+	}
+}
+
+.full_left_input_group
+{
+	.full_input
+	{
+		border-left:0 !important;
+	}
+}
+
+.full_right_input_group
+{
+	.full_input
+	{
+		border-right:0 !important;
+	}
+}
+
+
+.full_input:focus
+{
+	border-color: #66afe9 !important;
+    outline: 0 !important;
+	box-shadow:none !important;
+}
+
 *:focus
 {
 	outline:none !important;

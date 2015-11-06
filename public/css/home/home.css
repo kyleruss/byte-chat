@@ -6,7 +6,7 @@ body {
     padding-top: 0px; } }
 #title_content, #chat_features, #security_features, #something_features {
   width: 100%;
-  height: 750px;
+  height: 800px;
   padding: 3em;
   background: url("../../resources/images/background.png") no-repeat;
   background-size: cover; }
@@ -27,6 +27,13 @@ footer {
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%); }
+
+#register_panel .form-group {
+  width: 400px !important; }
+  #register_panel .form-group .col-lg-3 {
+    padding-right: 3em !important; }
+  #register_panel .form-group .full_input {
+    width: 100%; }
 
 #chat_features {
   background: url("../../resources/images/background3.png") no-repeat;

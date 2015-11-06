@@ -88,18 +88,21 @@
 						<!-- REGISTER PANEL -->
 						<div id='register_panel'>
 							<fieldset>
-
 								<form class='form-horizontal register_form'>
 								<div class='form-group'>
 									<div class='row'>
 
-										<div class='col-lg-3'>
+										<div class='col-lg-4'>
 											<h5>Username</h5>
 										</div>
-										<div class='col-lg-9'>
-											<input type='text' class='form-control' name='register_user' placeholder='Username'
-											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-											title='Unique username 6-18 alphanumeric characters' />
+										<div class='col-lg-8'>
+											<div class='input-group full_input_group full_left_input_group'>
+												<span class='input-group-addon username_avail'><strong>Availability</strong></span>	
+												<input type='text' class='full_input' name='register_user' placeholder='Username'
+												data-trigger='focus' data-toggle='tooltip' data-placement='right' 
+												title='Unique username 6-18 alphanumeric characters'>	
+												
+											</div>
 										</div>
 									</div>
 								</div>
@@ -108,13 +111,16 @@
 								<div class='form-group'>
 									<div class='row'>
 
-										<div class='col-lg-3'>
+										<div class='col-lg-4'>
 											<h5>Password</h5>
 										</div>
-										<div class='col-lg-9'>
-											<input type='password' class='form-control' name='register_pass' placeholder='Password' 
-											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-											title='6-18 alphanumeric character password'/>
+										<div class='col-lg-8'>
+											<div class='input-group full_input_group full_left_input_group'>
+												<span id='pass_str_ind' class='input-group-addon username_avail'><strong>Strength</strong></span>
+												<input type='password' id='pass_field' class='full_input' name='register_pass' placeholder='Password' 
+												data-trigger='focus' data-toggle='tooltip' data-placement='right' 
+												title='6-18 alphanumeric character password'/>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -122,13 +128,16 @@
 								<div class='form-group'>
 									<div class='row'>
 
-										<div class='col-lg-3'>
+										<div class='col-lg-4'>
 											<h5>Repeat password</h5>
 										</div>
-										<div class='col-lg-9'>
-											<input type='password' class='form-control' name='register_rep_pass' placeholder='Repeat password' 
-											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-											title='Re-enter your password from above'/>
+										<div class='col-lg-8'>
+											<div class='input-group full_input_group full_left_input_group'>
+												<span id='pass_match_ind' class='input-group-addon username_avail'><strong>Matching</strong></span>
+												<input id='pass_match_field' type='password' class='full_input' name='register_rep_pass' placeholder='Repeat password' 
+												data-trigger='focus' data-toggle='tooltip' data-placement='right' 
+												title='Re-enter your password from above'/>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -137,13 +146,13 @@
 								<div class='form-group'>
 									<div class='row'>
 
-										<div class='col-lg-3'>
+										<div class='col-lg-4'>
 											<h5>Email</h5>
 										</div>
-										<div class='col-lg-9'>
-											<input type='email' class='form-control' name='register_email' placeholder='Email address' 
+										<div class='col-lg-8'>
+											<input type='email' class='full_input' name='register_email' placeholder='Email address' 
 											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-											title='Enter valid email, used to confirm'/>
+											title='Enter a valid email'/>
 										</div>
 									</div>
 								</div>
@@ -151,11 +160,11 @@
 								<div class='form-group'>
 									<div class='row'>
 
-										<div class='col-lg-3'>
+										<div class='col-lg-4'>
 											<h5>Display name</h5>
 										</div>
-										<div class='col-lg-9'>
-											<input type='text' class='form-control' name='register_dn' placeholder='Display name' 
+										<div class='col-lg-8'>
+											<input type='text' class='full_input' name='register_dn' placeholder='Display name' 
 											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 											title='Nickname that is displayed in public'/>
 										</div>

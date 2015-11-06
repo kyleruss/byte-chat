@@ -2,7 +2,7 @@ $(function()
 {
 	var active_panel;
 	var panel_transition_speed = 500;
-	var	register_dim	=	[ '640px', '550px' ];
+	var	register_dim	=	[ '640px', '600px' ];
 	var	login_dim		=	[ '440px', '400px' ];
 	initPanels();
 	initRegisterTooltips();
@@ -20,6 +20,7 @@ $(function()
 		}
 
 		showRegisterPanel();
+		
 	});
 
 
@@ -78,6 +79,85 @@ $(function()
 	});
 
 
+	$('#pass_field').focusout(function()
+	{
+		checkPasswordStrength();
+	});
+
+
+	$('#pass_match_field').focusout(function()
+	{
+		checkPasswordMatches();
+	});
+
+
+	//min: 3 max: 16
+	//weak: just alpha characters
+	//moderate: alphanumeric characters
+	//strong: capital alphanumeric characters
+
+	function checkPasswordStrength()
+	{
+		var input			=	$('#pass_field');
+		var str_indicator	=	$('#pass_str_ind');
+		var	pass			=	input.val();
+
+
+		var hasUppercase	=	pass.match(/[A-Z]/);
+		var hasNumeric		=	pass.match(/[0-9]/);
+		var hasAlpha		=	pass.match(/[a-z]/);
+
+		if(pass.length > 3 && pass.length < 16)
+		{
+			if(hasAlpha && hasNumeric && hasUppercase) //strong
+			{
+				str_indicator.text('Strong');
+				str_indicator.css({'background-color': '#4caf50', 'color': 'white', 'font-weight': 'bold'});
+			}
+
+			else if((hasAlpha || hasUppercase) && hasNumeric) //moderate
+			{
+				str_indicator.text('Moderate');
+				str_indicator.css({'background-color': '#2196f3', 'color': 'white', 'font-weight': 'bold'});
+			}
+
+			else if((hasAlpha || hasUppercase) && !hasNumeric) //weak
+			{
+				str_indicator.text('Weak');
+				str_indicator.css({'background-color': '#ff9800', 'color': 'white', 'font-weight': 'bold'});
+			}
+		}
+
+		else
+		{
+			str_indicator.text('Invalid');
+			str_indicator.css({'background-color': '#e51c23', 'color': 'white', 'font-weight': 'bold'});
+		}
+	}
+
+	function checkPasswordMatches()
+	{
+		var inputFirst		=	$('#pass_field');
+		var inputSec		=	$('#pass_match_field');
+		var str_indicator	=	$('#pass_match_ind');
+		var passFirst		=	inputFirst.val();
+		var passSec			=	inputSec.val();
+
+
+		if(passFirst == passSec)
+		{
+			str_indicator.text('Yes');
+			str_indicator.css({'background-color': '#4caf50', 'color': 'white', 'font-weight': 'bold'});
+		}
+			
+		else
+		{
+			str_indicator.text('No');
+			str_indicator.css({'background-color': '#e51c23', 'color': 'white', 'font-weight': 'bold'});
+		}
+	}
+
+
 	function showRegisterPanel()
 	{
 		if($('#user_panel').is(':visible'))
@@ -97,6 +177,7 @@ $(function()
 				{
 					$('#transition_panel').hide();
 					$('#register_panel').fadeIn('fast');
+					$('input[name="register_user"]').focus();
 				});
 			});
 		}
@@ -106,6 +187,7 @@ $(function()
 			$('#user_panel').css({'width': register_dim[0], 'height': register_dim[1]});
 			$('#register_panel').show();
 			$('#user_panel').fadeIn('fast');
+			$('input[name="register_user"]').focus();
 		}
 	}
 

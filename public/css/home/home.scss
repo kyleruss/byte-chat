@@ -14,7 +14,7 @@ body
 #title_content
 {
 	width:100%;
-	height:750px;
+	height:800px;
 	padding:3em;
 	background: url('../../resources/images/background.png') no-repeat;
 	background-size:cover;
@@ -46,6 +46,24 @@ footer
 		transform:translateX(-50%) translateY(-50%);
 
 	}	
+}
+
+#register_panel
+{
+	.form-group
+	{
+		width:400px !important;
+
+		.col-lg-3
+		{
+			padding-right:3em !important;
+		}
+		.full_input
+		{
+			width:100%;
+		}
+
+	}
 }
 
 #chat_features
