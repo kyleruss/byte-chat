@@ -55,6 +55,15 @@
 
 						<!-- LOGIN PANEL -->
 						<div id='login_panel'>
+
+							<!-- REGISTER SUCCESS ALERT -->
+							<div id='register_status_alert' class='alert hide alert-success alert-dissmissable fade in'>
+								<button id='close_register_alert' class='close' data-dismiss='alert'>x</button>
+								<strong>Registration complete</strong>
+								<br>
+								An email has been sent to you with a confirmation link
+							</div>
+
 							<fieldset>
 								<!-- USERNAME FIELD -->
 								<div class='input-group'>
@@ -152,7 +161,7 @@
 										<div class='col-lg-8'>
 											<input type='email' class='full_input' name='register_email' placeholder='Email address' 
 											data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-											title='Enter a valid email'/>
+											title='Enter valid email address'/>
 										</div>
 									</div>
 								</div>
@@ -174,7 +183,7 @@
 									<div class='center_wrapper'>
 										<div class='center_contents'>
 											<button id='register_cancel' class='btn btn-default'>Cancel</button>
-											<button id='register_confirm' class='btn btn-success'>Register</button>
+											<button id='register_confirm' class='btn btn-success ladda-button' data-style='expand-left'><span class='ladda-label'>Register</span></button>
 										</div>
 									</div>
 								</form>

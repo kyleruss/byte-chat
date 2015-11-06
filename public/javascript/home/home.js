@@ -4,6 +4,9 @@ $(function()
 	var panel_transition_speed = 500;
 	var	register_dim	=	[ '640px', '600px' ];
 	var	login_dim		=	[ '440px', '400px' ];
+	var sections		=	[ $('#title_content'), $('#chat_features'), $('#security_features'), $('footer')];
+	var section_i		=	0;
+	var scroll_val		=	0;
 	initPanels();
 	initRegisterTooltips();
 
@@ -32,6 +35,7 @@ $(function()
 			return;
 		else
 		{
+			$('#register_status_alert').removeClass('hide');
 			toggleTransitionPanel();
 			active_panel = '#login_panel';			
 		}
@@ -72,10 +76,18 @@ $(function()
 	});
 
 
-	$('#login_button').click(function()
+	$('#login_button').click(function(e)
 	{
-		var ladd  = Ladda.create(this);
-		ladd.start();
+		e.preventDefault();
+		var ladda  = Ladda.create(this);
+		ladda.start();
+	});
+
+	$('#register_confirm').click(function(e)
+	{
+		e.preventDefault();
+		var ladda = Ladda.create(this);
+		ladda.start();
 	});
 
 
@@ -89,6 +101,41 @@ $(function()
 	{
 		checkPasswordMatches();
 	});
+
+	$('#register_cancel').click(function(e)
+	{
+		e.preventDefault();
+		$('#show_login_tab').click();
+	});
+
+	$('#close_register_alert').click(function()
+	{
+		$('#user_panel').animate({'height': login_dim[1]}, 500);
+
+	});
+
+
+	$(window).bind('mousewheel DOMMouseScroll', function(e)
+	{
+		e.preventDefault();
+
+		if(e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0)
+		{
+			if(section_i <= 0) return;
+			else section_i--;
+		}
+
+		else
+		{
+			if(section_i >= sections.length - 1) return;
+			else section_i++;
+		}
+
+		var scrollTo = sections[section_i];
+		$('html, body').animate
+		({
+			scrollTop: (section_i == 0)? 0: scrollTo.offset().top
+		}, 500)	});
 
 
 	//min: 3 max: 16
@@ -107,7 +154,7 @@ $(function()
 		var hasNumeric		=	pass.match(/[0-9]/);
 		var hasAlpha		=	pass.match(/[a-z]/);
 
-		if(pass.length > 3 && pass.length < 16)
+		if(pass.length > 5 && pass.length < 16)
 		{
 			if(hasAlpha && hasNumeric && hasUppercase) //strong
 			{
@@ -144,15 +191,15 @@ $(function()
 		var passSec			=	inputSec.val();
 
 
-		if(passFirst == passSec)
+		if(passFirst == passSec && passFirst.length > 5)
 		{
-			str_indicator.text('Yes');
+			str_indicator.text('Valid');
 			str_indicator.css({'background-color': '#4caf50', 'color': 'white', 'font-weight': 'bold'});
 		}
 			
 		else
 		{
-			str_indicator.text('No');
+			str_indicator.text('Invalid');
 			str_indicator.css({'background-color': '#e51c23', 'color': 'white', 'font-weight': 'bold'});
 		}
 	}
@@ -202,10 +249,16 @@ $(function()
 
 			}, panel_transition_speed, function()
 			{
+				var h;
+				if(!$('#register_status_alert').hasClass('hide'))
+					h = parseInt(login_dim[1]) + 100;
 				
+
+				else h = login_dim[1];
+
 				$('#user_panel').animate
 				({
-					height:		login_dim[1]
+					height:		h
 				}, function()
 				{
 					$('#transition_panel').hide();
