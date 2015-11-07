@@ -41,9 +41,8 @@ class UserController extends MasterController
 
 		$validator			=	Validator::make(Input::all(),
 		[
-			'login_user'	=>	'required',
-			'login_pass'	=>	'required',
-			'remember_pass'	=>	'required'
+			'login_user'		=>	'required',
+			'login_pass'		=>	'required'
 		]);
 
 		if($validator->fails())
@@ -54,7 +53,7 @@ class UserController extends MasterController
 			([
 				'username'	=>	Input::get('login_user'),
 				'password'	=>	Input::get('login_pass')
-				], Input::get('remember_pass'));
+				], Input::has('remember_field'));
 
 			if($auth)
 				return self::encodeReturn(true, $success_message);

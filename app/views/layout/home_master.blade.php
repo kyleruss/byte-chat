@@ -57,39 +57,49 @@
 						<div id='login_panel'>
 
 							<!-- REGISTER SUCCESS ALERT -->
-							<div id='register_status_alert' class='alert alert-success alert-dissmissable fade in'>
+							<div id='register_status_alert' class='alert hide alert-success alert-dismissable fade in'>
 								<button id='close_register_alert' class='close' data-dismiss='alert'>x</button>
 								<strong>Registration complete</strong>
 								<br>
 								An email has been sent to you with a confirmation link
 							</div>
 
+							<!-- LOGIN STATUS ALERT -->
+							<div id='login_status_alert' class='alert hide alert-danger alert-dismissable fade in'>
+								<button id='close_login_alert' class='close' data-dismiss='alert'>x</button>
+								<strong>Login notice</strong>
+								<br>
+								<p id='login_notice_message'>test</p>
+							</div>
+
 							<fieldset>
-								<!-- USERNAME FIELD -->
-								<div class='input-group'>
-									<span class='input-group-addon'><span class='glyphicon glyphicon-user'></span></span>
-									<input type='text' placeholder='Username' class='form-control' />
-								</div>
-
-								<!-- PASSWORD FIELD -->
-								<div class='input-group'>
-									<span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>
-									<input type='password' placeholder='Password' class='form-control' />
-								</div>
-
-								<!-- REMEMBER PASSWORD FIELD -->
-								<div class='checkbox'>
-									<label><input type='checkbox' value=""><span class='check_text'>Remember me</span></label>
-								</div>
-
-								<!-- LOGIN/FORGOT PASSWORD BUTTONS -->
-								
-								<div class='center_wrapper'>
-									<div id='login_controls'>
-										<button class='btn btn-default'>Forgot password</button>
-										<button id='login_button' class='btn btn-primary ladda-button' data-style='expand-left'><span class='ladda-label'>Login</span></button>
+								<form id='login_form' method='post' action='{{ URL::route("postLogin"); }}'>
+									<!-- USERNAME FIELD -->
+									<div class='input-group'>
+										<span class='input-group-addon'><span class='glyphicon glyphicon-user'></span></span>
+										<input name='login_user' type='text' placeholder='Username' class='form-control' />
 									</div>
-								</div>
+
+									<!-- PASSWORD FIELD -->
+									<div class='input-group'>
+										<span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>
+										<input name='login_pass' type='password' placeholder='Password' class='form-control' />
+									</div>
+
+									<!-- REMEMBER PASSWORD FIELD -->
+									<div class='checkbox'>
+										<label><input name='remember_field' type='checkbox' value=""><span class='check_text'>Remember me</span></label>
+									</div>
+
+									<!-- LOGIN/FORGOT PASSWORD BUTTONS -->
+									
+									<div class='center_wrapper'>
+										<div id='login_controls'>
+											<button class='btn btn-default'>Forgot password</button>
+											<button id='login_button' class='btn btn-primary ladda-button' data-style='expand-left'><span class='ladda-label'>Login</span></button>
+										</div>
+									</div>
+								</form>
 							</fieldset>
 						</div>
 

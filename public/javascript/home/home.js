@@ -11,6 +11,7 @@ $(function()
 	initRegisterTooltips();
 	$('#alert_register_fail').hide();
 	$('#register_status_alert').hide();
+	$('#login_status_alert').hide();
 
 	$('#show_register_tab').click(function(e)
 	{
@@ -83,6 +84,42 @@ $(function()
 		e.preventDefault();
 		var ladda  = Ladda.create(this);
 		ladda.start();
+
+		var form	=	$('#login_form');
+		var url		=	form.attr('action');
+		var data	=	form.serialize();
+
+		$.ajax
+		({
+			url: url,
+			method: 'POST',
+			data: data,
+			dataType: 'json',
+			success: function(message)
+			{
+				setTimeout(function()
+				{
+					ladda.stop();
+					if(!message.status)
+					{
+						$('#login_notice_message').text(message.message);
+						$('#user_panel').animate
+						({
+							height: parseInt(login_dim[1]) + 100
+						}, 300, function()
+						{
+							$('#login_status_alert').removeClass('hide');
+							$('#login_status_alert').fadeIn('fast');
+						});
+					}
+				}, 1500);
+			},
+
+			error: function(xhr, statusText, error)
+			{
+				console.log(xhr.responseText);
+			}
+		});
 	});
 
 	$('#register_confirm').click(function(e)
@@ -157,6 +194,7 @@ $(function()
 					//registration successful
 					else
 					{	
+						$('#register_status_alert').removeClass('hide');
 						$('#register_status_alert').show();
 						$('#show_login_tab').click();
 					}
@@ -188,10 +226,13 @@ $(function()
 		$('#show_login_tab').click();
 	});
 
-	$('#close_register_alert').click(function()
+	$('#close_register_alert, #login_status_alert').click(function()
 	{
-		$('#user_panel').animate({'height': login_dim[1]}, 500);
-
+		var alert_obj	=	$(this);
+		$('#user_panel').animate({'height': login_dim[1]}, 500, function()
+		{
+			alert_obj.addClass('hide');
+		});
 	});
 
 
@@ -378,6 +419,7 @@ $(function()
 	{
 		$('[data-toggle="tooltip"]').tooltip();
 	}
+
 
 	function initPanels()
 	{
