@@ -240,6 +240,18 @@ $(function()
 	{
 		e.preventDefault();
 
+		if($(window).scrollTop() < sections[section_i].offset().top || $(window).scrollTop() > sections[section_i].offset().top)
+		{
+			var i;
+			for(i = 0; i < sections.length; i++)
+			{
+				if(sections[i].offset().top >= $(window).scrollTop())
+					break;
+			}
+
+			section_i = i;
+		}
+
 		if(e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0)
 		{
 			if(section_i <= 0) return;
