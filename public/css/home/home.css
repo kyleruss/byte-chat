@@ -1,9 +1,3 @@
-body {
-  padding-top: 65px; }
-
-@media screen and (max-width: 768px) {
-  body {
-    padding-top: 0px; } }
 #title_content, #chat_features, #security_features, #something_features {
   width: 100%;
   height: 850px;

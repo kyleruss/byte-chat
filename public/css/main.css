@@ -5,9 +5,13 @@ html, body {
 body {
   margin: 0;
   padding: 0;
+  padding-top: 65px;
   min-height: 100%;
   min-width: 100%; }
 
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 0px; } }
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url("../resources/fonts/glyphicons-halflings-regular.eot");

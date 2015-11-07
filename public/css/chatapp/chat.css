@@ -1,3 +1,44 @@
 #user_content {
   background-color: #202028;
   height: 100%; }
+
+.profile_info {
+  padding: 1.5em;
+  margin-top: 3em; }
+
+.user_profile_image {
+  background-clip: content-box;
+  border: 0.5em solid rgba(255, 255, 255, 0.2); }
+
+.user_info h4 {
+  color: white;
+  line-height: 1.7; }
+
+.chat_nav_a h4 {
+  color: white; }
+
+#user_nav_container {
+  margin-top: 15em; }
+  #user_nav_container #user_nav {
+    margin-left: 3em; }
+
+#user_nav .active .blue_tab {
+  box-shadow: 0px -2px 0px #2196F3 inset; }
+#user_nav .active .green_tab {
+  box-shadow: 0px -2px 0px #4CAF50 inset; }
+#user_nav .active .red_tab {
+  box-shadow: 0px -2px 0px #E51C23 inset; }
+#user_nav .active .yellow_tab {
+  box-shadow: 0px -2px 0px #FF9800 inset; }
+
+.blue_tab h4 {
+  color: #2196F3; }
+
+.green_tab h4 {
+  color: #4CAF50; }
+
+.red_tab h4 {
+  color: #E51C23; }
+
+.yellow_tab h4 {
+  color: #FF9800; }
