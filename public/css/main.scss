@@ -61,17 +61,17 @@ body
 
 .full_left_input_group
 {
-	.full_input
+	.input-group-addon
 	{
-		border-left:0 !important;
+		border-right:0 !important;
 	}
 }
 
 .full_right_input_group
 {
-	.full_input
+	.input-group-addon
 	{
-		border-right:0 !important;
+		border-left:0 !important;
 	}
 }
 

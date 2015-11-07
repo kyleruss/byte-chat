@@ -16,3 +16,10 @@ Route::get('/', ['as' => 'getHome', 'uses' => 'MasterController@getHome']);
 Route::get('/index', ['as' => 'index', 'uses' => 'SocketController@index']);
 Route::post('/sendmessage', ['as' => 'sendMessage', 'uses' => 'SocketController@sendMessage']);
 Route::get('/writemessage', ['as' => 'writeMessage', 'uses' => 'SocketController@writeMessage']);
+
+
+Route::group(['prefix' => 'user'], function()
+{
+	Route::post('/register', ['as' => 'postRegister', 'uses' => 'UserController@postRegister']);
+	Route::post('/login', ['as' => 'postLogin', 'uses' => 'UserController@postLogin']);
+});	

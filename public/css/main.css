@@ -33,11 +33,11 @@ body {
   border: 1px solid #ccc !important;
   padding: 6px 16px !important; }
 
-.full_left_input_group .full_input {
-  border-left: 0 !important; }
-
-.full_right_input_group .full_input {
+.full_left_input_group .input-group-addon {
   border-right: 0 !important; }
+
+.full_right_input_group .input-group-addon {
+  border-left: 0 !important; }
 
 .full_input:focus {
   border-color: #66afe9 !important;

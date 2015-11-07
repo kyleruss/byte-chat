@@ -9,6 +9,7 @@ $(function()
 	var scroll_val		=	0;
 	initPanels();
 	initRegisterTooltips();
+	$('#alert_register_fail').hide();
 
 	$('#show_register_tab').click(function(e)
 	{
@@ -86,8 +87,70 @@ $(function()
 	$('#register_confirm').click(function(e)
 	{
 		e.preventDefault();
-		var ladda = Ladda.create(this);
-		ladda.start();
+//		var ladda = Ladda.create(this);
+//		ladda.start();
+//
+
+		var form	=	$('.register_form');
+		var url		=	form.attr('action');
+		var data	=	form.serialize();
+
+		$.ajax
+		({
+			url: url,
+			method: 'POST',
+			data: data,
+			dataType: 'json',
+			success: function(response)
+			{
+				console.log('res: ' + JSON.stringify(response.input));
+				if(response.status == false)
+				{
+					
+
+					$('#user_panel').animate
+					({
+						height: (parseInt(register_dim[1]) + 80)
+					}, 300, function()
+					{
+
+						$('#register_fail_message').text(response.message);
+						$('#alert_register_fail').fadeIn('fast');
+
+						if(response.hasOwnProperty('input'))
+						{
+							var inputs = response.input;
+							
+							$('#register_panel input').each(function()
+							{
+								var input_name = $(this).attr('name');
+								if(inputs.hasOwnProperty(input_name))
+									this.style.setProperty('border', '1px solid #e51c23', 'important');
+								
+								else
+									this.style.setProperty('border', '1px solid #ccc', 'important');
+							});
+						}
+
+						setTimeout(function()
+						{
+							$('#alert_register_fail').fadeOut('fast', function()
+							{
+								$('#user_panel').animate
+								({
+									height: register_dim[1]
+								}, 300);
+							});
+						}, 2000);
+					});
+				}
+			},
+
+			error: function(xhr, statusText, error)
+			{
+				console.log(xhr.responseText);
+			}
+		}); 
 	});
 
 
@@ -135,7 +198,8 @@ $(function()
 		$('html, body').animate
 		({
 			scrollTop: (section_i == 0)? 0: scrollTo.offset().top
-		}, 500)	});
+		}, 500);
+	});
 
 
 	//min: 3 max: 16

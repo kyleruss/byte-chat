@@ -14,7 +14,7 @@ body
 #title_content
 {
 	width:100%;
-	height:800px;
+	height:850px;
 	padding:3em;
 	background: url('../../resources/images/background.png') no-repeat;
 	background-size:cover;
@@ -44,7 +44,6 @@ footer
 		left:50%;
 		top:50%;
 		transform:translateX(-50%) translateY(-50%);
-
 	}	
 }
 
@@ -62,8 +61,12 @@ footer
 		{
 			width:100%;
 		}
-
 	}
+}
+
+#alert_register_fail
+{
+	margin-bottom:0 !important;
 }
 
 #chat_features
@@ -147,6 +150,7 @@ footer
 	height:400px;
 	width:440px;
 	float:right;
+	overflow:hidden;
 
 	.input-group-addon
 	{

@@ -96,8 +96,13 @@
 
 						<!-- REGISTER PANEL -->
 						<div id='register_panel'>
+							<div id='alert_register_fail' class='alert alert-danger alert-dismissable fade in'>
+								<strong>Failed to complete registration</strong>
+								<br>
+								<p id='register_fail_message'></p>
+							</div>
 							<fieldset>
-								<form class='form-horizontal register_form'>
+								<form class='form-horizontal register_form' method='post' action='{{ URL::route("postRegister"); }}'>
 								<div class='form-group'>
 									<div class='row'>
 
@@ -110,7 +115,6 @@
 												<input type='text' class='full_input' name='register_user' placeholder='Username'
 												data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 												title='Unique username 6-18 alphanumeric characters'>	
-												
 											</div>
 										</div>
 									</div>
