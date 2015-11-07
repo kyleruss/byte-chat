@@ -120,7 +120,7 @@ $(function()
 				console.log(xhr.responseText);
 			}
 		});
-	});
+	}); 
 
 	$('#register_confirm').click(function(e)
 	{

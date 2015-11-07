@@ -61,4 +61,10 @@ class UserController extends MasterController
 				return self::encodeReturn(false, $fail_message);
 		}
 	}
+
+
+	public function getLogout()
+	{
+		Auth::logout();
+	}
 }

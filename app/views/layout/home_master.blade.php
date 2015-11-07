@@ -27,6 +27,9 @@
 				<li><a id='nav_login' href='#'><button class='btn btn-default'>Login</button></a></li>
 				<li><a id='nav_register' href='#'><button class='btn btn-default'>Register</button></a></li>
 				<li><a href='#'><button class='btn btn-default'>About</button></a></li>
+				@if(Auth::check())
+				<li><a id='nav_logout' href='{{ URL::route("getLogout"); }}'><button class='btn btn-default'>Logout</button></a></li>
+				@endif
 			</ul>
 		</div>
 	</div>

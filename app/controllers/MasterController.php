@@ -6,7 +6,10 @@ class MasterController extends BaseController
 
 	public function getHome()
 	{
-		return View::make('home');
+	/*	if(Auth::check())
+			return Redirect::route('getChatHome');
+else */
+			return View::make('home');
 	}
 
 	public static function encodeReturn($status = 0, $message = 'Request failed', $data = null)
