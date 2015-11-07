@@ -12,6 +12,11 @@ else */
 			return View::make('home');
 	}
 
+	public function getError()
+	{
+		return View::make('error');
+	}
+
 	public static function encodeReturn($status = 0, $message = 'Request failed', $data = null)
 	{
 		$return_message	=	['status'	=>	$status, 'message' =>	$message];

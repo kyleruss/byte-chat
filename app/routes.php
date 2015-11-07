@@ -12,6 +12,7 @@
 */
 
 
+Route::get('/error', ['as' => 'getError', 'uses' => 'MasterController@getError']);
 Route::get('/', ['as' => 'getHome', 'uses' => 'MasterController@getHome']);
 Route::get('/index', ['as' => 'index', 'uses' => 'SocketController@index']);
 Route::post('/sendmessage', ['as' => 'sendMessage', 'uses' => 'SocketController@sendMessage']);
@@ -26,7 +27,7 @@ Route::group(['prefix' => 'user'], function()
 });	
 
 
-Route::group(['prefix' => 'chat'], function()
+Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 {
 	Route::get('/home', ['as' => 'getChatHome', 'uses' => 'ChatController@getChatHome']);
 });
