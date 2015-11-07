@@ -57,7 +57,7 @@
 						<div id='login_panel'>
 
 							<!-- REGISTER SUCCESS ALERT -->
-							<div id='register_status_alert' class='alert hide alert-success alert-dissmissable fade in'>
+							<div id='register_status_alert' class='alert alert-success alert-dissmissable fade in'>
 								<button id='close_register_alert' class='close' data-dismiss='alert'>x</button>
 								<strong>Registration complete</strong>
 								<br>

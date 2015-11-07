@@ -10,6 +10,7 @@ $(function()
 	initPanels();
 	initRegisterTooltips();
 	$('#alert_register_fail').hide();
+	$('#register_status_alert').hide();
 
 	$('#show_register_tab').click(function(e)
 	{
@@ -23,6 +24,7 @@ $(function()
 			active_panel = '#register_panel';
 		}
 
+		$('#register_confirm').attr('disabled', false);
 		showRegisterPanel();
 		
 	});
@@ -36,7 +38,6 @@ $(function()
 			return;
 		else
 		{
-			$('#register_status_alert').removeClass('hide');
 			toggleTransitionPanel();
 			active_panel = '#login_panel';			
 		}
@@ -87,9 +88,9 @@ $(function()
 	$('#register_confirm').click(function(e)
 	{
 		e.preventDefault();
-//		var ladda = Ladda.create(this);
-//		ladda.start();
-//
+		var ladda = Ladda.create(this);
+		ladda.start();
+
 
 		var form	=	$('.register_form');
 		var url		=	form.attr('action');
@@ -103,47 +104,63 @@ $(function()
 			dataType: 'json',
 			success: function(response)
 			{
-				console.log('res: ' + JSON.stringify(response.input));
-				if(response.status == false)
+
+				setTimeout(function()
 				{
-					
-
-					$('#user_panel').animate
-					({
-						height: (parseInt(register_dim[1]) + 80)
-					}, 300, function()
+					ladda.stop();
+				
+					//registration failed
+					if(response.status == false)
 					{
-
-						$('#register_fail_message').text(response.message);
-						$('#alert_register_fail').fadeIn('fast');
-
-						if(response.hasOwnProperty('input'))
+						$('#user_panel').animate
+						({
+							height: (parseInt(register_dim[1]) + 80)
+						}, 300, function()
 						{
-							var inputs = response.input;
-							
-							$('#register_panel input').each(function()
+							$('#register_fail_message').text(response.message);
+							$('#alert_register_fail').fadeIn('fast');
+
+
+							//response found invalid fields
+							if(response.hasOwnProperty('input'))
 							{
-								var input_name = $(this).attr('name');
-								if(inputs.hasOwnProperty(input_name))
-									this.style.setProperty('border', '1px solid #e51c23', 'important');
+								var inputs = response.input;
 								
-								else
-									this.style.setProperty('border', '1px solid #ccc', 'important');
-							});
-						}
+								//highlight invalid fields for correction
+								$('#register_panel input').each(function()
+								{
+									var input_name = $(this).attr('name');
+									//display red border on invalid field
+									if(inputs.hasOwnProperty(input_name))
+										this.style.setProperty('border', '1px solid #e51c23', 'important');
+									
+									//display default border on valid field
+									else
+										this.style.setProperty('border', '1px solid #ccc', 'important');
+								});
+							}
 
-						setTimeout(function()
-						{
-							$('#alert_register_fail').fadeOut('fast', function()
+							//hide alert and bring panel back to normal height
+							setTimeout(function()
 							{
-								$('#user_panel').animate
-								({
-									height: register_dim[1]
-								}, 300);
-							});
-						}, 2000);
-					});
-				}
+								$('#alert_register_fail').fadeOut('fast', function()
+								{
+									$('#user_panel').animate
+									({
+										height: register_dim[1]
+									}, 300);
+								});
+							}, 2000);
+						});
+					}
+
+					//registration successful
+					else
+					{	
+						$('#register_status_alert').show();
+						$('#show_login_tab').click();
+					}
+				}, 1500);
 			},
 
 			error: function(xhr, statusText, error)
