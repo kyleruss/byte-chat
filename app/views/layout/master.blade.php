@@ -23,6 +23,28 @@
 	</head>
 
 	<body>
+		<header>
+			<div class='navbar navbar-default navbar-fixed-top'>
+				<div class='container'>
+					<div class='navbar-header'>
+						<a class='navbar-brand app_brand'>{{ HTML::image('resources/images/BytechatLogo.png'); }}</a>
+					</div>
+
+					<div class='navbar-collapse collapse'>
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href='#'><button class='btn btn-danger'>Home</button></a></li>
+							<li><a href='#'><button class='btn btn-default'>Browse</button></a></li>
+							<li><a id='nav_login' href='#'><button class='btn btn-default'>Login</button></a></li>
+							<li><a id='nav_register' href='#'><button class='btn btn-default'>Register</button></a></li>
+							<li><a href='#'><button class='btn btn-default'>About</button></a></li>
+							@if(Auth::check())
+							<li><a id='nav_logout' href='{{ URL::route("getLogout"); }}'><button class='btn btn-default'>Logout</button></a></li>
+							@endif
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
 		@yield('content')
 	</body>
 </html>

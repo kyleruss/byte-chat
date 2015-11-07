@@ -13,7 +13,7 @@
 @section('content')
 
 <!-- HEAD NAV -->
-<header>
+<!--<header>
 <div class='navbar navbar-default navbar-fixed-top'>
 	<div class='container'>
 		<div class='navbar-header'>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 </div>
-</header>
+</header> -->
 
 	<div id='title_content'>
 		<div class='container'>
