@@ -24,6 +24,7 @@ Route::group(['prefix' => 'user'], function()
 	Route::post('/register', ['as' => 'postRegister', 'uses' => 'UserController@postRegister']);
 	Route::post('/login', ['as' => 'postLogin', 'uses' => 'UserController@postLogin']);
 	Route::get('/logout', ['as' => 'getLogout', 'uses' => 'UserController@getLogout']);
+	Route::post('/changedp', ['as' => 'postChangeDP', 'uses' => 'UserController@postChangeDP']);
 });	
 
 

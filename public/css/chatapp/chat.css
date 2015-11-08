@@ -13,30 +13,53 @@
 .user_profile_image {
   background-clip: content-box;
   border: 0.5em solid rgba(255, 255, 255, 0.2); }
+  /* line 28, chat.scss */
+  .user_profile_image:hover {
+    cursor: pointer; }
 
-/* line 31, chat.scss */
+/* line 36, chat.scss */
 .user_info h4 {
   color: white;
   line-height: 1.7; }
 
-/* line 40, chat.scss */
+/* line 45, chat.scss */
 .chat_nav_a h4 {
   color: white; }
 
-/* line 46, chat.scss */
+/* line 51, chat.scss */
 #user_nav_container {
   margin-top: 15em; }
-  /* line 50, chat.scss */
+  /* line 55, chat.scss */
   #user_nav_container #user_nav {
     margin-left: 3em; }
 
-/* line 56, chat.scss */
+/* line 61, chat.scss */
+.profile_image_fade {
+  opacity: 0.3; }
+
+/* line 66, chat.scss */
+#profile_image_container {
+  position: relative; }
+
+/* line 70, chat.scss */
+#change_bg_label {
+  position: absolute;
+  margin-left: -4.5em;
+  font-weight: bold;
+  margin-top: 1.5em;
+  font-size: 30px;
+  color: white; }
+  /* line 79, chat.scss */
+  #change_bg_label:hover {
+    cursor: pointer; }
+
+/* line 85, chat.scss */
 .tab_content {
   margin-left: 3em;
   margin-top: 2em;
   padding-right: 5em; }
 
-/* line 63, chat.scss */
+/* line 92, chat.scss */
 #people_list {
   margin-top: 2em;
   height: 350px;
@@ -44,99 +67,103 @@
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc; }
 
-/* line 72, chat.scss */
+/* line 101, chat.scss */
+.modal, modal.fade.in {
+  top: 15%; }
+
+/* line 106, chat.scss */
 .list_image {
   padding-right: 1em; }
-  /* line 74, chat.scss */
+  /* line 108, chat.scss */
   .list_image img {
     width: 45px;
     height: 45px;
     border-radius: 40px;
     border: 4px solid #4CAF50; }
 
-/* line 85, chat.scss */
+/* line 119, chat.scss */
 .person_list_item {
   background-color: transparent;
   color: white !important;
   border: none !important; }
-  /* line 91, chat.scss */
+  /* line 125, chat.scss */
   .person_list_item .col-md-6, .person_list_item .col-md-3 {
     padding-left: 0;
     padding-right: 0; }
 
-/* line 98, chat.scss */
+/* line 132, chat.scss */
 .person_controls {
   float: right;
   margin-right: 1em; }
-  /* line 103, chat.scss */
+  /* line 137, chat.scss */
   .person_controls .glyphicon {
     font-size: 20px;
     padding-right: 0.5em;
     line-height: 2; }
-    /* line 109, chat.scss */
+    /* line 143, chat.scss */
     .person_controls .glyphicon:hover {
       cursor: pointer; }
-  /* line 115, chat.scss */
+  /* line 149, chat.scss */
   .person_controls #add_person:hover {
     color: #4caf50; }
-  /* line 120, chat.scss */
+  /* line 154, chat.scss */
   .person_controls #remove_person:hover {
     color: #e51c23; }
-  /* line 125, chat.scss */
+  /* line 159, chat.scss */
   .person_controls #message_person:hover {
     color: #2196f3; }
 
-/* line 131, chat.scss */
+/* line 165, chat.scss */
 .person_info {
   padding-left: 0; }
-  /* line 134, chat.scss */
+  /* line 168, chat.scss */
   .person_info h6 {
     color: white;
     line-height: 0.5; }
-  /* line 140, chat.scss */
+  /* line 174, chat.scss */
   .person_info .person_username {
     opacity: 0.6; }
 
-/* line 148, chat.scss */
+/* line 182, chat.scss */
 .tab_search_input {
   background-color: transparent;
   color: white;
   width: 100%; }
 
-/* line 159, chat.scss */
+/* line 193, chat.scss */
 #user_nav .active .blue_tab {
   box-shadow: 0px -2px 0px #2196f3 inset; }
-/* line 164, chat.scss */
+/* line 198, chat.scss */
 #user_nav .active .green_tab {
   box-shadow: 0px -2px 0px #4caf50 inset; }
-/* line 169, chat.scss */
+/* line 203, chat.scss */
 #user_nav .active .red_tab {
   box-shadow: 0px -2px 0px #e51c23 inset; }
-/* line 174, chat.scss */
+/* line 208, chat.scss */
 #user_nav .active .yellow_tab {
   box-shadow: 0px -2px 0px #e08600 inset; }
 
-/* line 184, chat.scss */
+/* line 218, chat.scss */
 .blue_tab h4 {
   color: #2196f3; }
 
-/* line 192, chat.scss */
+/* line 226, chat.scss */
 .green_tab h4 {
   color: #4caf50; }
-/* line 197, chat.scss */
+/* line 231, chat.scss */
 .green_tab:hover {
   box-shadow: 0px -2px 0px #4caf50 inset !important; }
 
-/* line 206, chat.scss */
+/* line 240, chat.scss */
 .red_tab h4 {
   color: #e51c23; }
-/* line 211, chat.scss */
+/* line 245, chat.scss */
 .red_tab:hover {
   box-shadow: 0px -2px 0px #e51c23 inset !important; }
 
-/* line 219, chat.scss */
+/* line 253, chat.scss */
 .yellow_tab h4 {
   color: #e08600; }
-/* line 224, chat.scss */
+/* line 258, chat.scss */
 .yellow_tab:hover {
   box-shadow: 0px -2px 0px #e08600 inset !important; }

@@ -34,6 +34,9 @@ body {
   border-radius: 0 !important;
   box-shadow: none !important; }
 
+.full_input_width {
+  width: 100%; }
+
 .full_input_group .input-group-addon {
   background-color: #eee;
   width: 0%;

@@ -83,6 +83,29 @@ class UserController extends MasterController
 		}
 	}
 
+	public function postChangeDP()
+	{
+		$success_message	=	'Successfully changed display image';
+		$fail_message		=	'Failed to change display image';
+
+		$validator	=	Validator::make(Input::all(),
+		[
+			'new_dp_path'	=>	'required'
+		]);
+
+		if($validator->fails())
+			return self::encodeReturn(false, $invalid_input_message);
+		else
+		{
+			$user					=	Auth::user();
+			$user->profile_image	=	Input::get('new_dp_path');
+			if($user->save())
+				return self::encodeReturn(true, $success_message);
+			else
+				return self::encodeReturn(false, $fail_message);
+		}
+	}
+
 
 	public function getLogout()
 	{

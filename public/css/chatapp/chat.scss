@@ -24,6 +24,11 @@
 {
 	background-clip:content-box;
 	border:0.5em solid rgba(255,255,255,0.2);
+
+	&:hover
+	{
+		cursor:pointer;
+	}
 }
 
 .user_info
@@ -53,6 +58,30 @@
 	}
 }
 
+.profile_image_fade
+{
+	opacity:0.3;
+}
+
+#profile_image_container
+{
+	position:relative;
+}
+#change_bg_label
+{
+	position:absolute;
+	margin-left:-4.5em;
+	font-weight:bold;
+	margin-top:1.5em;
+	font-size:30px;
+	color:white;
+
+	&:hover
+	{
+		cursor:pointer;
+	}
+}
+
 .tab_content
 {
 	margin-left:3em;
@@ -67,6 +96,11 @@
 	overflow-y:auto;
 	border-left:1px solid #ccc;
 	border-right:1px solid #ccc;
+}
+
+.modal, modal.fade.in
+{
+	top:15%;
 }
 
 .list_image

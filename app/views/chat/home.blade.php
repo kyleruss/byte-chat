@@ -20,14 +20,73 @@
 <!-- USER LEFT SIDE BAR -->
 <div id='user_content' class='col-md-4'>
 	<div class='profile_info'>
-		<div class='col-md-5'>
+		<div id='profile_image_container' class='col-md-5'>
 			{{ HTML::image(Auth::user()->profile_image, $alt='Profile image', ['class' => 'user_profile_image']); }}
+			<span id='change_bg_label' class='hide'>Change</span>
 		</div>
 	
 		<div class='col-md-7 user_info'>
 			<h4><span class='glyphicon glyphicon-user'></span> {{ Auth::user()->username; }}</h4>
 			<h4><span class='glyphicon glyphicon-star'></span> {{ Auth::user()->name; }}</h4>
 			<h4><span class='glyphicon glyphicon-heart'></span> 0 friends online</h4>
+		</div>
+	</div>
+
+	<!-- CHANGE DISPLAY IMAGE MODAL -->
+	<div id='dp_change_modal' class='modal fade'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<button class='close' data-dismiss='modal'><span>&times;</span></button>
+					<h4 class='modal-title'>Change display image</h4>
+				</div>
+				
+				<div class='modal-body'>
+
+					<div id='change_dp_alert' class='alert alert-danger alert-dismissable fade in'>
+						<button class='close' data-dismiss='alert'>x</button>
+						<strong>Change display image notice</strong>
+						<br>
+						<p id='change_dp_alert_message'>test</p>
+					</div>
+
+					<div class='row'>
+					<!-- CURRENT DISPLAY IMAGE -->
+					<div class='col-md-6'>
+					<div class='thumbnail'>
+						{{ HTML::image(Auth::user()->profile_image, $alt='Profile image', ['width' => 128, 'height' => 128]); }}
+						<div class='caption'>
+							<h3>Current image</h3>
+						</div>
+					</div>
+					</div>
+
+					<!-- NEW DISPLAY IMAGE -->
+					<div class='col-md-6'>
+					<div class='thumbnail'>
+						{{ HTML::image(Auth::user()->profile_image, $alt='Profile image', ['class' => 'new_dp_image', 'width' => 128, 'height' => 128]); }}
+						<div class='caption'>
+							<h3>New image</h3>
+						</div>
+					</div>
+					</div>
+					</div>
+
+					<form id='save_dp_form' method='post' action='{{ URL::route("postChangeDP"); }}'>
+						<div class='input-group full_input_group full_right_input_group'>		
+							<input id='dp_path_input' type='text' class='full_input full_input_width' placeholder='Enter URL of new display image' name='new_dp_path' />
+							<span class='input-group-btn'>
+								<button id='load_new_dp_btn' class='btn btn-default'>Load</button>
+							</span>
+						</div>
+					</form>
+					<br>
+					<center>
+						<button data-dismiss='modal' class='btn btn-default'>Cancel</button>
+						<button id='save_dp_change' class='btn btn-default btn-primary'>Save</button>
+					</center>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -81,7 +140,7 @@
 
 <!-- CHAT CONTENT -->
 <div id='chat_content' class='col-md-8'>
-	
+
 </div>
 
 @stop
