@@ -30,4 +30,5 @@ Route::group(['prefix' => 'user'], function()
 Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 {
 	Route::get('/home', ['as' => 'getChatHome', 'uses' => 'ChatController@getChatHome']);
+	Route::post('/find', ['as' => 'postFindPeople', 'uses' => 'UserController@postFindPeople']);
 });

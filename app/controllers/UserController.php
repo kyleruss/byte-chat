@@ -30,8 +30,7 @@ class UserController extends MasterController
 				return self::encodeReturn(true, $success_message);
 			else
 				return self::encodeReturn(false, $fail_message);
-		}
-			
+		}	
 	}
 
 	public function postLogin()
@@ -53,12 +52,34 @@ class UserController extends MasterController
 			([
 				'username'	=>	Input::get('login_user'),
 				'password'	=>	Input::get('login_pass')
-				], Input::has('remember_field'));
+			], Input::has('remember_field'));
 
 			if($auth)
 				return self::encodeReturn(true, $success_message);
 			else
 				return self::encodeReturn(false, $fail_message);
+		}
+	}
+
+	public function postFindPeople()
+	{
+		$fail_message		=	'No results found';
+		$validator			=	Validator::make(Input::all(),
+		[
+			'search_term'	=>	'required'
+		]);
+
+		if($validator->fails())
+			return self::encodeReturn(false, $fail_message);
+		else
+		{
+			$searchUser	=	Input::get('search_term');
+			$result		=	User::where('username', '=', $searchUser);
+
+			if($result->exists())
+				return $result->first();
+			else
+				return User::where('name', 'LIKE', '%' . $searchUser . '%')->get();
 		}
 	}
 

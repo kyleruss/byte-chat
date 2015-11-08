@@ -13,6 +13,10 @@
 
 @section('content')
 
+<script>
+	var server_a	=	'{{ url("/"); }}/';
+</script>
+
 <!-- USER LEFT SIDE BAR -->
 <div id='user_content' class='col-md-4'>
 	<div class='profile_info'>
@@ -36,24 +40,26 @@
 		</ul>
 	
 		<div id='friends_tab' class='tab_content'>
-			<div class='input-group full_input_group full_right_input_group'>
-				<input type='text' class='full_input tab_search_input' placeholder='Find someone' name='friend_search' />
-				<span class='input-group-btn'>
-					<button class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
-				</span>
-			</div>
+			<form id='people_search_form' method='post' action='{{ URL::route("postFindPeople"); }}'>
+				<div class='input-group full_input_group full_right_input_group'>
+					
+						<input type='text' class='full_input tab_search_input' placeholder='Find someone' name='search_term' />
+						<span class='input-group-btn'>
+							<button id='people_search_btn' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
+						</span>
+				</div>
+			</form>
 
 			<div id='people_list'>
-				<ul class='list-group'>
-					<li class='person_list_item list-group-item clearfix'>
-					
+				<ul id='people_list_group' class='list-group'>
+					<li id='person_item_template' class='person_list_item list-group-item clearfix'>
 						<div class='col-md-6'>
 							<div class='col-md-3'>
-							<span class='list_image'>{{ HTML::image(Auth::user()->profile_image); }}</span>
+							<span class='list_image'><img class='person_image' src='' /></span>
 							</div>
 							<div class='col-md-9 person_info'>
-								<h6 class='person_dn'>Display name</h6>
-								<h6 class='person_username'>Username</h6>
+								<h6 class='person_dn'></h6>
+								<h6 class='person_username'></h6>
 							</div>
 						</div>
 
