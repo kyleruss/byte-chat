@@ -1,7 +1,10 @@
+@import "../def";
+
 #user_content
 {
 	background-color:#202028;
 	height:100%;
+	overflow:hidden;
 }
 
 #chat_content
@@ -21,7 +24,6 @@
 {
 	background-clip:content-box;
 	border:0.5em solid rgba(255,255,255,0.2);
-//	border-radius:0.5em;
 }
 
 .user_info
@@ -61,7 +63,8 @@
 #people_list
 {
 	margin-top:2em;
-	height:280px;
+	height:350px;
+	overflow-y:auto;
 	border-left:1px solid #ccc;
 	border-right:1px solid #ccc;
 }
@@ -83,14 +86,45 @@
 {
 	background-color:transparent;
 	color:white !important;
-	//border-radius:0 !important;
 	border:none !important;
-	//padding:
 
 	.col-md-6, .col-md-3
 	{
 		padding-left:0;
 		padding-right:0;
+	}
+}
+
+.person_controls
+{
+	float:right;
+	margin-right:1em;
+
+	.glyphicon
+	{
+		font-size:20px;
+		padding-right:0.5em;
+		line-height:2;
+
+		&:hover
+		{
+			cursor:pointer;
+		}
+	}
+
+	#add_person:hover
+	{
+		color:$colour_green;
+	}
+
+	#remove_person:hover
+	{
+		color:$colour_red;
+	}
+
+	#message_person:hover
+	{
+		color:$colour_purp;
 	}
 }
 
@@ -124,22 +158,22 @@
 	{
 		.blue_tab
 		{
-			box-shadow: 0px -2px 0px #2196F3 inset;
+			box-shadow: 0px -2px 0px $colour_blue inset;
 		}
 
 		.green_tab
 		{
-			box-shadow: 0px -2px 0px #4CAF50 inset;
+			box-shadow: 0px -2px 0px $colour_green inset;
 		}
 
 		.red_tab
 		{
-			box-shadow: 0px -2px 0px #E51C23 inset;
+			box-shadow: 0px -2px 0px $colour_red inset;
 		}
 
 		.yellow_tab
 		{
-			box-shadow: 0px -2px 0px #FF9800 inset
+			box-shadow: 0px -2px 0px $colour_yellow inset
 		}
 	}
 }
@@ -149,7 +183,7 @@
 
 	h4
 	{
-		color:#2196F3;
+		color:$colour_blue;
 	}
 }
 
@@ -157,12 +191,12 @@
 {
 	h4
 	{
-		color:#4CAF50;
+		color:$colour_green;
 	}
 
 	&:hover
 	{
-		box-shadow: 0px -2px 0px #4CAF50 inset !important;
+		box-shadow: 0px -2px 0px $colour_green inset !important;
 	}
 }
 
@@ -171,12 +205,12 @@
 {
 	h4
 	{
-		color:#E51C23;
+		color:$colour_red;
 	}
 
 	&:hover
 	{
-		box-shadow: 0px -2px 0px #E51C23 inset !important;
+		box-shadow: 0px -2px 0px $colour_red inset !important;
 	}
 }
 
@@ -184,12 +218,12 @@
 {
 	h4
 	{
-		color:#FF9800;
+		color:$colour_yellow;
 	}
 
 	&:hover
 	{
-		box-shadow: 0px -2px 0px #FF9800 inset !important;
+		box-shadow: 0px -2px 0px $colour_yellow inset !important;
 	}
 }
 

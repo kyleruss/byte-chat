@@ -58,7 +58,11 @@
 						</div>
 
 						<div class='col-md-6'>
-		
+							<div class='person_controls'>
+								<span id='add_person' class='glyphicon glyphicon-plus'></span>
+								<span id='remove_person' class='glyphicon glyphicon-remove'></span> 
+								<span id='message_person' class='glyphicon glyphicon-comment'></span>
+							</div>
 						</div>
 					</li>
 				
