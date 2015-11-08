@@ -71,6 +71,15 @@ body
 		border:1px solid #ccc !important;
 		padding: 6px 16px !important;
 	}
+
+	.input-group-btn
+	{
+		button
+		{
+			padding:10px 18px;
+			border-top:1px solid #CCC !important;
+		}
+	}
 }
 
 .full_left_input_group

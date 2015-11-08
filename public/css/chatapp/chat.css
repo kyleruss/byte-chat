@@ -1,44 +1,118 @@
+/* line 1, chat.scss */
 #user_content {
   background-color: #202028;
   height: 100%; }
 
+/* line 13, chat.scss */
 .profile_info {
   padding: 1.5em;
   margin-top: 3em; }
 
+/* line 20, chat.scss */
 .user_profile_image {
   background-clip: content-box;
   border: 0.5em solid rgba(255, 255, 255, 0.2); }
 
+/* line 29, chat.scss */
 .user_info h4 {
   color: white;
   line-height: 1.7; }
 
+/* line 38, chat.scss */
 .chat_nav_a h4 {
   color: white; }
 
+/* line 44, chat.scss */
 #user_nav_container {
   margin-top: 15em; }
+  /* line 48, chat.scss */
   #user_nav_container #user_nav {
     margin-left: 3em; }
 
+/* line 54, chat.scss */
+.tab_content {
+  margin-left: 3em;
+  margin-top: 2em;
+  padding-right: 5em; }
+
+/* line 61, chat.scss */
+#people_list {
+  margin-top: 2em;
+  height: 280px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc; }
+
+/* line 69, chat.scss */
+.list_image {
+  padding-right: 1em; }
+  /* line 71, chat.scss */
+  .list_image img {
+    width: 45px;
+    height: 45px;
+    border-radius: 40px;
+    border: 4px solid #4CAF50; }
+
+/* line 82, chat.scss */
+.person_list_item {
+  background-color: transparent;
+  color: white !important;
+  border: none !important; }
+  /* line 90, chat.scss */
+  .person_list_item .col-md-6, .person_list_item .col-md-3 {
+    padding-left: 0;
+    padding-right: 0; }
+
+/* line 97, chat.scss */
+.person_info {
+  padding-left: 0; }
+  /* line 100, chat.scss */
+  .person_info h6 {
+    color: white;
+    line-height: 0.5; }
+  /* line 106, chat.scss */
+  .person_info .person_username {
+    opacity: 0.6; }
+
+/* line 114, chat.scss */
+.tab_search_input {
+  background-color: transparent;
+  color: white;
+  width: 100%; }
+
+/* line 125, chat.scss */
 #user_nav .active .blue_tab {
   box-shadow: 0px -2px 0px #2196F3 inset; }
+/* line 130, chat.scss */
 #user_nav .active .green_tab {
   box-shadow: 0px -2px 0px #4CAF50 inset; }
+/* line 135, chat.scss */
 #user_nav .active .red_tab {
   box-shadow: 0px -2px 0px #E51C23 inset; }
+/* line 140, chat.scss */
 #user_nav .active .yellow_tab {
   box-shadow: 0px -2px 0px #FF9800 inset; }
 
+/* line 150, chat.scss */
 .blue_tab h4 {
   color: #2196F3; }
 
+/* line 158, chat.scss */
 .green_tab h4 {
   color: #4CAF50; }
+/* line 163, chat.scss */
+.green_tab:hover {
+  box-shadow: 0px -2px 0px #4CAF50 inset !important; }
 
+/* line 172, chat.scss */
 .red_tab h4 {
   color: #E51C23; }
+/* line 177, chat.scss */
+.red_tab:hover {
+  box-shadow: 0px -2px 0px #E51C23 inset !important; }
 
+/* line 185, chat.scss */
 .yellow_tab h4 {
   color: #FF9800; }
+/* line 190, chat.scss */
+.yellow_tab:hover {
+  box-shadow: 0px -2px 0px #FF9800 inset !important; }
