@@ -118,13 +118,13 @@
     .person_controls .glyphicon:hover {
       cursor: pointer; }
   /* line 173, chat.scss */
-  .person_controls #add_person:hover {
+  .person_controls .add_person:hover {
     color: #4caf50; }
   /* line 178, chat.scss */
-  .person_controls #remove_person:hover {
+  .person_controls .remove_person:hover {
     color: #e51c23; }
   /* line 183, chat.scss */
-  .person_controls #message_person:hover {
+  .person_controls .message_person:hover {
     color: #2196f3; }
 
 /* line 189, chat.scss */

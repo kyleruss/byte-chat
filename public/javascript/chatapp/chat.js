@@ -194,6 +194,7 @@ $(function()
 				item.find('.person_image').attr('src', server_a + val.profile_image);
 				item.find('.person_dn').text(val.name);
 				item.find('.person_username').text(val.username);
+				item.attr('data-friendid', val.id);
 				$('#people_list_group').append(item);
 			});
 		})

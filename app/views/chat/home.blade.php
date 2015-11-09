@@ -111,7 +111,7 @@
 
 			<div id='people_list'>
 				<ul id='people_list_group' class='list-group'>
-					<li id='person_item_template' class='person_list_item list-group-item clearfix'>
+					<li id='person_item_template' class='person_list_item list-group-item clearfix' data-friendid=''>
 						<div class='col-md-6'>
 							<div class='col-md-3'>
 							<span class='list_image'><img class='person_image' src='' /></span>
@@ -124,9 +124,9 @@
 
 						<div class='col-md-6'>
 							<div class='person_controls'>
-								<span id='add_person' class='glyphicon glyphicon-plus'></span>
-								<span id='remove_person' class='glyphicon glyphicon-remove'></span> 
-								<span id='message_person' class='glyphicon glyphicon-comment'></span>
+								<a class='add_person_btn' href='{{ URL::route("postRequestFriend"); }}'><span class='glyphicon glyphicon-plus'></span></a>
+								<a class='remove_person_btn' href='{{ URL::route("postRemoveFriend") }}'><span class='glyphicon glyphicon-remove'></span></a>
+								<a class='message_person_btn' href=''><span class='glyphicon glyphicon-comment'></span></a>
 							</div>
 						</div>
 					</li>

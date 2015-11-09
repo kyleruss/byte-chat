@@ -221,7 +221,7 @@ class UserController extends MasterController
 	public function getFriends()
 	{
 		$user		=	Auth::user()->username;
-		$results	=	FriendsModel::getUsersFriends($user)->select('username', 'name', 'profile_image')->get();
+		$results	=	FriendsModel::getUsersFriends($user)->select('username', 'name', 'profile_image', 'id')->get();
 		return json_encode($results);	
 	}
 
