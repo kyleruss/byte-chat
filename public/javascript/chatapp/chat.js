@@ -121,7 +121,17 @@ $(function()
 
 	$('#settings_tab_header').click(function()
 	{
-		showTab('#settings_tab');
+		var fetchSettingsURL	=	$(this).find('a').attr('href');
+		console.log(fetchSettingsURL);
+		$.getJSON(fetchSettingsURL, function(response)
+		{
+			var tabContent	=	$('#settings_tab');
+			tabContent.find('input[name="user_dn"]').val(response.user_dn);
+			tabContent.find('input[name="user_dp"]').val(response.user_dp);
+			tabContent.find('input[name="user_email"]').val(response.user_email);
+
+			showTab('#settings_tab');
+		});
 	});
 
 	$('#settings_update_btn').click(function(e)
@@ -150,20 +160,16 @@ $(function()
 				setTimeout(function()
 				{
 					ladda.stop();
+
+					showReturnMessage($('#settings_change_alert'), response.status, 
+					response.message, $('#settings_change_message'));
+
+					if(response.status)
+					{
+						$('.user_profile_image').attr('src', dp);
+						$('#user_name_label').text(dn);
+					}
 				}, 500);
-
-				if(response.status)
-				{
-					$('.user_profile_image').attr('src', dp);
-					$('#user_name_label').text(dn);
-				}
-
-				$('#settings_change_message').text(response.message);
-				$('#settings_change_alert').fadeIn('fast');
-				setTimeout(function()
-				{
-					$('#settings_change_alert').fadeOut('fast');
-				}, 1500);
 			},
 			
 			error: function(xhr, response, error)
@@ -182,6 +188,7 @@ $(function()
 	function initTabContent()
 	{
 		$('#settings_tab').hide();
+		$('#settings_change_alert').hide();
 	}
 
 	function initTemplates()

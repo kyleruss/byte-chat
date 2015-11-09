@@ -26,7 +26,7 @@
 		</div>
 	
 		<div class='col-md-7 user_info'>
-			<h4><span id='user_name_label' class='glyphicon glyphicon-user'></span> {{ Auth::user()->username; }}</h4>
+			<h4><span class='glyphicon glyphicon-user'></span> <span id='user_name_label'>{{ Auth::user()->username; }}</span></h4>
 			<h4><span class='glyphicon glyphicon-star'></span> {{ Auth::user()->name; }}</h4>
 			<h4><span class='glyphicon glyphicon-heart'></span> 0 friends online</h4>
 		</div>
