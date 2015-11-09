@@ -32,4 +32,5 @@ Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 {
 	Route::get('/home', ['as' => 'getChatHome', 'uses' => 'ChatController@getChatHome']);
 	Route::post('/find', ['as' => 'postFindPeople', 'uses' => 'UserController@postFindPeople']);
+	Route::post('/settings/update', ['as' => 'postUpdatePersonalSettings', 'uses' => 'UserController@postUpdatePersonalSettings']);
 });

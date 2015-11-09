@@ -106,6 +106,34 @@ class UserController extends MasterController
 		}
 	}
 
+	public function postUpdatePersonalSettings()
+	{
+		$success_message	=	'Personal settings saved';
+		$fail_message		=	'Failed to save personal settings';
+		$validator			=	Validator::make(Input::all(),
+		[
+			'user_dp'		=>	'required',
+			'user_email'	=>	'required|email',
+			'user_dn'		=>	'required|min:3|max:16'
+		]);
+
+		if($validator->fails())
+			return self::encodeReturn(false, $this->invalid_input_message, self::encodeValidator($validator));
+
+		else
+		{
+			$user					=	Auth::user();
+			$user->name				=	Input::get('user_dn');
+			$user->email			=	Input::get('user_email');
+			$user->profile_image	=	Input::get('user_dp');
+
+			if($user->save())
+				return self::encodeReturn(true, $success_message);
+			else
+				return self::encodeReturn(true, $fail_message);	
+		}
+	}
+
 
 	public function getLogout()
 	{
