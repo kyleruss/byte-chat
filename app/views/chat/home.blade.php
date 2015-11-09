@@ -95,7 +95,7 @@
 			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='#'><h4>Friends</h4></a></li>
 			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>
 			<li class=''><a class='chat_nav_a red_tab' href='#'><h4>Messages</h4></a></li>
-			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='#'><h4>Settings</h4></a></li>
+			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>
 		</ul>
 	
 		<div id='friends_tab' class='tab_content'>
@@ -136,20 +136,21 @@
 		</div>
 
 		<div id='settings_tab' class='tab_content'>
-			<div id='settings_change_alert' class='alert alert-dismissable fade in'>
+			<div id='settings_change_alert' class='alert alert-danger alert-dismissable fade in'>
+				<button class='close' data-dismiss='alert'>x</button>
 				<strong>Settings change notice</strong>
 				<br>
 				<p id='settings_change_message'></p>
-			></div>
+			</div>
 			<form id='settings_update_form' method='post' action='{{ URL::route("postUpdatePersonalSettings"); }}'>
 				<!-- DISPLAY NAME -->
 				<div class='form-group'>
 					<div class='row'>
-						<div class='col-lg-4'>
-							<h5>Display name</h5>
+						<div class='col-lg-5'>
+							<h5><span class='glyphicon glyphicon-star'></span> Display name</h5>
 						</div>
-						<div class='col-lg-8'>
-							<input type='text' class='full_input' name='user_dn' placeholder='Name'
+						<div class='col-lg-7'>
+							<input type='text' class='full_input full_input_width' name='user_dn' placeholder='Name'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 							title='Unique username 6-18 alphanumeric characters'>	
 						</div>
@@ -159,33 +160,35 @@
 				<!-- DISPLAY IMAGE FIELD -->
 				<div class='form-group'>
 					<div class='row'>
-						<div class='col-lg-4'>
-							<h5>Display image</h5>
+						<div class='col-lg-5'>
+							<h5><span class='glyphicon glyphicon-camera'></span> Display image</h5>
 						</div>
-						<div class='col-lg-8'>
-							<input type='text' class='full_input' name='user_dp' placeholder='Name'
+						<div class='col-lg-7'>
+							<input type='text' class='full_input full_input_width' name='user_dp' placeholder='Image URL'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 							title='Unique username 6-18 alphanumeric characters'>	
 						</div>
 					</div>
 				</div>
 
-				<!-- EMAIL FIELD -- >
+				<!-- EMAIL FIELD -->
 				<div class='form-group'>
 					<div class='row'>
-						<div class='col-lg-4'>
-							<h5>Email</h5>
+						<div class='col-lg-5'>
+							<h5><span class='glyphicon glyphicon-envelope'></span> Email</h5>
 						</div>
-						<div class='col-lg-8'>
-							<input type='text' class='full_input' name='user_email' placeholder='Name'
+						<div class='col-lg-7'>
+							<input type='text' class='full_input full_input_width' name='user_email' placeholder='Email address'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 							title='Unique username 6-18 alphanumeric characters'>	
 						</div>
 					</div>
 				</div>
+			</form>
 
-				<button id='settings_update_btn' data-style='expand-left' class='btn btn-default btn-primary ladda-button'><span class='ladda-label'>Save</span></button>
-				</form>
+			<center>
+				<button id='settings_update_btn' data-style='expand-left' class='btn btn-lg btn-default btn-primary ladda-button'><span class='ladda-label'>Save settings</span></button>
+			</center>
 			</div>
 		</div>
 	

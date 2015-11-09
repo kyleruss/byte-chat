@@ -179,7 +179,7 @@ $(function()
 		$(tab).fadeIn('fast');
 	}
 
-	function intTabContent()
+	function initTabContent()
 	{
 		$('#settings_tab').hide();
 	}

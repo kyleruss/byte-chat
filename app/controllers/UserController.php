@@ -134,6 +134,13 @@ class UserController extends MasterController
 		}
 	}
 
+	public function getUserSettings()
+	{
+		$user		=	Auth::user();
+		$settings	=	['user_dn' => $user->name, 'user_dp' => $user->profile_image, 'user_email' => $user->email];
+		return json_encode($settings);
+	}
+
 
 	public function getLogout()
 	{
