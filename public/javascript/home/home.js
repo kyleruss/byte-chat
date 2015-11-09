@@ -78,14 +78,14 @@ $(function()
 		active_panel = "";
 	});
 
-
-	$('#login_button').click(function(e)
+	$('#login_form').submit(function(e)
 	{
 		e.preventDefault();
-		var ladda  = Ladda.create(this);
+		
+		var ladda  = Ladda.create(document.querySelector('#login_button'));
 		ladda.start();
 
-		var form	=	$('#login_form');
+		var form	=	this;
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
 
@@ -120,16 +120,23 @@ $(function()
 				console.log(xhr.responseText);
 			}
 		});
-	}); 
+	});
 
-	$('#register_confirm').click(function(e)
+
+	$('#login_button').click(function(e)
 	{
 		e.preventDefault();
-		var ladda = Ladda.create(this);
+		$('#login_form').submit();
+	}); 
+
+	$('.register_form').submit(function(e)
+	{
+		e.preventDefault();
+		var ladda = Ladda.create(document.querySelector('#register_confirm'));
 		ladda.start();
 
 
-		var form	=	$('.register_form');
+		var form	=	this;
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
 
@@ -197,6 +204,7 @@ $(function()
 						$('#register_status_alert').removeClass('hide');
 						$('#register_status_alert').show();
 						$('#show_login_tab').click();
+						clearRegisterForm();
 					}
 				}, 1500);
 			},
@@ -206,6 +214,12 @@ $(function()
 				console.log(xhr.responseText);
 			}
 		}); 
+	});
+
+	$('#register_confirm').click(function(e)
+	{
+		e.preventDefault();
+		$('.register_form').submit();
 	});
 
 
@@ -271,6 +285,10 @@ $(function()
 		}, 500);
 	});
 
+	function clearRegisterForm()
+	{
+		$('.register_form input').val('');
+	}
 
 	//min: 3 max: 16
 	//weak: just alpha characters
