@@ -142,6 +142,31 @@ class UserController extends MasterController
 	}
 
 
+	public function postRequestFriend()
+	{
+
+	}
+
+
+	public function postAcceptFriend()
+	{
+
+	}
+
+
+	public function postRemoveFriend()
+	{
+	
+	}
+
+
+	public function getFriends()
+	{
+		$user		=	Auth::user()->username;
+		$results	=	FriendsModel::getUsersFriends($user)->select('username', 'name', 'profile_image')->get();
+		return json_encode($results);	
+	}
+
 	public function getLogout()
 	{
 		Auth::logout();

@@ -26,9 +26,9 @@
 		</div>
 	
 		<div class='col-md-7 user_info'>
-			<h4><span class='glyphicon glyphicon-user'></span> <span id='user_name_label'>{{ Auth::user()->username; }}</span></h4>
-			<h4><span class='glyphicon glyphicon-star'></span> {{ Auth::user()->name; }}</h4>
-			<h4><span class='glyphicon glyphicon-heart'></span> 0 friends online</h4>
+			<h4><span class='glyphicon glyphicon-user'></span>{{ Auth::user()->username; }}</h4>
+			<h4><span class='glyphicon glyphicon-star'></span><span id='user_name_label'>{{ Auth::user()->name; }}</span></h4>
+			<h4><span class='glyphicon glyphicon-heart'></span>0 friends online</h4>
 		</div>
 	</div>
 
@@ -92,7 +92,7 @@
 
 	<div id='user_nav_container'>
 		<ul id='user_nav' class='nav nav-tabs'>
-			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='#'><h4>Friends</h4></a></li>
+			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='{{ URL::route("getFriends"); }}'><h4>Friends</h4></a></li>
 			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>
 			<li class=''><a class='chat_nav_a red_tab' href='#'><h4>Messages</h4></a></li>
 			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>

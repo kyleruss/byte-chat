@@ -3,7 +3,7 @@ $(function()
 	var person_template_item;
 	initTemplates();
 	initTabContent();
-//	$('#change_bg_label').hide();
+	loadFriendlist();
 
 	$('#people_search_btn').click(function(e)
 	{
@@ -116,6 +116,7 @@ $(function()
 
 	$('#friends_tab_header').click(function()
 	{
+		loadFriendlist();
 		showTab('#friends_tab');
 	});
 
@@ -170,7 +171,7 @@ $(function()
 						$('#user_name_label').text(dn);
 					}
 				}, 500);
-			},
+			i},
 			
 			error: function(xhr, response, error)
 			{
@@ -178,6 +179,29 @@ $(function()
 			}
 		});
 	});
+
+	function loadFriendlist()
+	{
+		var fetchFriendsURL	=	$('#friends_tab_header').find('a').attr('href');
+		console.log(fetchFriendsURL);
+		
+		$.getJSON(fetchFriendsURL, function(response)
+		{
+			$('#people_list_group').empty();
+			$.each(response, function(key, val)
+			{
+				var item = person_template_item.clone();
+				item.find('.person_image').attr('src', server_a + val.profile_image);
+				item.find('.person_dn').text(val.name);
+				item.find('.person_username').text(val.username);
+				$('#people_list_group').append(item);
+			});
+		})
+		.fail(function(xhr, response, error)
+		{
+			console.log(xhr.responseText);
+		});
+	}
 		
 	function showTab(tab)
 	{	

@@ -34,4 +34,12 @@ Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 	Route::post('/find', ['as' => 'postFindPeople', 'uses' => 'UserController@postFindPeople']);
 	Route::post('/settings/update', ['as' => 'postUpdatePersonalSettings', 'uses' => 'UserController@postUpdatePersonalSettings']);
 	Route::get('/settings', ['as' => 'getUserSettings', 'uses' => 'UserController@getUserSettings']);
+
+	Route::group(['prefix' => 'friends'], function()
+	{
+		Route::post('/request', ['as' => 'postRequestFriend', 'uses' => 'UserController@postRequestFriend']);
+		Route::post('/accept', ['as' => 'postAcceptFriend', 'uses' => 'UserController@postAcceptFriend']);
+		Route::post('/remove', ['as' => 'postRemoveFriend', 'uses' => 'UserController@postRemoveFriend']);
+		Route::get('/fetch', ['as' => 'getFriends', 'uses' => 'UserController@getFriends']);
+	});	
 });
