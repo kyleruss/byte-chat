@@ -144,19 +144,77 @@ class UserController extends MasterController
 
 	public function postRequestFriend()
 	{
+		$success_message	=	'Friend request has been sent';
+		$fail_message		=	'Failed to send friend request';
 
+		$validator			=	Validator::make(Input::all(),
+		[
+			'user_id'		=>	'required'
+		]);
+
+		if($validator->fails())
+			return self::encodeReturn(false, $this->invalid_input_message);
+		else
+		{
+			$friendship				=	new FriendsModel();
+			$friendship->from_user	=	Auth::user()->username;
+			$friendship->to_user	=	Input::get('user_id');
+			
+			if($friendship->save())
+				return self::encodeReturn(true, $success_message);
+			else
+				return self::encodeReturn(false, $fail_message);	
+		}
 	}
 
 
 	public function postAcceptFriend()
 	{
+		$success_message	=	'User has been added to your friendlist';
+		$fail_message		=	'Failed to accept friend request';
 
+		$validator			=	Validator::make(Input::all(),
+		[
+			'friendship_id'	=>	'required|exists:friendships,id'
+		]);
+		
+		if($validator->fails())
+			return self::encodeReturn(false, $this->invalid_input_message);
+		else
+		{
+			$friendship				=	FriendsModel::find(Input::get('friendship_id'));
+			$friendship->pending	=	0;
+
+			if($friendship->save())
+				return self::encodeReturn(true, $success_message);
+			else
+				return self::encodeReturn(false, $fail_message);
+		}
+		
 	}
 
 
 	public function postRemoveFriend()
 	{
-	
+		$success_message	=	'Successfully removed friend';
+		$fail_message		=	'Failed to remove friend';
+
+		$validator			=	Validator::make(Input::all(),
+		[
+			'friendship_id'	=>	'required|exists:friendships,id'
+		]);
+
+		if($validator->fails())
+			return self::encodeReturn(false, $this->invalid_input_message);
+		else
+		{
+			$friendship	=	FriendsModel::find(Input::get('friendship_id'));
+
+			if($friendship->delete())
+				return self::encodeReturn(true, $success_message);
+			else
+				return self::encodeReturn(false, $fail_message);
+		}
 	}
 
 
