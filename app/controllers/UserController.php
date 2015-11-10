@@ -225,6 +225,12 @@ class UserController extends MasterController
 		return json_encode($results);	
 	}
 
+	public function getNotifications()
+	{
+		$notifications	=	NotificationsModel::fetchUserNotifications(Auth::user()->username)->get();
+		return $notifications;
+	}
+
 	public function getLogout()
 	{
 		Auth::logout();

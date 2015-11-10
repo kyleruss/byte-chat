@@ -35,6 +35,11 @@ Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 	Route::post('/settings/update', ['as' => 'postUpdatePersonalSettings', 'uses' => 'UserController@postUpdatePersonalSettings']);
 	Route::get('/settings', ['as' => 'getUserSettings', 'uses' => 'UserController@getUserSettings']);
 
+	Route::group(['prefix' => 'notifications'], function()
+	{
+		Route::get('/fetch', ['as' => 'getNotifications', 'uses' => 'UserController@getNotifications']);	
+	});
+
 	Route::group(['prefix' => 'friends'], function()
 	{
 		Route::post('/request', ['as' => 'postRequestFriend', 'uses' => 'UserController@postRequestFriend']);

@@ -171,7 +171,7 @@ $(function()
 						$('#user_name_label').text(dn);
 					}
 				}, 500);
-			i},
+			},
 			
 			error: function(xhr, response, error)
 			{
@@ -180,6 +180,71 @@ $(function()
 		});
 	});
 
+	$('.add_person_btn').click(function(e)
+	{
+		e.preventDefault();
+		var url		=	$(this).attr('href');
+		var user	=	$(this).find('.person_username').text();
+		var data	=	"user_id=" + user;
+		var btn		=	this;
+
+		$.ajax
+		({
+			url: url,
+			data: data,
+			method: 'POST',
+			dataType: 'json',
+			success: function(response)
+			{
+				btn.attr('data-title', response.message);
+				btn.tooltip('show');
+
+				setTimeout(function()
+				{
+					btn.tooltip('hide');
+				}, 1000);
+			},
+
+			error: function(xhr, response, error)
+			{
+				console.log(xhr.responseText);
+			}
+		});	
+		
+	});
+
+	$('.remove_person_button').click(function(e)
+	{
+		e.preventDefault();
+		var url			=	$(this).attr('href');
+		var friendid	=	$(this).attr('data-friendid');
+		var data		=	'friendship_id=' + friendid;
+		var btn			=	this;
+
+		$.ajax
+		({
+			url: url,
+			data: data,
+			method: 'POST',
+			dataType: 'json',
+			success: function(response)
+			{
+				btn.attr('data-title',response.message);
+				btn.tooltip('show');
+
+				setTimeout(function()
+				{
+					btn.tooltip('hide');
+
+					if(response.status)
+						$('#people_list').remove(btn);
+				
+
+				}, 1000);
+			}
+		});
+	});
+	
 	function loadFriendlist()
 	{
 		var fetchFriendsURL	=	$('#friends_tab_header').find('a').attr('href');

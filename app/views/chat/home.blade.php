@@ -93,8 +93,8 @@
 	<div id='user_nav_container'>
 		<ul id='user_nav' class='nav nav-tabs'>
 			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='{{ URL::route("getFriends"); }}'><h4>Friends</h4></a></li>
-			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>
-			<li class=''><a class='chat_nav_a red_tab' href='#'><h4>Messages</h4></a></li>
+			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>`
+			<li class=''><a class='chat_nav_a red_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
 			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>
 		</ul>
 	
@@ -124,8 +124,8 @@
 
 						<div class='col-md-6'>
 							<div class='person_controls'>
-								<a class='add_person_btn' href='{{ URL::route("postRequestFriend"); }}'><span class='glyphicon glyphicon-plus'></span></a>
-								<a class='remove_person_btn' href='{{ URL::route("postRemoveFriend") }}'><span class='glyphicon glyphicon-remove'></span></a>
+								<a class='add_person_btn' data-trigger='manual' data-placement='bottom' data-title='' href='{{ URL::route("postRequestFriend"); }}'><span class='glyphicon glyphicon-plus'></span></a>
+								<a data-trigger='manual' data-placement='bottom' data-title='' class='remove_person_btn' href='{{ URL::route("postRemoveFriend") }}'><span class='glyphicon glyphicon-remove'></span></a>
 								<a class='message_person_btn' href=''><span class='glyphicon glyphicon-comment'></span></a>
 							</div>
 						</div>
@@ -190,6 +190,32 @@
 				<button id='settings_update_btn' data-style='expand-left' class='btn btn-lg btn-default btn-primary ladda-button'><span class='ladda-label'>Save settings</span></button>
 			</center>
 			</div>
+
+			<div id='notifications_tab' class='tab_content'>
+				<div id='notification_list_container'>
+					<ul id='notification_list' class='list-group'>
+						<li id='notification_item_template' class='list-group-item notification_list_item clearix'>
+							<div class='col-md-9'>
+								<div class='col-md-2'>
+									<!-- NOTIFICATION ICON -->
+								</div>
+		
+								<div class='col-md-10'>
+									<p class='notification_title'></p>
+									<p class='notification_content'></p>
+								</div>
+							</div>
+
+							<div class='col-md-3'>
+								<div class='notification_controls'>
+									
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 	
 	</div>
