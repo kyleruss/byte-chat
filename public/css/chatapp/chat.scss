@@ -80,16 +80,18 @@
 	}
 }
 
+#no_friends_content, #no_notifications_content, #no_results_container
+{
+	h4
+	{
+		color:white;
+		text-align:center;
+		margin-top:2em;
+	}
+}
+
 #notifications_tab
 {
-	#no_notifications_content
-	{
-		h4
-		{
-			color:white;
-			text-align:center;
-		}
-	}
 
 	.notification_list_item
 	{

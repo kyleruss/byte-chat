@@ -21,19 +21,27 @@ $(function()
 			success: function(response)
 			{
 				console.log(response);
-				setTimeout(function()
+				hideResultContainers();
+
+				if(response.length == 0)
+					showNoResultsContainer();
+				else
 				{
-					$('#people_list_group').empty();
-					$.each(response, function(key, val)
+					setTimeout(function()
 					{
-						var item = person_template_item.clone();
-						item.find('.person_image').attr('src', server_a + val.profile_image);
-						item.find('.person_dn').text(val.name);
-						item.find('.person_username').text(val.username);
-						$('#people_list_group').append(item);
-					});
-				}, 500);
-			
+						$('#people_list_group').empty();
+						$.each(response, function(key, val)
+						{
+							console.log('t');
+							var item = person_template_item.clone();
+							item.find('.person_image').attr('src', server_a + val.profile_image);
+							item.find('.person_dn').text(val.name);
+							item.find('.person_username').text(val.username);
+							$('#people_list_group').append(item);
+							$('#people_list').fadeIn('fast');
+						});
+					}, 500);
+				}
 			},
 
 			error: function(xhr, response, error)
@@ -186,7 +194,7 @@ $(function()
 		});
 	});
 
-	$('.add_person_btn').click(function(e)
+	$(document).on('click', '.add_person_btn', function(e)
 	{
 		e.preventDefault();
 		var url		=	$(this).attr('href');
@@ -219,14 +227,16 @@ $(function()
 		
 	});
 
-	$('.remove_person_button').click(function(e)
+	$(document).on('click', '.remove_person_btn', function(e)
 	{
 		e.preventDefault();
-		var url			=	$(this).attr('href');
-		var friendid	=	$(this).attr('data-friendid');
+		var btn			=	$(this);
+		var url			=	btn.attr('href');
+		var container	=	btn.closest('.person_list_item');
+		var friendid	=	container.attr('data-friendid');
 		var data		=	'friendship_id=' + friendid;
-		var btn			=	this;
 
+		console.log(data);
 		$.ajax
 		({
 			url: url,
@@ -235,18 +245,18 @@ $(function()
 			dataType: 'json',
 			success: function(response)
 			{
-				btn.attr('data-title',response.message);
-				btn.tooltip('show');
 
-				setTimeout(function()
-				{
-					btn.tooltip('hide');
+				showReturnMessage('#person_status_alert', response.status,
+					response.message, '#person_status_message');
 
-					if(response.status)
-						$('#people_list').remove(btn);
-				
+				if(response.status)
+					container.remove();
 
-				}, 1000);
+			},
+
+			error: function(xhr, response, error)
+			{
+				console.log(xhr.responseText);
 			}
 		});
 	});
@@ -303,8 +313,8 @@ $(function()
 
 			if(response.length == 0)
 			{
-				$('#no_notifications_content').show();
 				$('#notification_list_container').hide();
+				$('#no_notifications_content').show();
 			}
 
 			else
@@ -341,18 +351,26 @@ $(function()
 		
 		$.getJSON(fetchFriendsURL, function(response)
 		{
-			$('#people_list_group').empty();
-			$.each(response, function(key, val)
+			if(response.length == 0)
+				showNoFriendsContainer();
+			
+			else
 			{
-				var item = person_template_item.clone();
-				item.find('.person_image').attr('src', server_a + val.profile_image);
-				item.find('.person_dn').text(val.name);
-				item.find('.person_username').text(val.username);
-				item.attr('data-friendid', val.id);
-				$('#people_list_group').append(item);
-			});
+				$('#no_friends_content').hide();
 
-			initTooltips();
+				$('#people_list_group').empty();
+				$.each(response, function(key, val)
+				{
+					var item = person_template_item.clone();
+					item.find('.person_image').attr('src', server_a + val.profile_image);
+					item.find('.person_dn').text(val.name);
+					item.find('.person_username').text(val.username);
+					item.attr('data-friendid', val.id);
+					$('#people_list_group').append(item);
+				});
+
+				initTooltips();
+			}
 		})
 		.fail(function(xhr, response, error)
 		{
@@ -366,12 +384,36 @@ $(function()
 		$(tab).fadeIn('fast');
 	}
 
+	function showNoFriendsContainer()
+	{
+		$('#people_list').hide();
+		$('#no_friends_content').show();
+		$('#people_search').focus();
+	}
+
+	function hideResultContainers()
+	{
+		$('#no_friends_content').hide();
+		$('#no_results_container').hide();
+	}
+
+	function showNoResultsContainer()
+	{
+		$('#people_list').hide();
+		$('#no_results_container').show();
+		$('#people_search').focus();
+	}
+
 	function initTabContent()
 	{
 		$('#settings_tab').hide();
 		$('#settings_change_alert').hide();
 		$('#no_notifications_content').hide();
+		$('#no_friends_content').hide();
 		$('#notification_status_alert').hide();
+		$('#person_status_alert').hide();
+		$('#no_results_container').hide();
+		$('#people_search').val('');
 	}
 
 	function initTemplates()

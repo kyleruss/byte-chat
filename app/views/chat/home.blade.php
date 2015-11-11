@@ -97,19 +97,39 @@
 			<li id='notifications_tab_header' class=''><a class='chat_nav_a red_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
 			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>
 		</ul>
-	
+
+		<!-- PERSON CONTENT -->
 		<div id='friends_tab' class='tab_content'>
+	
+			<!-- PERSON STATUS ALERT -->
+			<div id='person_status_alert' class='alert alert-dismissable fade in'>
+				<strong>User notice</strong>
+				<p id='person_status_message'></p>
+			</div>
+
+			<!-- PEOPLE SEARCH FORM -->
 			<form id='people_search_form' method='post' action='{{ URL::route("postFindPeople"); }}'>
 				<div class='input-group full_input_group full_right_input_group'>
-					
-						<input type='text' class='full_input tab_search_input' placeholder='Find someone' name='search_term' />
-						<span class='input-group-btn'>
-							<button id='people_search_btn' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
-						</span>
+					<input type='text' id='people_search' class='full_input tab_search_input' placeholder='Find someone' name='search_term' />
+					<span class='input-group-btn'>
+						<button id='people_search_btn' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
+					</span>
 				</div>
 			</form>
 
+			<!-- NO FRIENDS CONTAINER -->
+			<div id='no_friends_content'>
+				<h4><span class='glyphicon glyphicon-info-sign'></span> You have no friends, try searching</h4>
+			</div>
+
+			<!-- NO RESULTS CONTAINER -->
+			<div id='no_results_container'>
+				<h4><span class='glyphicon glyphicon-info-sign'></span> No results found</h4>
+			</div>
+
+			<!-- PERSON LIST CONTAINER -->
 			<div id='people_list'>
+				<!-- PERSON LIST -->
 				<ul id='people_list_group' class='list-group'>
 					<li id='person_item_template' class='person_list_item list-group-item clearfix' data-friendid=''>
 						<div class='col-md-6'>
