@@ -2,104 +2,123 @@
 #user_content {
   background-color: #202028;
   height: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  box-shadow: 5px 0 5px -5px #333; }
 
-/* line 16, chat.scss */
+/* line 17, chat.scss */
 .profile_info {
   padding: 1.5em;
   margin-top: 3em; }
 
-/* line 23, chat.scss */
+/* line 24, chat.scss */
 .user_profile_image {
   background-clip: content-box;
   border: 0.5em solid rgba(255, 255, 255, 0.2); }
-  /* line 28, chat.scss */
+  /* line 29, chat.scss */
   .user_profile_image:hover {
     cursor: pointer; }
 
-/* line 36, chat.scss */
+/* line 37, chat.scss */
 .user_info h4 {
   color: white;
   line-height: 1.7; }
-/* line 42, chat.scss */
+/* line 43, chat.scss */
 .user_info .glyphicon {
   padding-right: 15px; }
 
-/* line 50, chat.scss */
+/* line 51, chat.scss */
 .chat_nav_a h4 {
   color: white; }
 
-/* line 58, chat.scss */
+/* line 59, chat.scss */
 #settings_tab h5 {
   color: white; }
-/* line 63, chat.scss */
+/* line 64, chat.scss */
 #settings_tab #settings_update_btn {
   margin-top: 1.5em; }
-/* line 68, chat.scss */
+/* line 69, chat.scss */
 #settings_tab input {
   background-color: transparent;
   color: white; }
 
-/* line 77, chat.scss */
+/* line 78, chat.scss */
 #no_friends_content h4, #no_notifications_content h4, #no_results_container h4 {
   color: white;
   text-align: center;
   margin-top: 2em; }
 
-/* line 88, chat.scss */
+/* line 89, chat.scss */
 #notifications_tab .notification_list_item {
   background-color: transparent;
   border: 1px solid #ccc; }
-  /* line 93, chat.scss */
+  /* line 94, chat.scss */
   #notifications_tab .notification_list_item .col-md-2 {
     padding-left: 0; }
-/* line 99, chat.scss */
+/* line 100, chat.scss */
 #notifications_tab .notification_icon {
   color: white;
   font-size: 36px;
   height: 50px;
   line-height: 50px;
   text-align: center; }
-/* line 108, chat.scss */
+/* line 109, chat.scss */
 #notifications_tab .notification_title {
   font-weight: bold; }
-/* line 115, chat.scss */
+/* line 116, chat.scss */
 #notifications_tab .notification_content_container p {
   color: white;
   margin-bottom: 2px; }
-/* line 122, chat.scss */
+/* line 123, chat.scss */
 #notifications_tab .notification_controls {
   float: right; }
-  /* line 125, chat.scss */
+  /* line 126, chat.scss */
   #notifications_tab .notification_controls a {
     color: white;
     height: 50px;
     line-height: 50px;
     padding-right: 0.5em;
     font-size: 20px; }
-  /* line 134, chat.scss */
-  #notifications_tab .notification_controls .remove_notification:hover {
+  /* line 135, chat.scss */
+  #notifications_tab .notification_controls .remove_notification_btn:hover {
     color: #e51c23; }
-  /* line 139, chat.scss */
-  #notifications_tab .notification_controls .read_notification:hover {
+  /* line 140, chat.scss */
+  #notifications_tab .notification_controls .read_notification_btn:hover {
     color: #4caf50; }
 
-/* line 146, chat.scss */
+/* line 147, chat.scss */
+#notification_modal_extra_controls {
+  display: inline-block;
+  margin-top: 1.5em; }
+
+/* line 153, chat.scss */
+#notif_modal_meta {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5em; }
+
+/* line 160, chat.scss */
+#notification_modal_content {
+  text-align: center; }
+  /* line 164, chat.scss */
+  #notification_modal_content button {
+    margin-left: 0.5em; }
+
+/* line 170, chat.scss */
 #user_nav_container {
   margin-top: 15em; }
-  /* line 150, chat.scss */
+  /* line 174, chat.scss */
   #user_nav_container #user_nav {
     margin-left: 3em; }
 
-/* line 156, chat.scss */
+/* line 180, chat.scss */
 .profile_image_fade {
   opacity: 0.3; }
 
-/* line 161, chat.scss */
+/* line 185, chat.scss */
 #profile_image_container {
   position: relative; }
 
-/* line 165, chat.scss */
+/* line 189, chat.scss */
 #change_bg_label {
   position: absolute;
   margin-left: -4.5em;
@@ -107,17 +126,17 @@
   margin-top: 1.5em;
   font-size: 30px;
   color: white; }
-  /* line 174, chat.scss */
+  /* line 198, chat.scss */
   #change_bg_label:hover {
     cursor: pointer; }
 
-/* line 180, chat.scss */
+/* line 204, chat.scss */
 .tab_content {
   margin-left: 3em;
   margin-top: 2em;
   padding-right: 3em; }
 
-/* line 187, chat.scss */
+/* line 211, chat.scss */
 #people_list {
   margin-top: 2em;
   height: 350px;
@@ -125,106 +144,106 @@
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc; }
 
-/* line 196, chat.scss */
+/* line 220, chat.scss */
 .modal, modal.fade.in {
   top: 15%; }
 
-/* line 201, chat.scss */
+/* line 225, chat.scss */
 .list_image {
   padding-right: 1em; }
-  /* line 203, chat.scss */
+  /* line 227, chat.scss */
   .list_image img {
     width: 45px;
     height: 45px;
     border-radius: 40px;
     border: 4px solid #4CAF50; }
 
-/* line 214, chat.scss */
+/* line 238, chat.scss */
 .person_list_item {
   background-color: transparent;
   color: white !important;
   border: none !important; }
-  /* line 220, chat.scss */
+  /* line 244, chat.scss */
   .person_list_item .col-md-6, .person_list_item .col-md-3 {
     padding-left: 0;
     padding-right: 0; }
 
-/* line 227, chat.scss */
+/* line 251, chat.scss */
 .person_controls {
   float: right;
   margin-right: 1em; }
-  /* line 232, chat.scss */
+  /* line 256, chat.scss */
   .person_controls .glyphicon {
     font-size: 20px;
     padding-right: 0.5em;
     line-height: 2; }
-    /* line 238, chat.scss */
+    /* line 262, chat.scss */
     .person_controls .glyphicon:hover {
       cursor: pointer; }
-  /* line 244, chat.scss */
+  /* line 268, chat.scss */
   .person_controls a {
     color: white; }
-  /* line 249, chat.scss */
+  /* line 273, chat.scss */
   .person_controls .add_person_btn:hover {
     color: #4caf50 !important; }
-  /* line 254, chat.scss */
+  /* line 278, chat.scss */
   .person_controls .remove_person_btn:hover {
     color: #e51c23 !important; }
-  /* line 259, chat.scss */
+  /* line 283, chat.scss */
   .person_controls .message_person_btn:hover {
     color: #2196f3 !important; }
 
-/* line 265, chat.scss */
+/* line 289, chat.scss */
 .person_info {
   padding-left: 0; }
-  /* line 268, chat.scss */
+  /* line 292, chat.scss */
   .person_info h6 {
     color: white;
     line-height: 0.5; }
-  /* line 274, chat.scss */
+  /* line 298, chat.scss */
   .person_info .person_username {
     opacity: 0.6; }
 
-/* line 282, chat.scss */
+/* line 306, chat.scss */
 .tab_search_input {
   background-color: transparent;
   color: white;
   width: 100%; }
 
-/* line 293, chat.scss */
+/* line 317, chat.scss */
 #user_nav .active .blue_tab {
   box-shadow: 0px -2px 0px #2196f3 inset; }
-/* line 298, chat.scss */
+/* line 322, chat.scss */
 #user_nav .active .green_tab {
   box-shadow: 0px -2px 0px #4caf50 inset; }
-/* line 303, chat.scss */
+/* line 327, chat.scss */
 #user_nav .active .red_tab {
   box-shadow: 0px -2px 0px #e51c23 inset; }
-/* line 308, chat.scss */
+/* line 332, chat.scss */
 #user_nav .active .yellow_tab {
   box-shadow: 0px -2px 0px #e08600 inset; }
 
-/* line 318, chat.scss */
+/* line 342, chat.scss */
 .blue_tab h4 {
   color: #2196f3; }
 
-/* line 326, chat.scss */
+/* line 350, chat.scss */
 .green_tab h4 {
   color: #4caf50; }
-/* line 331, chat.scss */
+/* line 355, chat.scss */
 .green_tab:hover {
   box-shadow: 0px -2px 0px #4caf50 inset !important; }
 
-/* line 340, chat.scss */
+/* line 364, chat.scss */
 .red_tab h4 {
   color: #e51c23; }
-/* line 345, chat.scss */
+/* line 369, chat.scss */
 .red_tab:hover {
   box-shadow: 0px -2px 0px #e51c23 inset !important; }
 
-/* line 353, chat.scss */
+/* line 377, chat.scss */
 .yellow_tab h4 {
   color: #e08600; }
-/* line 358, chat.scss */
+/* line 382, chat.scss */
 .yellow_tab:hover {
   box-shadow: 0px -2px 0px #e08600 inset !important; }

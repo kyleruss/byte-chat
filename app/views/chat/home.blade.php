@@ -90,6 +90,61 @@
 		</div>
 	</div>
 
+	<!-- READ NOTIFICATION MODAL -->
+	<div id='notification_read_modal' class='modal fade'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<button class='close' data-dismiss='modal'><span>&times;</span></button>
+					<h4 class='modal-title'><span class='glyphicon glyphicon-bullhorn'></span> Read notification</h4>	
+
+					<div id='notif_modal_meta'>
+						<div class='row'>
+						<div class='col-md-6'>
+							<h6 id='notif_modal_id'><strong>Notification ID:</strong> <span></span></h6>
+						</div>
+						<div class='col-md-6'>
+							<h6 id='notif_modal_date'><strong>Sent:</strong> <span></span></h6>
+						</div>
+						</div>
+
+						<div class='row'>
+							<div class='col-md-6'>
+							<h6 id='notif_modal_type'><strong>Type:</strong> <span></span></h6>
+							</div>
+
+							<div class='col-md-6'>
+							<h6 id='notif_modal_unread'><strong>Status:</strong> <span class='label'></span></h6>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class='modal-body'>
+					<div id='notification_modal_content'>
+						<strong><h4 id='notif_modal_title'></h4></strong>
+						<h5 id='notif_modal_content'></h5>
+						<div id='notif_modal_extra_content'></div>
+
+						<div id='notification_modal_controls'>
+							<button class='btn btn-default' data-dismiss='modal'>Close</button>
+							<div id='notification_modal_extra_controls'>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id='notification_controls' class='hide'>
+		<button id='reject_request_btn' class='btn btn-default btn-danger'>Reject</button>
+		<button id='accept_request_btn' class='btn btn-default btn-success'>Accept</button> 
+	</div>
+
+
+
 	<div id='user_nav_container'>
 		<ul id='user_nav' class='nav nav-tabs'>
 			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='{{ URL::route("getFriends"); }}'><h4>Friends</h4></a></li>

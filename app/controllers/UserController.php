@@ -169,14 +169,17 @@ class UserController extends MasterController
 	}
 
 
-	public function postAcceptFriend()
+	public function postRespondRequestFriend()
 	{
-		$success_message	=	'User has been added to your friendlist';
-		$fail_message		=	'Failed to accept friend request';
+		$success_message		=	'User has been added to your friendlist';
+		$fail_message			=	'Failed to accept friend request';
+		$success_rej_message	=	'Successfully rejected request';
+		$fail_rej_message		=	'Failed to reject message';	
 
 		$validator			=	Validator::make(Input::all(),
 		[
 			'friendship_id'	=>	'required|exists:friendships,id'
+			'accept_req'	=>	'required'
 		]);
 		
 		if($validator->fails())
@@ -184,12 +187,24 @@ class UserController extends MasterController
 		else
 		{
 			$friendship				=	FriendsModel::find(Input::get('friendship_id'));
-			$friendship->pending	=	0;
 
-			if($friendship->save())
-				return self::encodeReturn(true, $success_message);
+			if(Input::get('accpet_req'))
+			{
+				$friendship->pending	=	0;
+
+				if($friendship->save())
+					return self::encodeReturn(true, $success_message);
+				else
+					return self::encodeReturn(false, $fail_message);
+			}
+
 			else
-				return self::encodeReturn(false, $fail_message);
+			{
+				if($friendship->delete())
+					return self::encodeReturn(true, $success_rej_message);
+				else
+					return self::encodeReturn(false, $fail_rej_message);
+			}
 		}
 		
 	}
@@ -275,7 +290,7 @@ class UserController extends MasterController
 			$notification->unread	=	false;
 			
 			if($notification->save())
-				return self::encodeReturn(true, $success_message);
+				return self::encodeReturn(true, $success_message, ['notification' => $notification->toArray()]);
 			else
 				return self::encodeReturn(false, $fail_message);	
 		}

@@ -5,6 +5,7 @@
 	background-color:#202028;
 	height:100%;
 	overflow:hidden;
+	box-shadow: 5px 0 5px -5px #333;
 }
 
 #chat_content
@@ -131,15 +132,38 @@
 			font-size:20px;
 		}
 
-		.remove_notification:hover
+		.remove_notification_btn:hover
 		{
 			color:$colour_red;
 		}
-
-		.read_notification:hover
+	
+		.read_notification_btn:hover
 		{
 			color:$colour_green;
 		}
+	}
+}
+
+#notification_modal_extra_controls
+{
+	display:inline-block;
+	margin-top:1.5em;
+}
+
+#notif_modal_meta
+{
+	border:1px solid #ccc;
+	border-radius:5px;
+	padding:0.5em;
+}
+
+#notification_modal_content
+{
+	text-align:center;
+
+	button
+	{
+		margin-left:0.5em;
 	}
 }
 

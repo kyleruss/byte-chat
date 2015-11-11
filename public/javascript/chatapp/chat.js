@@ -265,6 +265,59 @@ $(function()
 	$(document).on('click', '.read_notification_btn', function(e)
 	{
 		e.preventDefault();
+		var url			=	$(this).attr('href');
+		var container	=	$(this).closest('.notification_list_item');
+		var notifyID	=	container.attr('data-notificationid');
+		var data		=	'notification_id=' + notifyID;
+
+		$.ajax
+		({
+			url: url,
+			data: data,
+			method: 'POST',
+			dataType: 'json',
+			success: function(response)
+			{
+				console.log(response);
+
+				var notification	=	response.notification;	
+				var modal			=	$('#notification_read_modal');
+				var controls		=	$('#notification_controls').clone();
+				var extra_controls	=	$('#notification_modal_extra_controls');
+
+				$('#notif_modal_title').text(notification.title);
+				$('#notif_modal_content').text(notification.content);
+				$('#notif_modal_id').find('span').text(notification.id);
+				$('#notif_modal_date').find('span').text(notification.created_at);
+				$('#notif_modal_type').find('span').text(notification.type);
+				
+				var unread_label	=	$('#notif_modal_unread').find('span');
+				unread_label.removeClass('label-success');
+				unread_label.removeClass('label-default');
+
+				if(notification.unread)
+				{
+					unread_label.text('unread');
+					unread_label.addClass('label-success');
+				}
+
+				else
+				{
+					unread_label.text('unread');
+					unread_label.addClass('label-default');
+				}
+				
+				extra_controls.empty();
+				extra_controls.append(controls);
+				controls.removeClass('hide');
+				modal.modal('show');
+			},
+
+			error: function(xhr, response, error)
+			{
+				console.log(xhr.responseText);
+			}
+		});
 	});
 
 
