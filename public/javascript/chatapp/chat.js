@@ -252,14 +252,23 @@ $(function()
 	});
 
 
-	$('.remove_notification').click(function(e)
+	$(document).on('click', '.read_notification_btn', function(e)
 	{
 		e.preventDefault();
-		var btn		=	$(this);
-		var url		=	btn.attr('href');
-		var notID	=	btn.attr('data-notificationid');
-		var data	=	'notification_id=' + notID;
+	});
 
+
+	$(document).on('click', '.remove_notification_btn', function(e)
+	{
+		e.preventDefault();
+		console.log('test');
+		var btn			=	$(this);
+		var url			=	btn.attr('href');
+		var item		=	btn.closest('.notification_list_item');
+		var notID		=	item.attr('data-notificationid');
+		var data		=	'notification_id=' + notID;
+		$('#notification_list').remove(item);
+		console.log(item);
 		$.ajax
 		({
 			data: data,
@@ -269,25 +278,19 @@ $(function()
 			success: function(response)
 			{
 				console.log(response);
+				btn.tooltip('hide');
 				showReturnMessage('#notification_status_alert', response.status,
 					response.message, '#notification_status_message');
 
-				setTimeout(function()
-				{
-					if(response.status)
-					{		
-						var item	=	btn.parent('.notification_list_item');
-						$('#notification_list').remove(item);
-					}	
-
-				}, 1000);
+				if(response.status)
+					item.remove();
 			},
 
 			error: function(xhr, response, error)
 			{
 				console.log(xhr.responseText);
 			}
-		});
+		}); 
 	});
 
 	function loadNotificationList()
@@ -309,6 +312,7 @@ $(function()
 				$('#no_notifications_content').hide();
 
 				var container = $('#notification_list_container');
+				container.empty();
 				$.each(response, function(key, val)
 				{
 					var item	=	notification_template_item.clone();
@@ -367,6 +371,7 @@ $(function()
 		$('#settings_tab').hide();
 		$('#settings_change_alert').hide();
 		$('#no_notifications_content').hide();
+		$('#notification_status_alert').hide();
 	}
 
 	function initTemplates()

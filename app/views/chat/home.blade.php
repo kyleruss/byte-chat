@@ -200,7 +200,7 @@
 	
 				<div id='notification_status_alert' class='alert alert-dismissable fade in'>
 					<strong>Notification notice</strong>
-					<p class='notification_status_message'></p>
+					<p id='notification_status_message'></p>
 				</div>
 
 				<!-- NOTIFICATION LIST -->
@@ -223,11 +223,11 @@
 							<div class='col-md-3'>
 								<div class='notification_controls'>
 									<!-- REMOVE NOTIFICATION BUTTON -->
-									<a class='remove_notification' href='{{ URL::route("postRemoveNotification"); }}' data-placement='bottom'
+									<a class='remove_notification_btn' href='{{ URL::route("postRemoveNotification"); }}' data-placement='bottom'
 									 data-toggle='tooltip' data-title='Remove notification'><span class='glyphicon glyphicon-remove'></span></a>
 
 									<!-- READ NOTIFICATION BUTTON -->
-									<a class='read_notification' data-placement='bottom' data-toggle='tooltip' data-title='Read notification' 
+									<a class='read_notification_btn' data-placement='bottom' data-toggle='tooltip' data-title='Read notification' 
 									href='{{ URL::route("postReadNotification"); }}'><span class='glyphicon glyphicon-circle-arrow-right'></span></a>
 								</div>
 							</div>
