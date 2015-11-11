@@ -356,6 +356,43 @@ $(function()
 		}); 
 	});
 
+
+	$(document).on('click', '#accept_request_btn', function(e)
+	{
+		e.preventDefault();
+		respondFriendRequest(true);
+	});
+
+	$(document).on('click', '#reject_request_btn', function(e)
+	{
+		e.preventDefault();
+		respondFriendRequest(false);
+	});
+
+	function respondFriendRequest(accept)
+	{
+		var url			=	$('#notification_controls').attr('data-respond-url');
+		var friendid	=	$('#notif_modal_meta').attr('data-friendid');
+		var data		=	'friendship_id=' + friendid + ';accept=' + accept;
+
+		$.ajax
+		({		
+			url: url,
+			data: data,
+			method: 'POST',
+			dataType: 'json',
+			success: function(response)
+			{
+				console.log(response);
+			},
+
+			error: function(xhr, response, error)
+			{
+				console.log(xhr.responseText);
+			}
+		});
+	}
+
 	function loadNotificationList()
 	{
 		var fetchNotificationsURL	=	$('#notifications_tab_header').find('a').attr('href');

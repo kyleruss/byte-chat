@@ -98,7 +98,7 @@
 					<button class='close' data-dismiss='modal'><span>&times;</span></button>
 					<h4 class='modal-title'><span class='glyphicon glyphicon-bullhorn'></span> Read notification</h4>	
 
-					<div id='notif_modal_meta'>
+					<div id='notif_modal_meta' data-friend-id=''>
 						<div class='row'>
 						<div class='col-md-6'>
 							<h6 id='notif_modal_id'><strong>Notification ID:</strong> <span></span></h6>
@@ -138,9 +138,9 @@
 		</div>
 	</div>
 
-	<div id='notification_controls' class='hide'>
+	<div id='notification_controls' class='hide' data-respond-url='{{ URL::route("postRespondRequestFriend"); }}'>
 		<button id='reject_request_btn' class='btn btn-default btn-danger'>Reject</button>
-		<button id='accept_request_btn' class='btn btn-default btn-success'>Accept</button> 
+		<button id='accept_request_btn' class='btn btn-default btn-success'>Accept</button>
 	</div>
 
 
