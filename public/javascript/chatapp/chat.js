@@ -249,6 +249,9 @@ $(function()
 				if(response.status)
 					container.remove();
 
+				if($('.person_list_item').length == 0)
+					showNoFriendsContainer();
+
 			},
 
 			error: function(xhr, response, error)

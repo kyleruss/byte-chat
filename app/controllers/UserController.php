@@ -159,6 +159,7 @@ class UserController extends MasterController
 			$friendship				=	new FriendsModel();
 			$friendship->from_user	=	Auth::user()->username;
 			$friendship->to_user	=	Input::get('user_id');
+			$friendship->pending	=	true;
 			
 			if($friendship->save())
 				return self::encodeReturn(true, $success_message);
