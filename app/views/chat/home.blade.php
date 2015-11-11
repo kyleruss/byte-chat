@@ -100,6 +100,10 @@
 				</div>
 
 				<div class='modal-body'>
+					<div id='friend_req_respond_alert' class='alert alert-dismissable fade in'>
+						<strong>Friend request notice</strong>
+						<p id='friend_req_respond_message'></p>
+					</div>
 					<div id='notification_modal_content'>
 						<strong><h4 id='notif_modal_title'></h4></strong>
 						<h5 id='notif_modal_content'></h5>
@@ -117,8 +121,11 @@
 	</div>
 
 	<div id='notification_controls' class='hide' data-respond-url='{{ URL::route("postRespondRequestFriend"); }}'>
-		<button id='reject_request_btn' class='btn btn-default btn-danger'>Reject</button>
-		<button id='accept_request_btn' class='btn btn-default btn-success'>Accept</button>
+		<button id='reject_request_btn' data-style='expand-left' class='btn btn-default btn-danger ladda-button'>
+			<span class='ladda-label'>Reject</span></button>
+		<button id='accept_request_btn' data-style='expand-left' class='btn btn-default btn-success ladda-button'>
+			<span class='ladda-label'>Accept</span>
+		</button>
 	</div>
 
 

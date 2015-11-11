@@ -179,21 +179,28 @@ class UserController extends MasterController
 		$validator			=	Validator::make(Input::all(),
 		[
 			'friendship_id'	=>	'required|exists:friendships,id',
-			'accept_req'	=>	'required'
+			'accept_req'	=>	'required',
+			'notifyid'		=>	'required|exists:notifications,id'
 		]);
 		
 		if($validator->fails())
-			return self::encodeReturn(false, $this->invalid_input_message);
+			return self::encodeReturn(false, $fail_message);
 		else
 		{
 			$friendship				=	FriendsModel::find(Input::get('friendship_id'));
 
-			if(Input::get('accpet_req'))
+			if(Input::get('accept_req'))
 			{
 				$friendship->pending	=	0;
 
 				if($friendship->save())
-					return self::encodeReturn(true, $success_message);
+				{
+					$notification = NotificationsModel::find(Input::get('notifyid'));
+					if($notification->delete())
+						return self::encodeReturn(true, $success_message);
+					else
+						return self::encodeReturn(false, $fail_message);
+				}
 				else
 					return self::encodeReturn(false, $fail_message);
 			}
