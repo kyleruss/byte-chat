@@ -20,8 +20,10 @@ class CreateNotificationsTable extends Migration {
 			$table->integer('type')->default(0);
 			$table->boolean('unread')->default(true);
 			$table->string('title');
+			$table->integer('friendship_id')->unsigned()->nullable();
 			$table->timestamps();
 			$table->foreign('to')->references('username')->on('users')->onDelete('cascade');
+			$table->foreign('friendship_id')->references('id')->on('friendships')->onDelete('cascade');
 		});
 	}
 

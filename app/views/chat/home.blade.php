@@ -93,32 +93,10 @@
 	<!-- READ NOTIFICATION MODAL -->
 	<div id='notification_read_modal' class='modal fade'>
 		<div class='modal-dialog'>
-			<div class='modal-content'>
+			<div class='modal-content' data-notificationid=''>
 				<div class='modal-header'>
 					<button class='close' data-dismiss='modal'><span>&times;</span></button>
 					<h4 class='modal-title'><span class='glyphicon glyphicon-bullhorn'></span> Read notification</h4>	
-
-					<div id='notif_modal_meta' data-friend-id=''>
-						<div class='row'>
-						<div class='col-md-6'>
-							<h6 id='notif_modal_id'><strong>Notification ID:</strong> <span></span></h6>
-						</div>
-						<div class='col-md-6'>
-							<h6 id='notif_modal_date'><strong>Sent:</strong> <span></span></h6>
-						</div>
-						</div>
-
-						<div class='row'>
-							<div class='col-md-6'>
-							<h6 id='notif_modal_type'><strong>Type:</strong> <span></span></h6>
-							</div>
-
-							<div class='col-md-6'>
-							<h6 id='notif_modal_unread'><strong>Status:</strong> <span class='label'></span></h6>
-							</div>
-						</div>
-						
-					</div>
 				</div>
 
 				<div class='modal-body'>

@@ -178,7 +178,7 @@ class UserController extends MasterController
 
 		$validator			=	Validator::make(Input::all(),
 		[
-			'friendship_id'	=>	'required|exists:friendships,id'
+			'friendship_id'	=>	'required|exists:friendships,id',
 			'accept_req'	=>	'required'
 		]);
 		

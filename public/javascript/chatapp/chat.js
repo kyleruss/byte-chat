@@ -48,7 +48,6 @@ $(function()
 			{
 				console.log(xhr.responseText);
 			}
-
 		});
 	});
 
@@ -287,26 +286,8 @@ $(function()
 
 				$('#notif_modal_title').text(notification.title);
 				$('#notif_modal_content').text(notification.content);
-				$('#notif_modal_id').find('span').text(notification.id);
-				$('#notif_modal_date').find('span').text(notification.created_at);
-				$('#notif_modal_type').find('span').text(notification.type);
-				
-				var unread_label	=	$('#notif_modal_unread').find('span');
-				unread_label.removeClass('label-success');
-				unread_label.removeClass('label-default');
-
-				if(notification.unread)
-				{
-					unread_label.text('unread');
-					unread_label.addClass('label-success');
-				}
-
-				else
-				{
-					unread_label.text('unread');
-					unread_label.addClass('label-default');
-				}
-				
+				modal.find('.modal-content').attr('data-notificationid', notifyID);
+				$('#notification_modal_content').attr('data-friendshipid', notification.friendship_id);
 				extra_controls.empty();
 				extra_controls.append(controls);
 				controls.removeClass('hide');
