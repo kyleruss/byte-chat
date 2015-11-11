@@ -11,7 +11,9 @@ $(function()
 		var form	=	$('#people_search_form');
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
+		var ladda	=	Ladda.create(this);
 
+		ladda.start();
 		$.ajax
 		({
 			url: url,
@@ -24,7 +26,13 @@ $(function()
 				hideResultContainers();
 
 				if(response.length == 0)
-					showNoResultsContainer();
+				{
+					setTimeout(function()
+					{
+						ladda.stop();
+						showNoResultsContainer();
+					}, 1000);
+				}
 				else
 				{
 					setTimeout(function()
@@ -38,9 +46,11 @@ $(function()
 							item.find('.person_dn').text(val.name);
 							item.find('.person_username').text(val.username);
 							$('#people_list_group').append(item);
+
+							ladda.stop();
 							$('#people_list').fadeIn('fast');
 						});
-					}, 500);
+					}, 1000);
 				}
 			},
 

@@ -152,7 +152,10 @@
 				<div class='input-group full_input_group full_right_input_group'>
 					<input type='text' id='people_search' class='full_input tab_search_input' placeholder='Find someone' name='search_term' />
 					<span class='input-group-btn'>
-						<button id='people_search_btn' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
+						<button id='people_search_btn' data-spinner-color='#000' data-style='zoom-in' class='btn btn-default ladda-button'>
+							<span class='ladda-label'><span class='glyphicon glyphicon-search'></span></span>
+							<span class='ladda-spinner'></span>
+						</button> 
 					</span>
 				</div>
 			</form>

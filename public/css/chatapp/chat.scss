@@ -217,6 +217,11 @@
 	border-right:1px solid #ccc;
 }
 
+.ladda-spinner
+{
+	z-index:99 !important;
+}
+
 .modal, modal.fade.in
 {
 	top:15%;
