@@ -231,7 +231,7 @@ class UserController extends MasterController
 		return $notifications;
 	}
 
-	public function removeNotification()
+	public function postRemoveNotification()
 	{
 		$success_message		=	'Successfully removed notification';
 		$fail_message			=	'Failed to remove notification';
@@ -255,7 +255,7 @@ class UserController extends MasterController
 	}
 
 
-	public function readNotification()
+	public function postReadNotification()
 	{
 		$success_message		=	'Successfully read notification';
 		$fail_message			=	'Failed to read notification';

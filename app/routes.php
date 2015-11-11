@@ -37,7 +37,9 @@ Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 
 	Route::group(['prefix' => 'notifications'], function()
 	{
-		Route::get('/fetch', ['as' => 'getNotifications', 'uses' => 'UserController@getNotifications']);	
+		Route::get('/fetch', ['as' => 'getNotifications', 'uses' => 'UserController@getNotifications']);
+		Route::post('/remove', ['as' => 'postRemoveNotification', 'uses' => 'UserController@postRemoveNotification']);
+		Route::post('/read', ['as' => 'postReadNotification', 'uses' => 'UserController@postReadNotification']);
 	});
 
 	Route::group(['prefix' => 'friends'], function()

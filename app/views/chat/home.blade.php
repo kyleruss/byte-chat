@@ -135,6 +135,7 @@
 			</div>
 		</div>
 
+		<!-- SETTINGS CONTENT -->
 		<div id='settings_tab' class='tab_content'>
 			<div id='settings_change_alert' class='alert alert-danger alert-dismissable fade in'>
 				<button class='close' data-dismiss='alert'>x</button>
@@ -191,14 +192,23 @@
 			</center>
 			</div>
 
+			<!-- NOTIFICATION CONTENT -->
 			<div id='notifications_tab' class='tab_content'>
 				<div id='no_notifications_content'>
 					<h4><span class='glyphicon glyphicon-info-sign'></span> You have no notifications</h4>
 				</div>
+	
+				<div id='notification_status_alert' class='alert alert-dismissable fade in'>
+					<strong>Notification notice</strong>
+					<p class='notification_status_message'></p>
+				</div>
 
+				<!-- NOTIFICATION LIST -->
 				<div id='notification_list_container'>
 					<ul id='notification_list' class='list-group'>
-						<li id='notification_item_template' class='list-group-item notification_list_item clearfix'>
+
+						<!-- NOTIFICATION ITEM TEMPLATE -->
+						<li id='notification_item_template' class='list-group-item notification_list_item clearfix' data-notificationid=''>
 							<div class='col-md-9'>
 								<div class='col-md-2'>
 									<span class='notification_icon'></span>
@@ -212,8 +222,13 @@
 
 							<div class='col-md-3'>
 								<div class='notification_controls'>
-									<a class='remove_notification' href='#' data-placement='bottom' data-toggle='tooltip' data-title='Remove notification'><span class='glyphicon glyphicon-remove'></span></a>
-									<a class='read_notification' data-placement='bottom' data-toggle='tooltip' data-title='Read notification' href='#'><span class='glyphicon glyphicon-circle-arrow-right'></span></a>
+									<!-- REMOVE NOTIFICATION BUTTON -->
+									<a class='remove_notification' href='{{ URL::route("postRemoveNotification"); }}' data-placement='bottom'
+									 data-toggle='tooltip' data-title='Remove notification'><span class='glyphicon glyphicon-remove'></span></a>
+
+									<!-- READ NOTIFICATION BUTTON -->
+									<a class='read_notification' data-placement='bottom' data-toggle='tooltip' data-title='Read notification' 
+									href='{{ URL::route("postReadNotification"); }}'><span class='glyphicon glyphicon-circle-arrow-right'></span></a>
 								</div>
 							</div>
 						</li>

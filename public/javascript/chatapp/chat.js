@@ -251,6 +251,45 @@ $(function()
 		});
 	});
 
+
+	$('.remove_notification').click(function(e)
+	{
+		e.preventDefault();
+		var btn		=	$(this);
+		var url		=	btn.attr('href');
+		var notID	=	btn.attr('data-notificationid');
+		var data	=	'notification_id=' + notID;
+
+		$.ajax
+		({
+			data: data,
+			url: url,
+			method: 'POST',
+			dataType: 'json',
+			success: function(response)
+			{
+				console.log(response);
+				showReturnMessage('#notification_status_alert', response.status,
+					response.message, '#notification_status_message');
+
+				setTimeout(function()
+				{
+					if(response.status)
+					{		
+						var item	=	btn.parent('.notification_list_item');
+						$('#notification_list').remove(item);
+					}	
+
+				}, 1000);
+			},
+
+			error: function(xhr, response, error)
+			{
+				console.log(xhr.responseText);
+			}
+		});
+	});
+
 	function loadNotificationList()
 	{
 		var fetchNotificationsURL	=	$('#notifications_tab_header').find('a').attr('href');
@@ -278,6 +317,7 @@ $(function()
 
 					item.find('.notification_title').text(val.title);
 					item.find('.notification_content').text(val.content);
+					item.attr('data-notificationid', val.id);
 					container.append(item);
 				});
 				
