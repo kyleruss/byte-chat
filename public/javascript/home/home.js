@@ -8,7 +8,7 @@ $(function()
 	var section_i		=	0;
 	var scroll_val		=	0;
 	initPanels();
-	initRegisterTooltips();
+	initTooltips();
 	$('#alert_register_fail').hide();
 	$('#register_status_alert').hide();
 	$('#login_status_alert').hide();
@@ -85,7 +85,7 @@ $(function()
 		var ladda  = Ladda.create(document.querySelector('#login_button'));
 		ladda.start();
 
-		var form	=	this;
+		var form	=	$(this);
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
 
@@ -136,7 +136,7 @@ $(function()
 		ladda.start();
 
 
-		var form	=	this;
+		var form	=	$(this);
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
 
@@ -443,11 +443,6 @@ $(function()
 				$('#transition_panel').toggle();
 			});
 		}
-	}
-
-	function initRegisterTooltips()
-	{
-		$('[data-toggle="tooltip"]').tooltip();
 	}
 
 

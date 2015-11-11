@@ -1,6 +1,6 @@
 $(function()
 {
-	var person_template_item;
+	var person_template_item, notification_template_item;
 	initTemplates();
 	initTabContent();
 	loadFriendlist();
@@ -120,10 +120,16 @@ $(function()
 		showTab('#friends_tab');
 	});
 
+	$('#notifications_tab_header').click(function()
+	{
+		loadNotificationList();
+		showTab('#notifications_tab');
+	});
+
 	$('#settings_tab_header').click(function()
 	{
 		var fetchSettingsURL	=	$(this).find('a').attr('href');
-		console.log(fetchSettingsURL);
+
 		$.getJSON(fetchSettingsURL, function(response)
 		{
 			var tabContent	=	$('#settings_tab');
@@ -244,11 +250,50 @@ $(function()
 			}
 		});
 	});
+
+	function loadNotificationList()
+	{
+		var fetchNotificationsURL	=	$('#notifications_tab_header').find('a').attr('href');
+		
+		$.getJSON(fetchNotificationsURL, function(response)
+		{
+			console.log(response);
+
+			if(response.length == 0)
+			{
+				$('#no_notifications_content').show();
+				$('#notification_list_container').hide();
+			}
+
+			else
+			{
+				$('#no_notifications_content').hide();
+
+				var container = $('#notification_list_container');
+				$.each(response, function(key, val)
+				{
+					var item	=	notification_template_item.clone();
+					if(val.type	==	'1')
+						item.find('.notification_icon').addClass('glyphicon glyphicon-user');
+
+					item.find('.notification_title').text(val.title);
+					item.find('.notification_content').text(val.content);
+					container.append(item);
+				});
+				
+				initTooltips();
+			}
+			
+		})
+		.fail(function(xhr, response, error)
+		{
+			console.log(xhr.responseText);
+		});
+	}
 	
 	function loadFriendlist()
 	{
 		var fetchFriendsURL	=	$('#friends_tab_header').find('a').attr('href');
-		console.log(fetchFriendsURL);
 		
 		$.getJSON(fetchFriendsURL, function(response)
 		{
@@ -262,6 +307,8 @@ $(function()
 				item.attr('data-friendid', val.id);
 				$('#people_list_group').append(item);
 			});
+
+			initTooltips();
 		})
 		.fail(function(xhr, response, error)
 		{
@@ -279,12 +326,14 @@ $(function()
 	{
 		$('#settings_tab').hide();
 		$('#settings_change_alert').hide();
+		$('#no_notifications_content').hide();
 	}
 
 	function initTemplates()
 	{
-		person_template_item	=	$('#person_item_template').clone();
-
+		person_template_item		=	$('#person_item_template').clone();
+		notification_template_item	=	$('#notification_item_template').clone();	
 		$('#person_item_template').hide();
+		$('#notification_item_template').hide();
 	}
 });

@@ -17,6 +17,9 @@ class CreateNotificationsTable extends Migration {
 			$table->increments('id');
 			$table->string('content');
 			$table->string('to', 16);
+			$table->integer('type')->default(0);
+			$table->boolean('unread')->default(true);
+			$table->string('title');
 			$table->timestamps();
 			$table->foreign('to')->references('username')->on('users')->onDelete('cascade');
 		});

@@ -29,6 +29,12 @@ function showReturnMessage(container, status, message, message_container)
 }
 
 
+function initTooltips()
+{
+	$('[data-toggle="tooltip"]').tooltip({ container: 'body' });
+}
+
+
 
 $(function()
 {

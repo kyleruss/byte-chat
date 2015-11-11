@@ -70,6 +70,83 @@
 		background-color:transparent;
 		color:white;
 	}
+
+	#settings_update_form
+	{
+		.col-lg-7
+		{
+			padding-right:0;
+		}
+	}
+}
+
+#notifications_tab
+{
+	#no_notifications_content
+	{
+		h4
+		{
+			color:white;
+			text-align:center;
+		}
+	}
+
+	.notification_list_item
+	{
+		background-color:transparent;
+		border:1px solid #ccc;
+
+		.col-md-2
+		{
+			padding-left:0;
+		}
+	}
+
+	.notification_icon
+	{
+		color:white;
+		font-size:36px;
+		height:50px;
+		line-height:50px;
+		text-align:center;
+	}
+
+	.notification_title
+	{
+		font-weight:bold;
+	}
+
+	.notification_content_container
+	{
+		p
+		{
+			color:white;
+			margin-bottom:2px;
+		}
+	}
+
+	.notification_controls
+	{
+		float:right;
+		a
+		{
+			color:white;
+			height:50px;
+			line-height:50px;
+			padding-right:0.5em;
+			font-size:20px;
+		}
+
+		.remove_notification:hover
+		{
+			color:$colour_red;
+		}
+
+		.read_notification:hover
+		{
+			color:$colour_green;
+		}
+	}
 }
 
 #user_nav_container
@@ -170,19 +247,24 @@
 		}
 	}
 
-	.add_person:hover
+	a
 	{
-		color:$colour_green;
+		color:white;
 	}
 
-	.remove_person:hover
+	.add_person_btn:hover
 	{
-		color:$colour_red;
+		color:$colour_green !important;
 	}
 
-	.message_person:hover
+	.remove_person_btn:hover
 	{
-		color:$colour_blue;
+		color:$colour_red !important;
+	}
+
+	.message_person_btn:hover
+	{
+		color:$colour_blue !important;
 	}
 }
 

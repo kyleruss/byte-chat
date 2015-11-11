@@ -94,7 +94,7 @@
 		<ul id='user_nav' class='nav nav-tabs'>
 			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='{{ URL::route("getFriends"); }}'><h4>Friends</h4></a></li>
 			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>`
-			<li class=''><a class='chat_nav_a red_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
+			<li id='notifications_tab_header' class=''><a class='chat_nav_a red_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
 			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>
 		</ul>
 	
@@ -192,15 +192,19 @@
 			</div>
 
 			<div id='notifications_tab' class='tab_content'>
+				<div id='no_notifications_content'>
+					<h4><span class='glyphicon glyphicon-info-sign'></span> You have no notifications</h4>
+				</div>
+
 				<div id='notification_list_container'>
 					<ul id='notification_list' class='list-group'>
-						<li id='notification_item_template' class='list-group-item notification_list_item clearix'>
+						<li id='notification_item_template' class='list-group-item notification_list_item clearfix'>
 							<div class='col-md-9'>
 								<div class='col-md-2'>
-									<!-- NOTIFICATION ICON -->
+									<span class='notification_icon'></span>
 								</div>
 		
-								<div class='col-md-10'>
+								<div class='col-md-10 notification_content_container'>
 									<p class='notification_title'></p>
 									<p class='notification_content'></p>
 								</div>
@@ -208,7 +212,8 @@
 
 							<div class='col-md-3'>
 								<div class='notification_controls'>
-									
+									<a class='remove_notification' href='#' data-placement='bottom' data-toggle='tooltip' data-title='Remove notification'><span class='glyphicon glyphicon-remove'></span></a>
+									<a class='read_notification' data-placement='bottom' data-toggle='tooltip' data-title='Read notification' href='#'><span class='glyphicon glyphicon-circle-arrow-right'></span></a>
 								</div>
 							</div>
 						</li>
