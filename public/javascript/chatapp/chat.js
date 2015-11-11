@@ -197,11 +197,13 @@ $(function()
 	$(document).on('click', '.add_person_btn', function(e)
 	{
 		e.preventDefault();
-		var url		=	$(this).attr('href');
-		var user	=	$(this).find('.person_username').text();
-		var data	=	"user_id=" + user;
-		var btn		=	this;
+		var btn			=	$(this);
+		var url			=	btn.attr('href');
+		var container	=	btn.closest('.person_list_item');
+		var user		=	container.find('.person_username').text();
+		var data		=	"user_id=" + user;
 
+		console.log(data);
 		$.ajax
 		({
 			url: url,
@@ -210,13 +212,8 @@ $(function()
 			dataType: 'json',
 			success: function(response)
 			{
-				btn.attr('data-title', response.message);
-				btn.tooltip('show');
-
-				setTimeout(function()
-				{
-					btn.tooltip('hide');
-				}, 1000);
+				showReturnMessage('#person_status_alert', response.status,
+					response.message, '#person_status_message');
 			},
 
 			error: function(xhr, response, error)
