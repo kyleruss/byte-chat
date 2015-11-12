@@ -146,6 +146,7 @@ class UserController extends MasterController
 	{
 		$success_message	=	'Friend request has been sent';
 		$fail_message		=	'Failed to send friend request';
+		$already_friend		=	'You are already friends or pending approval with ';
 
 		$validator			=	Validator::make(Input::all(),
 		[
@@ -156,13 +157,31 @@ class UserController extends MasterController
 			return self::encodeReturn(false, $this->invalid_input_message);
 		else
 		{
+			$from_user				=	Auth::user()->username;
+			$to_user				=	Input::get('user_id');
+			if(FriendsModel::isFriends($from_user, $to_user))
+				return self::encodeReturn(false, $already_friend . ' ' . $to_user);
+
+			$from_user				=	Auth::user()->username;
 			$friendship				=	new FriendsModel();
-			$friendship->from_user	=	Auth::user()->username;
-			$friendship->to_user	=	Input::get('user_id');
+			$friendship->from_user	=	$from_user;
+			$friendship->to_user	=	$to_user;
 			$friendship->pending	=	true;
 			
 			if($friendship->save())
-				return self::encodeReturn(true, $success_message);
+			{
+				$notification					=	new NotificationsModel();
+				$notification->title			=	'New friend request';
+				$notification->content			=	$from_user . ' has requested to be your friend';
+				$notification->to				=	$to_user;
+				$notification->type				=	1;
+				$notification->friendship_id	=	$friendship->id;
+
+				if($notification->save())
+					return self::encodeReturn(true, $success_message);
+				else
+					return self::encodeReturn(false, $fail_message);
+			}
 			else
 				return self::encodeReturn(false, $fail_message);	
 		}

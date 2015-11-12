@@ -230,7 +230,8 @@ $(function()
 				var data_message	=	activeUser + ' has sent you a friend request';
 				var data_title		=	'New friend request';
 
-				cSocket.emit('notification_push', {user: user, notify_title: data_title, notify_content: data_message});
+				if(response.status)
+					cSocket.emit('notification_push', {user: user, notify_title: data_title, notify_content: data_message});
 			},
 
 			error: function(xhr, response, error)
