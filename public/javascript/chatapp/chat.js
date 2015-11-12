@@ -12,7 +12,6 @@ $(function()
 	$('.chat_window').draggable();
 	$('.message_output_line').tooltip({container: '.message_output_inner'});
 	$('.message_output_line').tooltip('show');
-
 	$('#people_search_btn').click(function(e)
 	{
 		e.preventDefault();
@@ -281,6 +280,13 @@ $(function()
 				console.log(xhr.responseText);
 			}
 		});
+	});
+
+	$(document).on('click', '.message_person_btn', function(e)
+	{
+		e.preventDefault();
+		$('#chat_waiting_modal').modal('show');
+		
 	});
 
 

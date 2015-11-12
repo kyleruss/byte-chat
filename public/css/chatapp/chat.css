@@ -287,7 +287,7 @@
   margin-top: 4em; }
   /* line 432, chat.scss */
   .chat_window .message_output {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 250px; }
   /* line 439, chat.scss */
@@ -430,3 +430,7 @@
 /* line 612, chat.scss */
 .message_box {
   position: relative; }
+
+/* line 619, chat.scss */
+#chat_waiting_modal .modal-body, #chat_req_modal .modal-body {
+  text-align: center; }

@@ -431,7 +431,7 @@
 
 	.message_output
 	{
-		overflow-y:scroll;
+		overflow-y:auto;
 		overflow-x:hidden;
 		height:250px;
 	}
@@ -612,4 +612,12 @@
 .message_box
 {
 	position:relative;
+}
+
+#chat_waiting_modal, #chat_req_modal
+{
+	.modal-body
+	{
+		text-align:center;
+	}
 }

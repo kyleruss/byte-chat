@@ -325,6 +325,45 @@
 		<h3>Start a conversation with a friend or join a channel</h3>
 	</div>
 
+	<div id='chat_req_modal' class='modal fade'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<button class='close' data-dismiss='modal'><span>&times;</span></button>
+					<h4 class='modal-title'>Chat request</h4>
+				</div>
+
+				<div class='modal-body'>
+					<h4><span class='chat_requester_id'></span> wants to chat</h4>
+					<button class='btn btn-danger decline_chat_req'>Decline</button>
+					<button class='btn btn-success accept_chat_req'>Accept</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id='chat_waiting_modal' class='modal fade'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<button class='close' data-dismiss='modal'><span>&times;</span></button>
+					<h4 class='modal-title'>Chat request<F5></h4>
+				</div>
+
+				<div class='modal-body'>
+					<h4>Waiting for recipient to respond</h4>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+							
+						</div>
+					</div>
+					<button class='btn btn-danger cancel_chat_req'>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 
 	<div id='messages_container'>
 			<div id='chat_private_template' class='panel panel-default chat_window'>
@@ -343,45 +382,6 @@
 							<div class='chat'>
 								<div class='chat_frame inner'>
 									test0
-								</div>
-							</div>
-						</div>
-
-			<div class='message_box row'>
-							<div class='profile_frame'>
-								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
-								<p class='message_profile_text'>test</p>
-							</div>
-
-							<div class='chat'>
-								<div class='chat_frame inner'>
-									test1
-								</div>
-							</div>
-						</div>
-
-			<div class='message_box row'>
-							<div class='profile_frame_right'>
-								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
-								<p class='message_profile_text'>test</p>
-							</div>
-
-							<div class='chat'>
-								<div class='chat_frame_right inner_right'>
-									test2
-								</div>
-							</div>
-						</div>
-
-			<div class='message_box row'>
-							<div class='profile_frame'>
-								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
-								<p class='message_profile_text'>test</p>
-							</div>
-
-							<div class='chat'>
-								<div class='chat_frame inner'>
-									test3
 								</div>
 							</div>
 						</div>
