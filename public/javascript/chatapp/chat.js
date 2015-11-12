@@ -10,6 +10,8 @@ $(function()
 	connectClient();
 
 	$('.chat_window').draggable();
+	$('.message_output_line').tooltip({container: '.message_output_inner'});
+	$('.message_output_line').tooltip('show');
 
 	$('#people_search_btn').click(function(e)
 	{

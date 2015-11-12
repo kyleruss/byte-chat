@@ -329,12 +329,62 @@
 	<div id='messages_container'>
 			<div id='chat_private_template' class='panel panel-default chat_window'>
 				<div class='panel-heading'>
-					<strong><span class='glyphicon glyphicon-comment'></span> Chatting with...</strong>
+					<span class='chat_window_title'><span class='glyphicon glyphicon-comment'></span> Chatting with...</span>
 					<button class='close'>x</button>
 				</div>
 				<div class='panel-body'>
 					<div class='message_output'>
+						<div class='message_box row'>
+							<div class='profile_frame'>
+								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
+								<p class='message_profile_text'>test</p>
+							</div>
 
+							<div class='chat'>
+								<div class='chat_frame inner'>
+									test0
+								</div>
+							</div>
+						</div>
+
+			<div class='message_box row'>
+							<div class='profile_frame'>
+								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
+								<p class='message_profile_text'>test</p>
+							</div>
+
+							<div class='chat'>
+								<div class='chat_frame inner'>
+									test1
+								</div>
+							</div>
+						</div>
+
+			<div class='message_box row'>
+							<div class='profile_frame_right'>
+								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
+								<p class='message_profile_text'>test</p>
+							</div>
+
+							<div class='chat'>
+								<div class='chat_frame_right inner_right'>
+									test2
+								</div>
+							</div>
+						</div>
+
+			<div class='message_box row'>
+							<div class='profile_frame'>
+								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
+								<p class='message_profile_text'>test</p>
+							</div>
+
+							<div class='chat'>
+								<div class='chat_frame inner'>
+									test3
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class='panel-footer'>

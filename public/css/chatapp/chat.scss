@@ -306,8 +306,6 @@
 	}
 }
 
-
-
 .tab_search_input
 {
 	background-color:transparent;
@@ -431,6 +429,18 @@
 	margin-right:auto;
 	margin-top:4em;
 
+	.message_output
+	{
+		overflow-y:scroll;
+		overflow-x:hidden;
+		height:250px;
+	}
+
+	.chat_window_title
+	{
+		font-size:18px;
+	}
+
 	.panel-footer
 	{
 		position:absolute;
@@ -472,3 +482,134 @@
 	overflow:hidden;
 }
 
+
+.profile_frame
+{
+	display:inline-block !important;
+	position:relative;
+	width:150px;
+}
+
+.profile_frame_right
+{
+	@extend .profile_frame;
+	float:right;
+}
+
+
+.user_post_dp
+{
+	margin-top:5px;
+	padding:5px;
+	outline:1px solid black;
+}
+
+.user_post_dp:hover
+{
+	outline:1px solid black;
+}
+
+
+.message_profile_image
+{
+	width:80px;
+	height:80px;
+	border-radius:40px;
+	border:3px solid transparent;
+	box-shadow: 0 0 1px #B2B2B2;
+	outline:0;
+	padding:0;
+	margin-left:50%;
+	transform:translateX(-50%);
+}
+
+.message_profile_image:hover
+{
+	outline:0;
+	box-shadow: 0 0 4px #B2B2B2;
+}
+
+.message_profile_text
+{
+	color:black;
+	display:inline-block;
+	display:relative;
+	margin-left:50%;
+	transform:translateX(-50%);
+}
+
+
+.chat
+{
+    width: 400px;
+	display:inline-block;
+	position:absolute;
+	margin-top:10px;
+}
+
+.chat_frame
+{
+    background-color: $colour_green;//#F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+	color:white;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+}
+
+.chat_frame::before
+{
+    background-color: $colour_green;//#F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+	margin-left:-28px;
+	//margin-left:2.5em;
+    position: absolute;
+    top: 11px;
+    transform:             rotate( 29deg ) skew( -35deg );
+        -moz-transform:    rotate( 29deg ) skew( -35deg );
+        -ms-transform:     rotate( 29deg ) skew( -35deg );
+        -o-transform:      rotate( 29deg ) skew( -35deg );
+        -webkit-transform: rotate( 29deg ) skew( -35deg );
+    width:  20px;
+}
+
+.chat_frame_right
+{
+	@extend .chat_frame;
+	background-color:$colour_blue !important;
+}
+
+.chat_frame_right::before
+{
+	@extend .chat_frame::before;
+	background-color:$colour_blue !important;
+	margin-left:2.8em !important;
+}
+
+
+.chat_frame:hover
+{
+	opacity:0.8;
+}
+
+.inner 
+{
+    float: left;   
+    margin: 5px 45px 5px 20px;         
+}
+
+.inner_right
+{
+	@extend .inner;
+	float:right;
+	margin-right:70px;
+}
+
+.message_box
+{
+	position:relative;
+}

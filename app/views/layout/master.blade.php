@@ -16,7 +16,7 @@
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		{{ HTML::script('javascript/plugins/jquery-ui.min.js'); }}
 		{{ HTML::script('javascript/plugins/spin.min.js'); }}
 		{{ HTML::script('javascript/plugins/ladda.min.js'); }}
 		{{ HTML::script('javascript/main.js'); }}
