@@ -262,3 +262,17 @@
   #notification_pop h5, #notification_pop h6 {
     margin-top: 5px;
     margin-bottom: 5px; }
+
+/* line 408, chat.scss */
+.chat_jumbo {
+  background-color: inherit;
+  border: 2px solid #ccc;
+  color: #ccc;
+  text-align: center;
+  margin-top: 15em;
+  margin-left: 8em;
+  margin-right: 8em;
+  border-style: dashed; }
+  /* line 419, chat.scss */
+  .chat_jumbo h1, .chat_jumbo h3 {
+    color: #8A8A8A; }

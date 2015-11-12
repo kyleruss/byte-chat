@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('remember_token', 255);
 			$table->integer('rank')->nullable()->unsigned();
 			$table->string('profile_status')->nullable();
-			$table->string('profile_image')->default('res/images/default_avatar.gif');
+			$table->string('profile_image')->default('http://i.imgur.com/7UtRHRp.png');
 			$table->string('twitter')->nullable();
 			$table->string('facebook')->nullable();
 			$table->timestamps();

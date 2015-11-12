@@ -503,10 +503,11 @@ $(function()
 				$.each(response, function(key, val)
 				{
 					var item = person_template_item.clone();
-					item.find('.person_image').attr('src', server_a + val.profile_image);
+					item.find('.person_image').attr('src', val.profile_image);
 					item.find('.person_dn').text(val.name);
 					item.find('.person_username').text(val.username);
 					item.attr('data-friendid', val.id);
+					item.find('.add_person_btn').hide();
 					$('#people_list_group').append(item);
 				});
 				

@@ -306,6 +306,8 @@
 
 <!-- CHAT CONTENT -->
 <div id='chat_content' class='col-md-8'>
+	
+	<!-- NOTIFICATION BROADCAST TEMPLATE -->
 	<div id='notification_pop'>
 		<div class='panel panel-success'>
 			<div class='panel-heading'>
@@ -316,6 +318,11 @@
 				<h6 class='not_pop_content'></h6>
 			</div>
 		</div>
+	</div>
+
+	<div class='jumbotron chat_jumbo'>
+		<h1>This looks a little empty</h1>
+		<h3>Start a conversation with a friend or join a channel</h3>
 	</div>
 </div>
 
