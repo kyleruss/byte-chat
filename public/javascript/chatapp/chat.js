@@ -354,6 +354,13 @@ $(function()
 	});
 
 
+	cSocket.on('notification_broadcast', function(data)
+	{
+		console.log(data);
+		showNotificationPop(data.notify_title, data.notify_content);
+	});
+
+
 	$(document).on('click', '#accept_request_btn', function(e)
 	{
 		e.preventDefault();

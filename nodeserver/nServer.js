@@ -13,6 +13,13 @@ io.on('connection', function(socket)
 		socket.join(data.user);
 	});
 
+	socket.on('notification_push', function(data)
+	{
+		console.log(data);
+		io.sockets.in(data.user).emit('notification_broadcast', 
+		{notify_title: data.title, notify_content: data_content});
+	});
+
 	socket.on('exit', function(data)
 	{
 		socket.leave(data.user);
