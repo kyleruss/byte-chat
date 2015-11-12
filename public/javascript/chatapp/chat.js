@@ -4,6 +4,7 @@ $(function()
 	initTemplates();
 	initTabContent();
 	loadFriendlist();
+	initChatContent();
 
 	$('#people_search_btn').click(function(e)
 	{
@@ -511,6 +512,20 @@ $(function()
 		$('#people_search').focus();
 	}
 
+	function showNotificationPop(title, content)
+	{
+		var showTime		=	2000;
+		var notification	=	$('#notification_pop');
+		$('.not_pop_title').text(title);
+		$('.not_pop_content').text(content);
+		notification.fadeIn('slow');
+
+		setTimeout(function()
+		{
+			notification.fadeOut('slow');
+		}, showTime);
+	}
+
 	function initTabContent()
 	{
 		$('#settings_tab').hide();
@@ -522,6 +537,11 @@ $(function()
 		$('#no_results_container').hide();
 		$('#people_search').val('');
 		$('#friend_req_respond_alert').hide();
+	}
+
+	function initChatContent()
+	{
+		$('#notification_pop').hide();
 	}
 
 	function initTemplates()

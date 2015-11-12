@@ -306,7 +306,7 @@
 
 <!-- CHAT CONTENT -->
 <div id='chat_content' class='col-md-8'>
-	<div class='notification_pop'>
+	<div id='notification_pop'>
 		<div class='panel panel-success'>
 			<div class='panel-heading'>
 				<h3 class='panel-title'><span class='glyphicon glyphicon-bullhorn'></span> New Notification</h3>

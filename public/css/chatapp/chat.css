@@ -253,12 +253,12 @@
   box-shadow: 0px -2px 0px #e08600 inset !important; }
 
 /* line 394, chat.scss */
-.notification_pop {
+#notification_pop {
   float: right;
   max-width: 300px;
   height: 50px;
   margin-top: 2em; }
   /* line 401, chat.scss */
-  .notification_pop h5, .notification_pop h6 {
+  #notification_pop h5, #notification_pop h6 {
     margin-top: 5px;
     margin-bottom: 5px; }
