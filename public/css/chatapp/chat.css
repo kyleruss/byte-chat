@@ -145,105 +145,120 @@
   border-right: 1px solid #ccc; }
 
 /* line 220, chat.scss */
+.ladda-spinner {
+  z-index: 99 !important; }
+
+/* line 225, chat.scss */
 .modal, modal.fade.in {
   top: 15%; }
 
-/* line 225, chat.scss */
+/* line 230, chat.scss */
 .list_image {
   padding-right: 1em; }
-  /* line 227, chat.scss */
+  /* line 232, chat.scss */
   .list_image img {
     width: 45px;
     height: 45px;
     border-radius: 40px;
     border: 4px solid #4CAF50; }
 
-/* line 238, chat.scss */
+/* line 243, chat.scss */
 .person_list_item {
   background-color: transparent;
   color: white !important;
   border: none !important; }
-  /* line 244, chat.scss */
+  /* line 249, chat.scss */
   .person_list_item .col-md-6, .person_list_item .col-md-3 {
     padding-left: 0;
     padding-right: 0; }
 
-/* line 251, chat.scss */
+/* line 256, chat.scss */
 .person_controls {
   float: right;
   margin-right: 1em; }
-  /* line 256, chat.scss */
+  /* line 261, chat.scss */
   .person_controls .glyphicon {
     font-size: 20px;
     padding-right: 0.5em;
     line-height: 2; }
-    /* line 262, chat.scss */
+    /* line 267, chat.scss */
     .person_controls .glyphicon:hover {
       cursor: pointer; }
-  /* line 268, chat.scss */
+  /* line 273, chat.scss */
   .person_controls a {
     color: white; }
-  /* line 273, chat.scss */
+  /* line 278, chat.scss */
   .person_controls .add_person_btn:hover {
     color: #4caf50 !important; }
-  /* line 278, chat.scss */
+  /* line 283, chat.scss */
   .person_controls .remove_person_btn:hover {
     color: #e51c23 !important; }
-  /* line 283, chat.scss */
+  /* line 288, chat.scss */
   .person_controls .message_person_btn:hover {
     color: #2196f3 !important; }
 
-/* line 289, chat.scss */
+/* line 294, chat.scss */
 .person_info {
   padding-left: 0; }
-  /* line 292, chat.scss */
+  /* line 297, chat.scss */
   .person_info h6 {
     color: white;
     line-height: 0.5; }
-  /* line 298, chat.scss */
+  /* line 303, chat.scss */
   .person_info .person_username {
     opacity: 0.6; }
 
-/* line 306, chat.scss */
+/* line 311, chat.scss */
 .tab_search_input {
   background-color: transparent;
   color: white;
   width: 100%; }
 
-/* line 317, chat.scss */
+/* line 322, chat.scss */
 #user_nav .active .blue_tab {
   box-shadow: 0px -2px 0px #2196f3 inset; }
-/* line 322, chat.scss */
+/* line 327, chat.scss */
 #user_nav .active .green_tab {
   box-shadow: 0px -2px 0px #4caf50 inset; }
-/* line 327, chat.scss */
+/* line 332, chat.scss */
 #user_nav .active .red_tab {
   box-shadow: 0px -2px 0px #e51c23 inset; }
-/* line 332, chat.scss */
+/* line 337, chat.scss */
 #user_nav .active .yellow_tab {
   box-shadow: 0px -2px 0px #e08600 inset; }
 
-/* line 342, chat.scss */
+/* line 347, chat.scss */
 .blue_tab h4 {
   color: #2196f3; }
 
-/* line 350, chat.scss */
+/* line 355, chat.scss */
 .green_tab h4 {
   color: #4caf50; }
-/* line 355, chat.scss */
+/* line 360, chat.scss */
 .green_tab:hover {
   box-shadow: 0px -2px 0px #4caf50 inset !important; }
 
-/* line 364, chat.scss */
+/* line 369, chat.scss */
 .red_tab h4 {
   color: #e51c23; }
-/* line 369, chat.scss */
+/* line 374, chat.scss */
 .red_tab:hover {
   box-shadow: 0px -2px 0px #e51c23 inset !important; }
 
-/* line 377, chat.scss */
+/* line 382, chat.scss */
 .yellow_tab h4 {
   color: #e08600; }
-/* line 382, chat.scss */
+/* line 387, chat.scss */
 .yellow_tab:hover {
   box-shadow: 0px -2px 0px #e08600 inset !important; }
+
+/* line 394, chat.scss */
+.notification_pop {
+  float: right;
+  max-width: 300px;
+  height: 50px;
+  margin-top: 2em; }
+  /* line 401, chat.scss */
+  .notification_pop h5, .notification_pop h6 {
+    margin-top: 5px;
+    margin-bottom: 5px; }
