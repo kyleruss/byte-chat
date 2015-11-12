@@ -1,10 +1,12 @@
 $(function()
 {
 	var person_template_item, notification_template_item;
+	var cSocket;
 	initTemplates();
 	initTabContent();
 	loadFriendlist();
 	initChatContent();
+	connectClient();
 
 	$('#people_search_btn').click(function(e)
 	{
@@ -363,6 +365,13 @@ $(function()
 		e.preventDefault();
 		respondFriendRequest(false);
 	});
+
+	function connectClient()
+	{
+		var username	=	$('#user_id_label').text();
+		cSocket			=	io.connect('http://localhost:8100');
+		cSocket.emit('client_join', {user: username});
+	}
 
 	function respondFriendRequest(accept)
 	{

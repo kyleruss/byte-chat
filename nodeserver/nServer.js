@@ -7,8 +7,9 @@ server.listen(8100);
 
 io.on('connection', function(socket)
 {
-	socket.on('enter', function(data)
+	socket.on('client_join', function(data)
 	{
+		console.log('Client connect: ' + data.user);
 		socket.join(data.user);
 	});
 
