@@ -324,6 +324,30 @@
 		<h1>This looks a little empty</h1>
 		<h3>Start a conversation with a friend or join a channel</h3>
 	</div>
+
+
+	<div id='messages_container'>
+			<div id='chat_private_template' class='panel panel-default chat_window'>
+				<div class='panel-heading'>
+					<strong><span class='glyphicon glyphicon-comment'></span> Chatting with...</strong>
+					<button class='close'>x</button>
+				</div>
+				<div class='panel-body'>
+					<div class='message_output'>
+
+					</div>
+				</div>
+				<div class='panel-footer'>
+					<div class='col-md-10'>
+						<textarea placeholder='Enter your message' class='chat_input full_input full_width'></textarea>
+					</div>
+					<div class='col-md-2'>
+						<button class='btn btn-default btn-primary msg_send_btn'>Send</button>
+					</div>
+				</div>
+				
+			</div>
+	</div>
 </div>
 
 @stop

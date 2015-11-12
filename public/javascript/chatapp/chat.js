@@ -9,6 +9,8 @@ $(function()
 	initChatContent();
 	connectClient();
 
+	$('.chat_window').draggable();
+
 	$('#people_search_btn').click(function(e)
 	{
 		e.preventDefault();
@@ -577,6 +579,7 @@ $(function()
 	function initChatContent()
 	{
 		$('#notification_pop').hide();
+		$('.chat_jumbo').hide();
 	}
 
 	function initTemplates()
@@ -586,4 +589,5 @@ $(function()
 		$('#person_item_template').hide();
 		$('#notification_item_template').hide();
 	}
+
 });
