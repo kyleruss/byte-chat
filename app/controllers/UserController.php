@@ -77,9 +77,9 @@ class UserController extends MasterController
 			$result		=	User::where('username', '=', $searchUser);
 
 			if($result->exists())
-				return $result->first();
+				return ['user_found' => $result->select('username', 'name', 'profile_image')->first()];
 			else
-				return User::where('name', 'LIKE', '%' . $searchUser . '%')->get();
+				return User::where('name', 'LIKE', '%' . $searchUser . '%')->select('username', 'name', 'profile_image')->get();
 		}
 	}
 
@@ -197,7 +197,7 @@ class UserController extends MasterController
 				{
 					$notification = NotificationsModel::find(Input::get('notifyid'));
 					if($notification->delete())
-						return self::encodeReturn(true, $success_message);
+						return self::encodeReturn(true, $success_message, ['friendship' => $friendship->toArray()]);
 					else
 						return self::encodeReturn(false, $fail_message);
 				}

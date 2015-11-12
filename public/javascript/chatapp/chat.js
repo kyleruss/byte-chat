@@ -2,6 +2,7 @@ $(function()
 {
 	var person_template_item, notification_template_item;
 	var cSocket;
+	var activeUser;
 	initTemplates();
 	initTabContent();
 	loadFriendlist();
@@ -43,9 +44,8 @@ $(function()
 						$('#people_list_group').empty();
 						$.each(response, function(key, val)
 						{
-							console.log('t');
 							var item = person_template_item.clone();
-							item.find('.person_image').attr('src', server_a + val.profile_image);
+							item.find('.person_image').attr('src',  val.profile_image);
 							item.find('.person_dn').text(val.name);
 							item.find('.person_username').text(val.username);
 							$('#people_list_group').append(item);
@@ -226,6 +226,11 @@ $(function()
 			{
 				showReturnMessage('#person_status_alert', response.status,
 					response.message, '#person_status_message');
+
+				var data_message	=	activeUser + ' has sent you a friend request';
+				var data_title		=	'New friend request';
+
+				cSocket.emit('notification_push', {user: user, notify_title: data_title, notify_content: data_message});
 			},
 
 			error: function(xhr, response, error)
@@ -375,9 +380,9 @@ $(function()
 
 	function connectClient()
 	{
-		var username	=	$('#user_id_label').text();
+		activeUser		=	$('#user_id_label').text();
 		cSocket			=	io.connect('http://localhost:8100');
-		cSocket.emit('client_join', {user: username});
+		cSocket.emit('client_join', {user: activeUser});
 	}
 
 	function respondFriendRequest(accept)
@@ -409,6 +414,18 @@ $(function()
 
 					if(response.status)
 					{
+						if(accept)
+						{
+							var friendship		=	response.friendship;
+							var friendUser		=	friendship.from_user;
+							var clientUser		=	friendship.to_user;
+							var data_message	=	clientUser + ' has accepted your friend request';
+							var data_title		=	'Friend request response';
+
+							cSocket.emit('notification_push', 
+							{user: friendUser, notify_title: data_title, notify_content: data_message});
+						}
+
 						setTimeout(function()
 						{
 							modal.modal('hide');

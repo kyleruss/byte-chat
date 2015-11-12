@@ -17,7 +17,7 @@ io.on('connection', function(socket)
 	{
 		console.log(data);
 		io.sockets.in(data.user).emit('notification_broadcast', 
-		{notify_title: data.title, notify_content: data_content});
+		{notify_title: data.notify_title, notify_content: data.notify_content});
 	});
 
 	socket.on('exit', function(data)
