@@ -1,6 +1,7 @@
 $(function()
 {
-	var person_template_item, notification_template_item;
+	var person_template_item, notification_template_item, chat_window_template;
+	var active_rooms = {};
 	var cSocket;
 	var activeUser;
 	initTemplates();
@@ -8,16 +9,28 @@ $(function()
 	loadFriendlist();
 	initChatContent();
 	connectClient();
+	$('#home_btn').find('button').addClass('btn-default');
+	$('#home_btn').find('button').removeClass('btn-danger');
+	$('#chat_home_btn').find('button').addClass('btn-danger');
+	console.log('data: ' + active_rooms);
 
 	$('.chat_window').draggable();
 	$('.message_output_line').tooltip({container: '.message_output_inner'});
 	$('.message_output_line').tooltip('show');
+
 	$('#people_search_btn').click(function(e)
 	{
 		e.preventDefault();
 		var form	=	$('#people_search_form');
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
+
+		if($('#people_search').val() == '')
+		{
+			loadFriendlist();
+			return;
+		}
+
 		var ladda	=	Ladda.create(this);
 
 		ladda.start();
@@ -286,8 +299,109 @@ $(function()
 	{
 		e.preventDefault();
 		$('#chat_waiting_modal').modal('show');
-		
+		var secret				=	SafeExchange.generateSecretInt();
+		var roomid				=	SafeExchange.makeHash(secret);
+		var user				=	$(this).closest('.person_list_item').find('.person_username').text();
+		var public_key			=	SafeExchange.generatePublicKey(secret);
+		active_rooms[roomid]	=	{ 'secret': secret, 'pkey': '', 'iv': '', 'pubkey': public_key };
+
+		cSocket.emit('chat_req', {user_req: user, user_from: activeUser, room: roomid, pkey: public_key});
 	});
+
+
+	cSocket.on('chat_req_rec', function(data)
+	{
+		$('.chat_requester_id').text(data.user_from);
+		$('.reciever_waiting_msg').text('');
+		$('#chat_req_modal').attr('data-roomid', data.room);
+		$('#chat_req_modal').modal('show');
+
+		var secret			=	SafeExchange.generateSecretInt();
+		var public_key		=	SafeExchange.generatePublicKey(secret);
+		var private_key		=	SafeExchange.generatePrivateKey(data.pkey, secret);
+		var iv				=	SafeExchange.generateIV(private_key);
+		console.log('b private: ' + private_key + ' b IV: ' + iv);
+		active_rooms[data.room]	=	{ 'secret': secret, 'pkey': private_key, 'iv': iv };
+
+		$('.accept_chat_req').click(function()
+		{
+			console.log('accept');
+			var roomid = $('#chat_req_modal').attr('data-roomid');
+			cSocket.emit('chat_req_ans', { answer: true, room: data.room, user_requester: data.user_from, user_recip: activeUser,  pkey: public_key });
+			$('.reciever_waiting_msg').text('Handshaking..');
+		});	
+	});
+
+	cSocket.on('chat_req_reply', function(data)
+	{
+		var room		=	data.room;
+		var public_key	=	data.pkey;
+		var private_key	=	SafeExchange.generatePrivateKey(public_key, active_rooms[room].secret);
+		var iv			=	SafeExchange.generateIV(private_key);
+		active_rooms[room].pkey	=	private_key;
+		active_rooms[room].iv	=	iv;
+		console.log('a private: ' + private_key + ' a IV: ' + iv);
+
+		cSocket.emit('chat_private_create', { room: room, contact: data.user_recip, sender: activeUser });
+		$('#chat_req_modal').modal('hide');
+		$('#chat_waiting_modal').modal('hide');
+		createChatWindow(data.user_recip, room);
+	});
+
+	cSocket.on('private_room_ready', function(data)
+	{
+		var room	=	data.room;
+		var user	=	data.chatting_with;
+
+		$('#chat_req_modal').modal('hide');
+		$('#chat_waiting_modal').modal('hide');
+		createChatWindow(user, room);
+	});
+
+	//room: room, message: msg, sender: activeUser
+	cSocket.on('private_room_broadcast', function(data)
+	{
+		var sender	= data.sender;
+		var message	= data.message;	
+		console.log('broadcast message');
+		var prev_message	=	$('.message_item_template').last();
+		var next_message	=	prev_message.clone();
+		next_message.find('.message_profile_text').text(sender);
+		next_message.find('.msg_holder').text(message);
+
+		var cFrame	=	next_message.find('.msg_holder');
+		var pFrame	=	next_message.find('.msg_pframe');
+
+		if(sender == activeUser)
+		{
+			cFrame.removeClass('inner');
+			cFrame.addClass('inner_right');
+			cFrame.addClass('chat_frame_right');
+			cFrame.removeClass('chat_frame');
+			pFrame.removeClass('profile_frame');
+			pFrame.addClass('profile_frame_right');
+		}
+
+		else
+		{
+			cFrame.addClass('chat_frame');
+			cFrame.removeClass('chat_frame_right');
+			cFrame.addClass('inner');
+			cFrame.removeClass('inner_right');
+			pFrame.addClass('profile_frame');
+			pFrame.removeClass('profile_frame_right');
+		}
+
+		next_message.hide();
+		prev_message.after(next_message);
+		next_message.fadeIn('fast');
+	});
+
+
+	$('.decline_chat_req').click(function()
+	{
+	});	
+
 
 
 	$(document).on('click', '.read_notification_btn', function(e)
@@ -389,10 +503,35 @@ $(function()
 		respondFriendRequest(false);
 	});
 
+	$(document).on('click', '.msg_send_btn', function(e)
+	{
+		e.preventDefault();
+		console.log('send');
+		var room	=	$('#chat_private_template').attr('data-roomid');
+		var msg		=	$('.chat_input').val();	
+		cSocket.emit('private_room_msg', { room: room, message: msg, sender: activeUser });
+		$('.chat_input').val('');
+	});
+
+	$(document).on('click', '.close_msg_window', function()
+	{
+		$(this).closest('.chat_window').hide();
+	});
+
+	function createChatWindow(chat_with, room)
+	{
+		$('.chat_jumbo').hide();
+		$('#messages_container').show();
+		$('#chat_private_template').find('.conversation_with_label').text(chat_with);
+		$('#chat_private_template').attr('data-roomid', room);
+		$('#chat_private_template').fadeIn('fast');
+	}
+
 	function connectClient()
 	{
 		activeUser		=	$('#user_id_label').text();
-		cSocket			=	io.connect('http://localhost:8100');
+		cSocket			=	io.connect('http://192.168.1.68:8100');
+
 		cSocket.emit('client_join', {user: activeUser});
 	}
 
@@ -587,15 +726,18 @@ $(function()
 	function initChatContent()
 	{
 		$('#notification_pop').hide();
-		$('.chat_jumbo').hide();
+		$('#messages_container').hide();
 	}
 
 	function initTemplates()
 	{
 		person_template_item		=	$('#person_item_template').clone();
-		notification_template_item	=	$('#notification_item_template').clone();	
+		notification_template_item	=	$('#notification_item_template').clone();
+		chat_window_template		=	$('#chat_private_template').clone();
 		$('#person_item_template').hide();
 		$('#notification_item_template').hide();
+		$('#chat_private_template').hide();
+		$('.message_item_template').hide();
 	}
 
 });

@@ -509,6 +509,11 @@
 	outline:1px solid black;
 }
 
+.center_text
+{
+	text-align:center;
+}
+
 
 .message_profile_image
 {
@@ -587,7 +592,7 @@
 {
 	@extend .chat_frame::before;
 	background-color:$colour_blue !important;
-	margin-left:2.8em !important;
+	margin-left:2.5em !important;
 }
 
 
@@ -613,6 +618,7 @@
 {
 	position:relative;
 }
+
 
 #chat_waiting_modal, #chat_req_modal
 {

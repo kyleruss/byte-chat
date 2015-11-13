@@ -345,7 +345,11 @@
 .user_post_dp:hover {
   outline: 1px solid black; }
 
-/* line 513, chat.scss */
+/* line 512, chat.scss */
+.center_text {
+  text-align: center; }
+
+/* line 518, chat.scss */
 .message_profile_image {
   width: 80px;
   height: 80px;
@@ -357,12 +361,12 @@
   margin-left: 50%;
   transform: translateX(-50%); }
 
-/* line 526, chat.scss */
+/* line 531, chat.scss */
 .message_profile_image:hover {
   outline: 0;
   box-shadow: 0 0 4px #B2B2B2; }
 
-/* line 532, chat.scss */
+/* line 537, chat.scss */
 .message_profile_text {
   color: black;
   display: inline-block;
@@ -370,14 +374,14 @@
   margin-left: 50%;
   transform: translateX(-50%); }
 
-/* line 542, chat.scss */
+/* line 547, chat.scss */
 .chat {
   width: 400px;
   display: inline-block;
   position: absolute;
   margin-top: 10px; }
 
-/* line 550, chat.scss */
+/* line 555, chat.scss */
 .chat_frame, .chat_frame_right {
   background-color: #4caf50;
   border-radius: 5px;
@@ -388,7 +392,7 @@
   position: relative;
   vertical-align: top; }
 
-/* line 562, chat.scss */
+/* line 567, chat.scss */
 .chat_frame::before, .chat_frame_right::before {
   background-color: #4caf50;
   content: "\00a0";
@@ -404,33 +408,33 @@
   -webkit-transform: rotate(29deg) skew(-35deg);
   width: 20px; }
 
-/* line 580, chat.scss */
+/* line 585, chat.scss */
 .chat_frame_right {
   background-color: #2196f3 !important; }
 
-/* line 586, chat.scss */
+/* line 591, chat.scss */
 .chat_frame_right::before {
   background-color: #2196f3 !important;
-  margin-left: 2.8em !important; }
+  margin-left: 2.5em !important; }
 
-/* line 594, chat.scss */
+/* line 599, chat.scss */
 .chat_frame:hover, .chat_frame_right:hover {
   opacity: 0.8; }
 
-/* line 599, chat.scss */
+/* line 604, chat.scss */
 .inner, .inner_right {
   float: left;
   margin: 5px 45px 5px 20px; }
 
-/* line 605, chat.scss */
+/* line 610, chat.scss */
 .inner_right {
   float: right;
   margin-right: 70px; }
 
-/* line 612, chat.scss */
+/* line 617, chat.scss */
 .message_box {
   position: relative; }
 
-/* line 619, chat.scss */
+/* line 625, chat.scss */
 #chat_waiting_modal .modal-body, #chat_req_modal .modal-body {
   text-align: center; }

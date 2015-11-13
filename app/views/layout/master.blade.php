@@ -19,6 +19,13 @@
 		{{ HTML::script('javascript/plugins/jquery-ui.min.js'); }}
 		{{ HTML::script('javascript/plugins/spin.min.js'); }}
 		{{ HTML::script('javascript/plugins/ladda.min.js'); }}
+		{{ HTML::script('javascript/AES-js/Structure.js'); }}
+		{{ HTML::script('javascript/AES-js/Engine.js'); }}
+		{{ HTML::script('javascript/AES-js/KeySchedule.js'); }}
+		{{ HTML::script('javascript/AES-js/AES.js'); }}
+		{{ HTML::script('javascript/plugins/BigInt.js'); }}
+		{{ HTML::script('javascript/plugins/yamd5.min.js'); }}
+		{{ HTML::script('javascript/AES-js/SafeExchange.js'); }}
 		{{ HTML::script('javascript/main.js'); }}
 		@show
   
@@ -34,11 +41,11 @@
 
 					<div class='navbar-collapse collapse'>
 						<ul class='nav navbar-nav navbar-right'>
-							<li><a href='#'><button class='btn btn-danger'>Home</button></a></li>
-							<li><a href='#'><button class='btn btn-default'>Browse</button></a></li>
-							<li><a id='nav_login' href='#'><button class='btn btn-default'>Login</button></a></li>
-							<li><a id='nav_register' href='#'><button class='btn btn-default'>Register</button></a></li>
-							<li><a href='#'><button class='btn btn-default'>About</button></a></li>
+							<li><a id='home_btn' href='{{ URL::route("getHome"); }}'><button class='btn btn-danger'>Home</button></a></li>
+							<li><a id='chat_home_btn' href='{{ URL::route("getChatHome"); }}'><button class='btn btn-default'>Chat</button></a></li>
+							<li><a id='nav_login' href='{{ URL::route("getHome"); }}'><button class='btn btn-default'>Login</button></a></li>
+							<li><a id='nav_register' href='{{ URL::route("getHome"); }}'><button class='btn btn-default'>Register</button></a></li>
+							<li><a href='{{ URL::route("getHome"); }}'><button class='btn btn-default'>About</button></a></li>
 							@if(Auth::check())
 							<li><a id='nav_logout' href='{{ URL::route("getLogout"); }}'><button class='btn btn-default'>Logout</button></a></li>
 							@endif

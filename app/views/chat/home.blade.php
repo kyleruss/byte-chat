@@ -28,7 +28,7 @@
 		<div class='col-md-7 user_info'>
 			<h4><span class='glyphicon glyphicon-user'></span><span id='user_id_label'>{{ Auth::user()->username; }}</span></h4>
 			<h4><span class='glyphicon glyphicon-star'></span><span id='user_name_label'>{{ Auth::user()->name; }}</span></h4>
-			<h4><span class='glyphicon glyphicon-heart'></span>0 friends online</h4>
+			<h4><span class='glyphicon glyphicon-heart'></span><span class='friend_online_count'>3</span> friends online</h4>
 		</div>
 	</div>
 
@@ -325,7 +325,7 @@
 		<h3>Start a conversation with a friend or join a channel</h3>
 	</div>
 
-	<div id='chat_req_modal' class='modal fade'>
+	<div id='chat_req_modal' class='modal fade' data-roomid=''>
 		<div class='modal-dialog'>
 			<div class='modal-content'>
 				<div class='modal-header'>
@@ -335,6 +335,7 @@
 
 				<div class='modal-body'>
 					<h4><span class='chat_requester_id'></span> wants to chat</h4>
+					<h5 class='reciever_waiting_msg'></h5>
 					<button class='btn btn-danger decline_chat_req'>Decline</button>
 					<button class='btn btn-success accept_chat_req'>Accept</button>
 				</div>
@@ -351,7 +352,7 @@
 				</div>
 
 				<div class='modal-body'>
-					<h4>Waiting for recipient to respond</h4>
+					<h4 class='waiting_status_msg'>Waiting for recipient to respond</h4>
 					<div class="progress">
 						<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
 							
@@ -366,22 +367,21 @@
 
 
 	<div id='messages_container'>
-			<div id='chat_private_template' class='panel panel-default chat_window'>
+			<div id='chat_private_template' class='panel panel-default chat_window' data-roomid=''>
 				<div class='panel-heading'>
-					<span class='chat_window_title'><span class='glyphicon glyphicon-comment'></span> Chatting with...</span>
-					<button class='close'>x</button>
+					<span class='chat_window_title'><span class='glyphicon glyphicon-comment'></span> Conversation with <span class='conversation_with_label'></span></span>
+					<button class='close close_msg_window'>x</button>
 				</div>
 				<div class='panel-body'>
 					<div class='message_output'>
-						<div class='message_box row'>
-							<div class='profile_frame'>
+						<div class='message_box row message_item_template'>
+							<div class='msg_pframe profile_frame'>
 								<img src='http://i.imgur.com/7UtRHRp.png' class='user_post_dp message_profile_image' />
-								<p class='message_profile_text'>test</p>
+								<p class='message_profile_text'></p>
 							</div>
 
 							<div class='chat'>
-								<div class='chat_frame inner'>
-									test0
+								<div class='msg_holder chat_frame inner'>
 								</div>
 							</div>
 						</div>

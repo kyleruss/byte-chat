@@ -112,6 +112,12 @@ $(function()
 							$('#login_status_alert').fadeIn('fast');
 						});
 					}
+
+					else
+					{
+						var afterRedirectURL	=	form.attr('data-loc-after');
+						window.location.href	=	afterRedirectURL;
+					}
 				}, 1500);
 			},
 
@@ -250,7 +256,7 @@ $(function()
 	});
 
 
-	$(window).bind('mousewheel DOMMouseScroll', function(e)
+/*	$(window).bind('mousewheel DOMMouseScroll', function(e)
 	{
 		e.preventDefault();
 
@@ -283,7 +289,7 @@ $(function()
 		({
 			scrollTop: (section_i == 0)? 0: scrollTo.offset().top
 		}, 500);
-	});
+	}); */
 
 	function clearRegisterForm()
 	{

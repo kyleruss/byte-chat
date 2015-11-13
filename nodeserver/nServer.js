@@ -20,6 +20,33 @@ io.on('connection', function(socket)
 		{notify_title: data.notify_title, notify_content: data.notify_content});
 	});
 
+	socket.on('chat_req', function(data)
+	{
+		console.log('data: ' + data);
+		io.sockets.in(data.user_req).emit('chat_req_rec', data);
+	});
+
+	socket.on('chat_req_ans', function(data)
+	{
+		if(data.answer)
+			socket.join(data.room);
+
+		io.sockets.in(data.user_requester).emit('chat_req_reply', { answer: data.answer, room: data.room, pkey: data.pkey, user_recip: data.user_recip });
+		
+	});
+
+	socket.on('chat_private_create', function(data)
+	{
+		socket.join(data.room);
+
+		io.sockets.in(data.contact).emit('private_room_ready', { room: data.room, chatting_with: data.sender });
+	});
+
+	socket.on('private_room_msg', function(data)
+	{
+		io.sockets.in(data.room).emit('private_room_broadcast', { message: data.message, sender: data.sender, room: data.room });
+	});
+
 	socket.on('exit', function(data)
 	{
 		socket.leave(data.user);

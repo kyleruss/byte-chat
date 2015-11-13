@@ -325,5 +325,6 @@ class UserController extends MasterController
 	public function getLogout()
 	{
 		Auth::logout();
+		return Redirect::route('getHome');
 	}
 }

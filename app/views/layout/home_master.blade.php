@@ -11,31 +11,6 @@
 @stop
 
 @section('content')
-
-<!-- HEAD NAV -->
-<!--<header>
-<div class='navbar navbar-default navbar-fixed-top'>
-	<div class='container'>
-		<div class='navbar-header'>
-			<a class='navbar-brand app_brand'>{{ HTML::image('resources/images/BytechatLogo.png'); }}</a>
-		</div>
-
-		<div class='navbar-collapse collapse'>
-			<ul class='nav navbar-nav navbar-right'>
-				<li><a href='#'><button class='btn btn-danger'>Home</button></a></li>
-				<li><a href='#'><button class='btn btn-default'>Browse</button></a></li>
-				<li><a id='nav_login' href='#'><button class='btn btn-default'>Login</button></a></li>
-				<li><a id='nav_register' href='#'><button class='btn btn-default'>Register</button></a></li>
-				<li><a href='#'><button class='btn btn-default'>About</button></a></li>
-				@if(Auth::check())
-				<li><a id='nav_logout' href='{{ URL::route("getLogout"); }}'><button class='btn btn-default'>Logout</button></a></li>
-				@endif
-			</ul>
-		</div>
-	</div>
-</div>
-</header> -->
-
 	<div id='title_content'>
 		<div class='container'>
 			<div class='row'>
@@ -76,7 +51,8 @@
 							</div>
 
 							<fieldset>
-								<form id='login_form' method='post' action='{{ URL::route("postLogin"); }}'>
+								<form id='login_form' method='post' action='{{ URL::route("postLogin"); }}' 
+								data-loc-after='{{ URL::route("getChatHome"); }}'>
 									<!-- USERNAME FIELD -->
 									<div class='input-group'>
 										<span class='input-group-addon'><span class='glyphicon glyphicon-user'></span></span>
@@ -217,6 +193,7 @@
 		</div>
 	</div>
 
+	<!--
 	<div id='chat_features'>
 		<div class='section_circle'>
 			<h6><span class='glyphicon glyphicon-heart'></span> Messaging</h6>
@@ -231,6 +208,6 @@
 
 	<footer>
 		<span class='glyphicon glyphicon-triangle-top bottom_triangle'></span>
-	</footer>
+	</footer> -->
 
 @stop
