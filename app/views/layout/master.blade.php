@@ -23,9 +23,9 @@
 		{{ HTML::script('javascript/AES-js/Engine.js'); }}
 		{{ HTML::script('javascript/AES-js/KeySchedule.js'); }}
 		{{ HTML::script('javascript/AES-js/AES.js'); }}
-		{{ HTML::script('javascript/plugins/BigInt.js'); }}
-		{{ HTML::script('javascript/plugins/yamd5.min.js'); }}
-		{{ HTML::script('javascript/AES-js/SafeExchange.js'); }}
+		{{ HTML::script('javascript/AES-js/SafeExchange/dependencies/BigInt.js'); }}
+		{{ HTML::script('javascript/AES-js/SafeExchange/dependencies/yamd5.min.js'); }}
+		{{ HTML::script('javascript/AES-js/SafeExchange/SafeExchange.js'); }}
 		{{ HTML::script('javascript/main.js'); }}
 		@show
   
