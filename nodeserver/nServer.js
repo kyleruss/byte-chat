@@ -44,7 +44,8 @@ io.on('connection', function(socket)
 
 	socket.on('private_room_msg', function(data)
 	{
-		io.sockets.in(data.room).emit('private_room_broadcast', { message: data.message, sender: data.sender, room: data.room });
+		console.log('data: ' + data.messageData);
+		socket.broadcast.to(data.room).emit('private_room_broadcast', data);
 	});
 
 	socket.on('exit', function(data)

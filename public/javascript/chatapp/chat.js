@@ -12,7 +12,6 @@ $(function()
 	$('#home_btn').find('button').addClass('btn-default');
 	$('#home_btn').find('button').removeClass('btn-danger');
 	$('#chat_home_btn').find('button').addClass('btn-danger');
-	console.log('data: ' + active_rooms);
 
 	$('.chat_window').draggable();
 	$('.message_output_line').tooltip({container: '.message_output_inner'});
@@ -340,7 +339,6 @@ $(function()
 		var iv			=	SafeExchange.generateIV(private_key);
 		active_rooms[room].pkey	=	private_key;
 		active_rooms[room].iv	=	iv;
-		console.log('a private: ' + private_key + ' a IV: ' + iv);
 
 		cSocket.emit('chat_private_create', { room: room, contact: data.user_recip, sender: activeUser });
 		$('#chat_req_modal').modal('hide');
@@ -358,12 +356,17 @@ $(function()
 		createChatWindow(user, room);
 	});
 
-	//room: room, message: msg, sender: activeUser
 	cSocket.on('private_room_broadcast', function(data)
 	{
 		var sender	= data.sender;
-		var message	= data.message;	
-		console.log('broadcast message');
+		var message	= readMessage(data);
+
+		if(message == null) 
+		{
+			console.log('NULL!');
+			return;
+		}
+
 		var prev_message	=	$('.message_item_template').last();
 		var next_message	=	prev_message.clone();
 		next_message.find('.message_profile_text').text(sender);
@@ -506,10 +509,10 @@ $(function()
 	$(document).on('click', '.msg_send_btn', function(e)
 	{
 		e.preventDefault();
-		console.log('send');
 		var room	=	$('#chat_private_template').attr('data-roomid');
 		var msg		=	$('.chat_input').val();	
-		cSocket.emit('private_room_msg', { room: room, message: msg, sender: activeUser });
+		writeMessage(msg, room);
+
 		$('.chat_input').val('');
 	});
 
@@ -517,6 +520,29 @@ $(function()
 	{
 		$(this).closest('.chat_window').hide();
 	});
+
+	function writeMessage(message, room)
+	{
+		if(active_rooms.hasOwnProperty(room))
+		{
+			var pkey	=	active_rooms[room].pkey;
+			var iv		=	active_rooms[room].iv = SafeExchange.generateIV(active_rooms[room].iv);
+			var msgData	=	SafeExchange.signMessage(message, pkey, iv);
+			cSocket.emit('private_room_msg', { room: room, messageData: msgData, sender: activeUser });
+		}
+	}
+
+	function readMessage(data)
+	{
+		var room		=	data.room;
+		var messageData =	data.messageData;
+		var encMessage	=	messageData.msg;
+		var encHash		=	messageData.hash;
+		var iv			=	active_rooms[room].iv = SafeExchange.generateIV(active_rooms[room].iv);
+		var pkey		=	active_rooms[room].pkey;
+
+		return SafeExchange.releaseMessage(encMessage, encHash, pkey, iv);
+	}
 
 	function createChatWindow(chat_with, room)
 	{
