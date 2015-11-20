@@ -19,7 +19,12 @@
 					<p class='lead'>An encrypted, interactive chat experience</p>
 					<p class='lead'>Enjoy private and public messaging</p>
 					<button class='btn btn-default hollow_white get_started_bt'>Get started</button>
-					<button class='btn btn-default browse_bt'>Browse</button>
+					<a data-title='Please login to chat' id='chat_home_btn' href='{{ URL::route("getChatHome"); }}' 
+					data-placement='bottom' data-trigger='manual' data-loc-after='{{ URL::route("getChatHome"); }}' 
+					data-fetchfriends='{{ URL::route("getOnlineFriends"); }}'>
+						<button class='btn btn-default browse_bt'>Chat</button>
+					</a>
+
 				</div>
 
 				<!-- USER PANEL -->
@@ -39,7 +44,7 @@
 								<button id='close_register_alert' class='close' data-dismiss='alert'>x</button>
 								<strong>Registration complete</strong>
 								<br>
-								An email has been sent to you with a confirmation link
+								Your account has been been created
 							</div>
 
 							<!-- LOGIN STATUS ALERT -->
@@ -52,7 +57,8 @@
 
 							<fieldset>
 								<form id='login_form' method='post' action='{{ URL::route("postLogin"); }}' 
-								data-loc-after='{{ URL::route("getChatHome"); }}'>
+								data-loc-after='{{ URL::route("getChatHome"); }}'
+								data-fetchfriends='{{ URL::route("getOnlineFriends"); }}'>
 									<!-- USERNAME FIELD -->
 									<div class='input-group'>
 										<span class='input-group-addon'><span class='glyphicon glyphicon-user'></span></span>
@@ -74,8 +80,8 @@
 									
 									<div class='center_wrapper'>
 										<div id='login_controls'>
-											<button class='btn btn-default'>Forgot password</button>
-											<button id='login_button' class='btn btn-primary ladda-button' data-style='expand-left'><span class='ladda-label'>Login</span></button>
+											<!--<button class='btn btn-default'>Forgot password</button>-->
+											<button id='login_button' class='btn btn-lg btn-primary ladda-button' data-style='expand-left'><span class='ladda-label'>Login</span></button>
 										</div>
 									</div>
 								</form>
@@ -100,8 +106,8 @@
 										</div>
 										<div class='col-lg-8'>
 											<div class='input-group full_input_group full_left_input_group'>
-												<span class='input-group-addon username_avail'><strong>Availability</strong></span>	
-												<input type='text' class='full_input' name='register_user' placeholder='Username'
+												<span id='username_avail_status' data-checkurl='{{ URL::route("isUsernameAvailable", "00"); }}' class='input-group-addon username_avail'><strong>Availability</strong></span>	
+												<input id='username_field' type='text' class='full_input' name='register_user' placeholder='Username'
 												data-trigger='focus' data-toggle='tooltip' data-placement='right' 
 												title='Unique username 6-18 alphanumeric characters'>	
 											</div>
@@ -193,6 +199,13 @@
 		</div>
 	</div>
 
+
+	<footer>
+		<span class='glyphicon glyphicon-triangle-top bottom_triangle'></span>
+		<h4 class='footer_copyright'><span class='glyphicon glyphicon-copyright-mark'></span> ByteChat by Kyle Russell 2015</h4>
+		<h5><i class='fa fa-github fa-3'></i> <a class='repo_link' href='https://github.com/denkers/ByteChat'>Check out the repository</a></h5>
+	</footer> 
+
 	<!--
 	<div id='chat_features'>
 		<div class='section_circle'>
@@ -205,9 +218,5 @@
 			<h6><span class='glyphicon glyphicon-cog'></span> Security</h6>
 		</div>
 	</div>
-
-	<footer>
-		<span class='glyphicon glyphicon-triangle-top bottom_triangle'></span>
-	</footer> -->
 
 @stop

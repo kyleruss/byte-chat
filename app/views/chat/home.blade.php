@@ -2,7 +2,7 @@
 
 @section('head')
 	@parent
-	<title>ByteChat - Home</title>
+	<title>ByteChat - Chat</title>
 	{{ HTML::style('css/chatapp/chat.css'); }}
 @stop
 
@@ -26,9 +26,9 @@
 		</div>
 	
 		<div class='col-md-7 user_info'>
-			<h4><span class='glyphicon glyphicon-user'></span><span id='user_id_label'>{{ Auth::user()->username; }}</span></h4>
-			<h4><span class='glyphicon glyphicon-star'></span><span id='user_name_label'>{{ Auth::user()->name; }}</span></h4>
-			<h4><span class='glyphicon glyphicon-heart'></span><span class='friend_online_count'>3</span> friends online</h4>
+			<h4><span data-toggle='tooltip' data-placement='bottom' data-title='Username' class='glyphicon glyphicon-user'></span><span id='user_id_label'>{{ Auth::user()->username; }}</span></h4>
+			<h4><span data-toggle='tooltip' data-placement='bottom' data-title='Display name' class='glyphicon glyphicon-star'></span><span id='user_name_label'>{{ Auth::user()->name; }}</span></h4>
+			<h4><span data-toggle='tooltip' data-placement='bottom' data-title='Friends' class='glyphicon glyphicon-heart'></span><span class='friend_online_count'>0</span> friends online</h4>
 		</div>
 	</div>
 
@@ -56,7 +56,7 @@
 					<div class='thumbnail'>
 						{{ HTML::image(Auth::user()->profile_image, $alt='Profile image', ['width' => 128, 'height' => 128]); }}
 						<div class='caption'>
-							<h3>Current image</h3>
+							<h3 class='thumb_header'>Current image</h3>
 						</div>
 					</div>
 					</div>
@@ -66,7 +66,7 @@
 					<div class='thumbnail'>
 						{{ HTML::image(Auth::user()->profile_image, $alt='Profile image', ['class' => 'new_dp_image', 'width' => 128, 'height' => 128]); }}
 						<div class='caption'>
-							<h3>New image</h3>
+							<h3 class='thumb_header'>New image</h3>
 						</div>
 					</div>
 					</div>
@@ -133,8 +133,8 @@
 	<div id='user_nav_container'>
 		<ul id='user_nav' class='nav nav-tabs'>
 			<li id='friends_tab_header' class='active'><a class='chat_nav_a blue_tab' href='{{ URL::route("getFriends"); }}'><h4>Friends</h4></a></li>
-			<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>`
-			<li id='notifications_tab_header' class=''><a class='chat_nav_a red_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
+			<!--<li class=''><a class='chat_nav_a green_tab' href='#'><h4>Channels</h4></a></li>`-->
+			<li id='notifications_tab_header' class=''><a class='chat_nav_a green_tab' href='{{ URL::route("getNotifications"); }}'><h4>Notifications</h4></a></li>
 			<li id='settings_tab_header' class=''><a class='chat_nav_a yellow_tab' href='{{ URL::route("getUserSettings"); }}'><h4>Settings</h4></a></li>
 		</ul>
 
@@ -216,7 +216,7 @@
 						<div class='col-lg-7'>
 							<input type='text' class='full_input full_input_width' name='user_dn' placeholder='Name'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-							title='Unique username 6-18 alphanumeric characters'>	
+							title='Your nickname shown viewed by friends and chat'>	
 						</div>
 					</div>
 				</div>	
@@ -230,7 +230,7 @@
 						<div class='col-lg-7'>
 							<input type='text' class='full_input full_input_width' name='user_dp' placeholder='Image URL'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-							title='Unique username 6-18 alphanumeric characters'>	
+							title='Your public display image'>	
 						</div>
 					</div>
 				</div>
@@ -244,7 +244,7 @@
 						<div class='col-lg-7'>
 							<input type='text' class='full_input full_input_width' name='user_email' placeholder='Email address'
 							data-trigger='focus' data-toggle='tooltip' data-placement='right' 
-							title='Unique username 6-18 alphanumeric characters'>	
+							title='Your valid email address'>	
 						</div>
 					</div>
 				</div>
@@ -299,6 +299,9 @@
 				</div>
 			</div>
 
+			<div id='transition_view' class='tab_content'>
+				{{ HTML::image('resources/images/loadingtransparent.gif', 'Loading', ['class' => 'transition_spinner']); }}
+			</div>
 		</div>
 	
 	</div>
@@ -325,16 +328,16 @@
 		<h3>Start a conversation with a friend or join a channel</h3>
 	</div>
 
-	<div id='chat_req_modal' class='modal fade' data-roomid=''>
+	<div id='chat_req_modal' class='modal fade' data-roomid='' data-keyboard='false' data-backdrop='static'>
 		<div class='modal-dialog'>
 			<div class='modal-content'>
 				<div class='modal-header'>
-					<button class='close' data-dismiss='modal'><span>&times;</span></button>
+					<button class='close decline_chat_close' data-dismiss='modal'><span>&times;</span></button>
 					<h4 class='modal-title'>Chat request</h4>
 				</div>
 
 				<div class='modal-body'>
-					<h4><span class='chat_requester_id'></span> wants to chat</h4>
+					<h4><span class='chat_requester_id'></span> <span class='request_waiting_msg'>wants to chat</span></h4>
 					<h5 class='reciever_waiting_msg'></h5>
 					<button class='btn btn-danger decline_chat_req'>Decline</button>
 					<button class='btn btn-success accept_chat_req'>Accept</button>
@@ -343,12 +346,12 @@
 		</div>
 	</div>
 
-	<div id='chat_waiting_modal' class='modal fade'>
+	<div id='chat_waiting_modal' class='modal fade' data-keyboard='false' data-backdrop='static'>
 		<div class='modal-dialog'>
 			<div class='modal-content'>
 				<div class='modal-header'>
-					<button class='close' data-dismiss='modal'><span>&times;</span></button>
-					<h4 class='modal-title'>Chat request<F5></h4>
+					<button class='close chat_waiting_close' data-dismiss='modal'><span>&times;</span></button>
+					<h4 class='modal-title'>Chat request</h4>
 				</div>
 
 				<div class='modal-body'>
@@ -373,6 +376,11 @@
 					<button class='close close_msg_window'>x</button>
 				</div>
 				<div class='panel-body'>
+					<div class='alert alert-warning alert-dismissable fade in wind_msg_alert'>
+						<button class='close' data-dismiss='alert'><span class='glyphicon glyphicon-remove'></span></button>
+						<strong>Room notice</strong>
+						<p class='wind_msg_alert_content'></p>
+					</div>
 					<div class='message_output'>
 						<div class='message_box row message_item_template'>
 							<div class='msg_pframe profile_frame'>

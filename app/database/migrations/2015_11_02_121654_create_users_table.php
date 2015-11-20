@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email');
 			$table->string('name');
 			$table->string('remember_token', 255);
+			$table->boolean('online')->default(false);
 			$table->integer('rank')->nullable()->unsigned();
 			$table->string('profile_status')->nullable();
 			$table->string('profile_image')->default('http://i.imgur.com/7UtRHRp.png');

@@ -4,7 +4,7 @@ class UserController extends MasterController
 {
 	public function postRegister()
 	{
-		$success_message	=	'An email has been sent to you with a confirmation link';
+		$success_message	=	'Your account has been created, you may now log in';
 		$fail_message		=	'Failed to complete registration, please try again';
 
 		$validator			=	Validator::make(Input::all(),
@@ -55,7 +55,14 @@ class UserController extends MasterController
 			], Input::has('remember_field'));
 
 			if($auth)
+			{
+				$user = Auth::user();
+				$user->online = 1;
+				$user->save();
+		
 				return self::encodeReturn(true, $success_message);
+			}
+
 			else
 				return self::encodeReturn(false, $fail_message);
 		}
@@ -263,8 +270,24 @@ class UserController extends MasterController
 	public function getFriends()
 	{
 		$user		=	Auth::user()->username;
-		$results	=	FriendsModel::getUsersFriends($user)->select('username', 'name', 'profile_image', 'id')->get();
+		$results	=	FriendsModel::getUsersFriends($user)
+						->select('username', 'name', 'profile_image', 'id', 'online')
+						->orderBy('online', 'desc')
+						->orderBy('name')
+						->get();
+
 		return json_encode($results);	
+	}
+
+	public function getOnlineFriends()
+	{
+		$user		=	Auth::user()->username;
+		$results	=	FriendsModel::getUsersFriends($user)
+						->where('online', '=', 1)
+						->select('username')
+						->get();
+
+		return json_encode($results);
 	}
 
 	public function getNotifications()
@@ -322,8 +345,20 @@ class UserController extends MasterController
 		}
 	}
 
+	public function isUsernameAvailable($username)
+	{
+		if(User::where('username', '=', $username)->exists())
+			return 0;
+		else
+			return 1;
+	}
+
 	public function getLogout()
 	{
+		$user = Auth::user();
+		$user->online = 0;
+		$user->save();
+
 		Auth::logout();
 		return Redirect::route('getHome');
 	}

@@ -24,12 +24,14 @@ Route::group(['prefix' => 'user'], function()
 	Route::post('/register', ['as' => 'postRegister', 'uses' => 'UserController@postRegister']);
 	Route::post('/login', ['as' => 'postLogin', 'uses' => 'UserController@postLogin']);
 	Route::get('/logout', ['as' => 'getLogout', 'uses' => 'UserController@getLogout']);
+	Route::get('/useravail={username}', ['as' => 'isUsernameAvailable', 'uses' => 'UserController@isUsernameAvailable']);
 	Route::post('/changedp', ['as' => 'postChangeDP', 'uses' => 'UserController@postChangeDP']);
 });	
 
 
 Route::group(['prefix' => 'chat', 'before' => 'auth'], function()
 {
+	Route::get('/onlinefriends', ['as' => 'getOnlineFriends', 'uses' => 'UserController@getOnlineFriends']);
 	Route::get('/home', ['as' => 'getChatHome', 'uses' => 'ChatController@getChatHome']);
 	Route::post('/find', ['as' => 'postFindPeople', 'uses' => 'UserController@postFindPeople']);
 	Route::post('/settings/update', ['as' => 'postUpdatePersonalSettings', 'uses' => 'UserController@postUpdatePersonalSettings']);

@@ -16,7 +16,6 @@ $(function()
 	$('#show_register_tab').click(function(e)
 	{
 		e.preventDefault();
-		console.log('test');
 		if(active_panel == '#register_panel')
 			return;
 		else
@@ -26,8 +25,20 @@ $(function()
 		}
 
 		$('#register_confirm').attr('disabled', false);
+		clearRegisterForm();
 		showRegisterPanel();
 		
+	});
+
+	$('.get_started_bt').click(function()
+	{
+		if(!$('#user_panel').is(':visible'))
+		{
+			$('#login_panel').hide();
+			$('#transition_panel').hide();
+		}
+
+		$('#show_register_tab').click();
 	});
 
 
@@ -88,6 +99,7 @@ $(function()
 		var form	=	$(this);
 		var url		=	form.attr('action');
 		var data	=	form.serialize();
+		var user	=	$('input[name="login_user"]').val();		
 
 		$.ajax
 		({
@@ -99,9 +111,9 @@ $(function()
 			{
 				setTimeout(function()
 				{
-					ladda.stop();
 					if(!message.status)
 					{
+						ladda.stop();
 						$('#login_notice_message').text(message.message);
 						$('#user_panel').animate
 						({
@@ -116,7 +128,19 @@ $(function()
 					else
 					{
 						var afterRedirectURL	=	form.attr('data-loc-after');
-						window.location.href	=	afterRedirectURL;
+						var fetchFriendsUrl		=	form.attr('data-fetchfriends');
+						
+						$.getJSON(fetchFriendsUrl, function(response)
+						{
+							console.log(node_server);
+							var sockExit = io.connect(node_server);	
+							sockExit.emit('user_log', { name: null, username: user, login: true, friends: response });
+							sockExit.on('user_log_finished', function(sockResponse)
+							{
+								ladda.stop();
+								document.location.href = afterRedirectURL;
+							});
+						});
 					}
 				}, 1500);
 			},
@@ -240,6 +264,11 @@ $(function()
 		checkPasswordMatches();
 	});
 
+	$('#username_field').focusout(function()
+	{
+		checkUsernameAvailable();
+	});
+
 	$('#register_cancel').click(function(e)
 	{
 		e.preventDefault();
@@ -294,6 +323,32 @@ $(function()
 	function clearRegisterForm()
 	{
 		$('.register_form input').val('');
+		$('#username_avail_status').css({'background-color': '#eee', 'color': '#666'});
+		$('#pass_str_ind').css({'background-color': '#eee', 'color': '#666'});
+		$('#pass_match_ind').css({'background-color': '#eee', 'color': '#666'});
+	}
+
+	function checkUsernameAvailable()
+	{
+		var availStatus	=	$('#username_avail_status');
+		var username	=	$('#username_field').val();
+		var url			=	availStatus.attr('data-checkurl');
+		url				=	url.replace('00', username);
+
+		$.get(url, function(response)
+		{
+			if(response == 1)
+			{
+				availStatus.css({'background-color': '#4caf50', 'color': 'white',  'font-weight': 'bold'});
+				availStatus.text('Available');
+			}
+			
+			else
+			{
+				availStatus.css({'background-color': '#e51c23', 'color': 'white',  'font-weight': 'bold'});
+				availStatus.text('Unavailable');
+			}
+		});
 	}
 
 	//min: 3 max: 16

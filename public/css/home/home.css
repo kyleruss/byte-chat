@@ -6,7 +6,7 @@
   background-size: cover; }
 
 footer {
-  height: 200px;
+  height: 150px;
   background-color: white;
   text-align: center; }
   footer .bottom_triangle {
@@ -15,6 +15,10 @@ footer {
     margin-left: auto;
     margin-right: auto;
     color: white; }
+  footer .footer_copyright span {
+    top: 3px; }
+  footer .repo_link {
+    color: black; }
 
 #transition_panel .transition_loader {
   position: absolute;
@@ -81,6 +85,10 @@ footer {
 .register_form {
   padding: 2em; }
 
+#login_button {
+  padding-left: 4em;
+  padding-right: 4em; }
+
 #user_panel {
   margin-top: 23px;
   padding: 25px;
@@ -119,7 +127,7 @@ footer {
     margin-right: auto; }
 
 #login_controls {
-  margin-top: 4em;
+  margin-top: 3em;
   margin-left: auto;
   margin-right: auto; }
 
