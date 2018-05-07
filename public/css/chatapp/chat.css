@@ -164,7 +164,7 @@
     border-radius: 40px; }
   /* line 242, chat.scss */
   .list_image .person_online {
-    border: 4px solid #4caf50 !important; }
+    border: 4px solid #inherit !important; }
   /* line 247, chat.scss */
   .list_image .person_offline {
     border: 4px solid #2196f3 !important; }

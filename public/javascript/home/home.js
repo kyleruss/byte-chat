@@ -132,7 +132,6 @@ $(function()
 						
 						$.getJSON(fetchFriendsUrl, function(response)
 						{
-							console.log(node_server);
 							var sockExit = io.connect(node_server);	
 							sockExit.emit('user_log', { name: null, username: user, login: true, friends: response });
 							sockExit.on('user_log_finished', function(sockResponse)

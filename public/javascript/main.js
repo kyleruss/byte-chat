@@ -1,3 +1,5 @@
+var node_server = 'http://localhost:8100';
+
 //Shows a return message in an alert dialog
 //container*: pass the .alert container to hold message
 //stats: pass true/false or equiv int values for success/fail
@@ -55,9 +57,6 @@ function logoutUser()
 			});
 		});
 }
-
-
-var node_server = 'http://122.57.169.242:8100';
 
 $(function()
 {

@@ -49,15 +49,20 @@ io.on('connection', function(socket)
 
 	socket.on('user_log', function(data)
 	{
+		console.log('userlog');
 		var rName;
 		if(data.login)
 		{
 			rName = 'friend_online';
+			console.log('join: ' + data.username);
 			socket.join(data.username);
 		}
 
 		else
+		{
+			console.log('offline');
 			rName = 'friend_offline';
+		}
 
 		data.friends.forEach(function(friend)
 		{

@@ -17,8 +17,7 @@
 		{{ HTML::script('javascript/plugins/jquery.min.js'); }}
 		<!--<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
 		{{ HTML::script('javascript/plugins/jquery-migrate.min.js'); }}
-		<!--<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script> -->
-		{{ HTML::script('javascript/plugins/socketio.js'); }}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
 		<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
 		{{ HTML::script('javascript/plugins/bootstrap.min.js'); }}
 		{{ HTML::script('javascript/plugins/jquery-ui.min.js'); }}
