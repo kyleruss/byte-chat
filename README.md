@@ -2,6 +2,14 @@
 
 <img src="preview/ChatPreview.png" />
 
+ByteChat is an encrypted messaging web application developed with Socket.IO and Laravel  
+The application provides an instant messaging and social-networking service for users  
+ByteChat ensures communication is secure such that all messages are encrypted with AES where  
+several crypto libraries [aes-lib-js](https://github.com/kyleruss/aes-lib-js) & [SafeExchange](https://github.com/kyleruss/safe-exchange) were written for this project  
+Addtionally, the application was supported by recent [research work](https://github.com/kyleruss/aes-lib-js/blob/master/AESAppliedInWebTechnology.pdf)
+
+
+
 ## Features
 ### User Sign-in
 
